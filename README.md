@@ -67,7 +67,7 @@ refactor: optimize user authorization flow
 
 * Always create a new branch for a new task
 * Do not combine multiple features in one branch
-* регулярно perform `pull` from `development`
+* Regularly perform `pull` from `development`
 * Follow clean and readable code practices
 * Any controversial decisions must be discussed by the team **before** merging
 
@@ -78,3 +78,4 @@ refactor: optimize user authorization flow
 * [https://github.com](https://github.com)
 * [https://desktop.github.com](https://desktop.github.com)
 * [https://git-scm.com](https://git-scm.com)
+
