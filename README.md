@@ -78,3 +78,5 @@ refactor: optimize user authorization flow
 * [https://github.com](https://github.com)
 * [https://desktop.github.com](https://desktop.github.com)
 * [https://git-scm.com](https://git-scm.com)
+
+Testing my Git skills
