@@ -185,3 +185,30 @@ export async function fetchScore(sessionId) {
         finished: data.finished
     };
 }
+
+/* fetchLeaderboard
+Expect:
+- sessionId OR treasureHuntId
+- sorted (optional)
+- limit (optional)
+Returns: 
+- normalized leaderboard data
+*/
+export async function fetchLeaderboard({essionId, treasureHuntId, sorted = false, limit}) {
+    const params = [];
+    
+    if (sessionId) params.session = sessionId;
+    if (treasureHuntId) params["treasure-hunt-id"] = treasureHuntId;
+    if (sorted) params.sorted = true;
+    if (limit) params.limit = limit;
+
+    const data = await apiRequest("/leaderboard", params);
+
+    return{
+        treasureHuntName: data.treasureHuntName,
+        numOfPlayers: data.numOfPlayers,
+        limit: data.limit,
+        hasPrize: data.hasPrize,
+        leaderboard: data.leaderboard
+    }
+}
