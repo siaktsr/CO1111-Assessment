@@ -45,10 +45,11 @@ async function apiRequest(endpoint, params={}) {
     return data;
 }
 
-/* =========================
+/* 
+============================
    TREASURE HUNT API CALLS
-   ========================= */
-
+============================
+*/
 
 /* fetchTreasureHunts
 Fetches available treasure hunts.
@@ -63,3 +64,23 @@ export async function fetchTreasureHunts(includeFinished = false){
     return data.treasureHunts;
 }
 
+/* startSession
+Expect:
+- player: player name
+- app: application identifier
+- treasureHuntId: selected treasure hunt ID
+Returns:
+- { sessionId, numOfQuestions }
+*/
+export async function startSession(player, app, treasureHuntId) {
+    const data = await apiRequest("/start", {
+        player, 
+        app, 
+        "treasure-hunt-id": treasureHuntId
+    });
+    
+    return {
+        sessionId: data.session,
+        numOfQuestions: data.numOfQuestions
+    };
+}
