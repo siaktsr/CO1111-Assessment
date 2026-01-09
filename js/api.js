@@ -106,6 +106,7 @@ export async function fetchQuestion(sessionId) {
         skipScore: data.skipScore
     };
 }
+
 /* submitAnswer
 Expect: 
 - sessionId //(from startSession)
@@ -114,7 +115,6 @@ Expect:
 Returns:
 - result of the answer submission
 */
-
 export async function submitAnswer(sessionId, answer) {
     const data = await apiRequest("/submit", {
         session: sessionId,
@@ -125,5 +125,25 @@ export async function submitAnswer(sessionId, answer) {
         complited: data.complited,
         message: data.message,
         scoreAdjustment: data.scoreAdjustment
+    };
+}
+
+/* updateLocation
+Expect:
+- sessionId
+- latitude
+- longitude
+Returns:
+- server message
+*/
+export async function updateLocation(sessionId, latitude, longitude) {
+    const data = await apiRequest("location", {
+        session: sessionId,
+        latitude,
+        longitude
+    });
+
+    return {
+        message: data.message
     };
 }
