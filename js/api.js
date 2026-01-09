@@ -43,11 +43,23 @@ async function apiRequest(endpoint, params={}) {
     }
 
     return data;
-}   
-window.apiRequest = apiRequest; // to be deleted ONLY BY VLAD
-
+}
 
 /* =========================
    TREASURE HUNT API CALLS
    ========================= */
+
+
+/* fetchTreasureHunts
+Fetches available treasure hunts.
+ 
+Expects:
+- includeFinished (optional boolean)
+Returns:
+- Array of treasure hunt objects
+ */
+export async function fetchTreasureHunts(includeFinished = false){
+    const data = await apiRequest("/list", includeFinished ? { "include-finished": true } : {});
+    return data.treasureHunts;
+}
 

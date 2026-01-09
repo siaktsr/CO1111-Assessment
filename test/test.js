@@ -1,1 +1,0 @@
-apiRequest("/list").then(console.log); // Comand for testing
