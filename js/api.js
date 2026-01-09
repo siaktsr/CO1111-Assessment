@@ -94,7 +94,7 @@ Returns:
 export async function fetchQuestion(sessionId) {
     const data = await apiRequest("/question", {session: sessionId });
     return {
-        complited: data.complited,
+        completed: data.completed,
         questionText: data.questionText,
         questionType: data.questionType,
         canBeSkipped: data.canBeSkipped,
@@ -123,7 +123,7 @@ export async function submitAnswer(sessionId, answer) {
 
     return {
         correct: data.correct,
-        complited: data.complited,
+        completed: data.completed,
         message: data.message,
         scoreAdjustment: data.scoreAdjustment
     };
