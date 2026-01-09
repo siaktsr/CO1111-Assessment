@@ -120,6 +120,7 @@ export async function submitAnswer(sessionId, answer) {
         session: sessionId,
         answer
     });
+
     return {
         correct: data.correct,
         complited: data.complited,
@@ -130,7 +131,7 @@ export async function submitAnswer(sessionId, answer) {
 
 /* updateLocation
 Expect:
-- sessionId
+- sessionId //(from startSession)
 - latitude
 - longitude
 Returns:
@@ -145,5 +146,23 @@ export async function updateLocation(sessionId, latitude, longitude) {
 
     return {
         message: data.message
+    };
+}
+
+/* skipQuestion
+Expect:
+- sessionId //(from startSession)
+Returns: 
+- skip result
+*/
+export async function skipQuestion(sessionId) {
+    const data = await apiRequest("/skip", {
+        session:sessionId
+    });
+
+    return {
+        completed: data.completed,
+        message: data.message,
+        scoreAdjustment: data.scoreAdjustment
     };
 }
