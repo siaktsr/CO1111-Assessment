@@ -166,3 +166,22 @@ export async function skipQuestion(sessionId) {
         scoreAdjustment: data.scoreAdjustment
     };
 }
+
+/* fetchScore
+Expect: 
+- sessionId //(from startSession)
+Returns:
+- score information
+*/
+export async function fetchScore(sessionId) {
+    const data = await apiRequest("/score", {
+        session: sessionId
+    });
+
+    return {
+        player: data.player,
+        score: data.score,
+        completed: data.completed,
+        finished: data.finished
+    };
+}
