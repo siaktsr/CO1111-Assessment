@@ -84,3 +84,25 @@ export async function startSession(player, app, treasureHuntId) {
         numOfQuestions: data.numOfQuestions
     };
 }
+
+/*fetchQuestion
+Expect:
+- sessionId //(from startSession)
+Returns:
+- All data related to question
+*/
+export async function fetchQuestion(sessionId) {
+    const data = await apiRequest("/question", {session: sessionId });
+    return {
+        complited: data.complited,
+        questionText: data.questionText,
+        questionType: data.questionType,
+        canBeSkipped: data.canBeSkipped,
+        requiresLocation: data.requiresLocation,
+        numOfQuestions: data.numOfQuestions,
+        currentQuestionIndex: data.currentQuestionIndex,
+        correctScore: data.correctScore,
+        wrongScore: data.wrongScore,
+        skipScore: data.skipScore
+    };
+}
