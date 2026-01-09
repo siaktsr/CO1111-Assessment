@@ -85,7 +85,7 @@ export async function startSession(player, app, treasureHuntId) {
     };
 }
 
-/*fetchQuestion
+/* fetchQuestion
 Expect:
 - sessionId //(from startSession)
 Returns:
@@ -104,5 +104,26 @@ export async function fetchQuestion(sessionId) {
         correctScore: data.correctScore,
         wrongScore: data.wrongScore,
         skipScore: data.skipScore
+    };
+}
+/* submitAnswer
+Expect: 
+- sessionId //(from startSession)
+- answer
+
+Returns:
+- result of the answer submission
+*/
+
+export async function submitAnswer(sessionId, answer) {
+    const data = await apiRequest("/submit", {
+        session: sessionId,
+        answer
+    });
+    return {
+        correct: data.correct,
+        complited: data.complited,
+        message: data.message,
+        scoreAdjustment: data.scoreAdjustment
     };
 }
