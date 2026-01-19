@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treasure Hunt - Main Page</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <header>
+        <h1 id="title-index">Treasure Hunt Game</h1>
+    </header>
+
+    <main>
+
+        <div class="center-text">
+            <h2>Welcome mighty pirates!</h2>
+
+            <img src="/media/photo/pirate-hat.png" alt="Pirate Hat" style="width:135px;height:135px;">
+
+            <p>Your goal is to answer as many questions as you can correctly in under 30 minutes. </p>
+        </div>
+
+        <div class="game-rules">
+            <h4><u>GAME RULES:</u></h4>
+
+            <ol class="game-rules-list">
+                <li>Each <span id="correct-ans"><b>correct</b></span> answer, grants you <b><i>?</i></b> points.</li>
+                <li>Each <span id="wrong-ans"><b>wrong</b></span> answer, deducts <b><i>?</i></b> points.</li>
+                <li>Each <span id="skip-ans"><b>skipped</b></span> answer, deducts <b><i>?</i></b> points.</li>
+            </ol>
+        </div>
+
+
+    </main>
+
+
+    <footer>
+        <button class="play-btn" onclick="document.location='questions.html'"><b>&#128073 Play now &#128072</b></button>
+    </footer>
+<!--    <script type="module" src="../js/questions.js"></script>-->
+</body>
+
+</html>
