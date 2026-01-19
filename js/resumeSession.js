@@ -10,6 +10,7 @@ export async function startNewSession(player,app,treasureHuntId) {
     const id = start.sessionId;
     let saveSession = localStorage.setItem("SessionId",JSON.stringify(id));
     await LoadNextQuestion(id);
+    return id;
 }
 
 //Every time window loads check if a session is present
@@ -53,3 +54,4 @@ export async function LoadNextQuestion(id) {
         console.error("Unknown Error");
     }
 }
+
