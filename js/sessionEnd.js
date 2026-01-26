@@ -7,14 +7,12 @@ import {
 
 //Import from resumeSession.js
 import{
-    startNewSession,
+    findAndSaveSessionId,
     LoadNextQuestion
 }from "./resumeSession.js";
 
-
-//Use Start New session to save the sessionID
-let check = startNewSession(player,app,treasureHuntID);
-//Save sessionID so it exists in a variable
+//save session ID using local storage
+let check = findAndSaveSessionId();
 
 async function CheckAndDisplay(){
 try{
@@ -35,4 +33,3 @@ try{
     }
 
 }
-
