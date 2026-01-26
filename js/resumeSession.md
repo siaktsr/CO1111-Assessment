@@ -45,7 +45,7 @@
 
 **Returns:**
 
-- Nothing (void)
+- Session ID (id)
 
 */
 
@@ -60,6 +60,8 @@
      let saveSession =localStorage.setItem("SessionId",JSON.stringify(id));
      
      LoadNextQuestion(id);
+
+     return id;
     }
     
 
@@ -176,3 +178,4 @@
     }
 
 */
+
