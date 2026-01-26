@@ -10,8 +10,23 @@ export async function startNewSession(player,app,treasureHuntId) {
     const id = start.sessionId;
     let saveSession = localStorage.setItem("SessionId",JSON.stringify(id));
     await LoadNextQuestion(id);
-    return id;
 }
+
+
+export async function findAndSaveSessionId(){
+    let saveSession = JSON.parse(localStorage.getItem("SessionId"));
+    if(saveSession === null){
+        console.log("No session ID was found!");
+        return;
+    }
+    else {
+        //validate session using API
+        await fetchQuestion(saveSession);
+    }
+
+    return saveSession;
+}
+
 
 //Every time window loads check if a session is present
 window.onload =async function reloadPage() {
@@ -54,4 +69,3 @@ export async function LoadNextQuestion(id) {
         console.error("Unknown Error");
     }
 }
-
