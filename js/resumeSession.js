@@ -12,7 +12,7 @@ export async function startNewSession(player,app,treasureHuntId) {
     await LoadNextQuestion(id);
 }
 
-
+//A function that saves the session ID and passes it using local storage(for future use)
 export async function findAndSaveSessionId(){
     let saveSession = JSON.parse(localStorage.getItem("SessionId"));
     if(saveSession === null){
@@ -20,18 +20,17 @@ export async function findAndSaveSessionId(){
         return;
     }
     else {
-        //validate session using API
+        //Await to validate the session
         await fetchQuestion(saveSession);
     }
-
     return saveSession;
 }
 
 
-//Every time window loads check if a session is present
+//On reload check
 window.onload =async function reloadPage() {
         //Save it
-        let loadSavedSession = localStorage.getItem("SessionId");
+        let loadSavedSession = JSON.parse(localStorage.getItem("SessionId"));
         //No session found throw error
         if (!loadSavedSession){
             console.log("Error no Session Id Found");
@@ -47,16 +46,15 @@ window.onload =async function reloadPage() {
 //Function that loads the next question from API
 export async function LoadNextQuestion(id) {
     try{
-        //save question in variable
+        //Fetch Question from API
         let question = await fetchQuestion(id);
         //If no question found
         if (!question){
             console.error("Error fetching Question");
         }
-        //If all questions are completed delete the Session From the local storage
+        //If all questions are completed display message
         else if(question.completed){
             console.log("Congratulations Hunter! You completed the Treasure Hunt!");
-            return;
         }
         //Show the next question
         else{
