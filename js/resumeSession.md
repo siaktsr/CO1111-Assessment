@@ -1,12 +1,12 @@
 /**
 
-- This is The session Management for the treasure Hunt Mini game.
+- This is The session Management (for an ongoing Session) for the treasure Hunt Mini game.
 
 **WHAT IT CAN DO:**
 
     -Start a new Session using API commands.
     
-    -Store the sessions ID in local storage.
+    -Store the session's ID in local storage.
     
     -Identify an ongoing session when the page reloads.
     
@@ -45,7 +45,7 @@
 
 **Returns:**
 
-- Session ID (id)
+- Nothing (void)
 
 */
 
@@ -63,7 +63,59 @@
 
      return id;
     }
+
+
+
+
     
+/**
+ - Saves the Session ID from Local storage for future use.
+
+
+
+**Parameters:**
+
+- Nothing
+
+
+
+**Returns:**
+
+- Session ID 
+
+*/
+
+
+/**
+
+    //A function that saves the session ID and passes it using local storage
+    
+    export async function findAndSaveSessionId(){
+    
+    let saveSession = JSON.parse(localStorage.getItem("SessionId"));
+    if(saveSession === null){
+    
+        console.log("No session ID was found!");
+        return;
+    }
+    else {
+    
+        //Await to validate the session
+        await fetchQuestion(saveSession);
+    }
+    
+    return saveSession;
+    }
+
+
+
+*/
+
+
+
+
+
+
 
 
 /**
@@ -93,7 +145,7 @@
     window.onload =async function reloadPage() {
     
     //Save it
-    let loadSavedSession = localStorage.getItem("SessionId");
+    let loadSavedSession = JSON.parse(localStorage.getItem("SessionId"));
     
     //No session found throw error
     if (!loadSavedSession){
@@ -156,7 +208,6 @@
     else if(question.completed){
     
     console.log("Congratulations Hunter! You completed the Treasure Hunt!");
-    return;
     
     }
     //Show the next question
@@ -178,4 +229,5 @@
     }
 
 */
+
 
