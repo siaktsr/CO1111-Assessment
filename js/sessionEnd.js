@@ -5,35 +5,48 @@ import {
     fetchLeaderboard,
 }from "./api.js";
 
-//Import from resumeSession.js
+//Import from resumeSession
 import{
     findAndSaveSessionId,
     LoadNextQuestion
 }from "./resumeSession.js";
 
-//save session ID using local storage
-let check = findAndSaveSessionId();
+//use function to save the session ID
+const check = await findAndSaveSessionId();
+ //game state
+let flag = {
+    state: false
+};
 
+if(flag.state === false){
+    await CheckAndDisplay(check,flag);
+}
 
-
-async function CheckAndDisplay(){
+//Function that finds checks the state of the Session and displays score if finished
+export async function CheckAndDisplay(check, flag){
 try{
-    let flag = false;
     let question = await fetchQuestion(check);
     if(question.completed){
-        flag = true;
         console.log("Session completed!");
         let score = await fetchScore(check);
         console.log(score);
         await fetchLeaderboard(check);
+        flag.state = true;
     }
-    else{
+    else {
         console.log("Session is Ongoing");
         await LoadNextQuestion(check);
+        flag.state = false;
     }
 }
     catch (error){
      console.error(error);
     }
+
+}
+
+//check for restart
+async function restart(check, flag){
+
 
 }
