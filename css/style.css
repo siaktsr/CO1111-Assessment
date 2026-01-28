@@ -26,12 +26,13 @@ footer{
     font-size: 20px;
     padding: 10px;
     font-family: "Century Schoolbook", cursive;
-    transition-duration: 0.4s;
 }
 
 .play-btn:hover{
     color: white;
     background-color: darkred;
+    transition-duration: 0.4s;
+    box-shadow:0 8px 16px 0 goldenrod;
 }
 
 #correct-ans{
@@ -58,6 +59,20 @@ ol.game-rules-list{
     text-align: left;
 }
 
+.team-btn{
+    position: absolute;
+    left: 20px;
+    bottom: 40px;
+    font-size: 16px;
+    border-radius: 6px;
+}
+
+.team-btn:hover{
+    color: white;
+    background-color: black;
+    transition-duration: 0.3s;
+    box-shadow:0 8px 16px 0 black;
+}
 /*@media screen and (max-width: 800px) {*/
 /*    main{*/
 /*        width: 100%;*/
