@@ -42,9 +42,8 @@
  
       import{
 
-      findAndSaveSessionId,
-  
-      LoadNextQuestion
+      findAndSaveSessionId
+    
       }from "./resumeSession.js";
 
 
@@ -191,3 +190,4 @@
 
 
 */
+
