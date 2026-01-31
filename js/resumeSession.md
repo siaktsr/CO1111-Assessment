@@ -59,7 +59,7 @@
 
      let saveSession =localStorage.setItem("SessionId",JSON.stringify(id));
      
-     LoadNextQuestion(id);
+     loadNextQuestion(id);
 
      return id;
     }
@@ -157,7 +157,7 @@
     else{
     
     const session = JSON.parse(loadSavedSession);
-    await LoadNextQuestion(session);
+    await loadNextQuestion(session);
     }
     
     }
@@ -229,5 +229,6 @@
     }
 
 */
+
 
 
