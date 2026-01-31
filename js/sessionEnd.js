@@ -8,7 +8,6 @@ import {
 //Import from resumeSession
 import{
     findAndSaveSessionId,
-    LoadNextQuestion
 }from "./resumeSession.js";
 
 //use function to save the session ID
@@ -17,7 +16,7 @@ const check = await findAndSaveSessionId();
 
 
 //Function that finds checks the state of the Session and displays score if finished
-export async function checkAndDisplay(check){
+export async function CheckAndDisplay(check){
 try{
     let question = await fetchQuestion(check);
     if(question.completed){
@@ -29,8 +28,7 @@ try{
         return true;
         }
     else {
-        console.log("Session is Ongoing");
-        await LoadNextQuestion(check);
+        console.log("Session is Ongoing !");
         return false;
     }
 }
@@ -41,7 +39,7 @@ try{
 }
 
 //check for restart
-async function restart(check, flag){
+async function restart(check){
 
 
 }
