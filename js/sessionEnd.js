@@ -14,29 +14,24 @@ import{
 //use function to save the session ID
 const check = await findAndSaveSessionId();
  //game state
-let flag = {
-    state: false
-};
 
-if(flag.state === false){
-    await CheckAndDisplay(check,flag);
-}
 
 //Function that finds checks the state of the Session and displays score if finished
-export async function CheckAndDisplay(check, flag){
+export async function checkAndDisplay(check){
 try{
     let question = await fetchQuestion(check);
     if(question.completed){
         console.log("Session completed!");
-        let score = await fetchScore(check);
-        console.log(score);
-        await fetchLeaderboard(check);
-        flag.state = true;
-    }
+        let final_score = await fetchScore(check);
+        console.log("Final Score :" , final_score);
+        let final_leaderboard = await fetchLeaderboard(check);
+        console.log(final_leaderboard);
+        return true;
+        }
     else {
         console.log("Session is Ongoing");
         await LoadNextQuestion(check);
-        flag.state = false;
+        return false;
     }
 }
     catch (error){
