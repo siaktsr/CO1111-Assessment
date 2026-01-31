@@ -9,10 +9,10 @@ export async function startNewSession(player,app,treasureHuntId) {
     const start = await startSession(player,app,treasureHuntId);
     const id = start.sessionId;
     let saveSession = localStorage.setItem("SessionId",JSON.stringify(id));
-    await LoadNextQuestion(id);
+    await loadNextQuestion(id);
 }
 
-//A function that saves the session ID and passes it using local storage(for future use)
+//A function that saves the session ID and passes it using local storage
 export async function findAndSaveSessionId(){
     let saveSession = JSON.parse(localStorage.getItem("SessionId"));
     if(saveSession === null){
@@ -38,13 +38,13 @@ window.onload =async function reloadPage() {
         //Load the question
         else{
             const session = JSON.parse(loadSavedSession);
-            await LoadNextQuestion(session);
+            await loadNextQuestion(session);
         }
 
 }
 
 //Function that loads the next question from API
-export async function LoadNextQuestion(id) {
+export async function loadNextQuestion(id) {
     try{
         //Fetch Question from API
         let question = await fetchQuestion(id);
