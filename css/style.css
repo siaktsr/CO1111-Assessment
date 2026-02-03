@@ -126,3 +126,16 @@ ol.game-rules-list{
     transition-duration: 0.3s;
     box-shadow:0 8px 16px 0 black;
 }
+
+.X-icon{
+    position: absolute;
+    right: 30px;
+    bottom: 20px;
+    font-size: 16px;
+    border-radius: 6px;
+}
+
+.X-icon:hover {
+    opacity: 0.7;
+}
+
