@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Treasure Hunts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <h1>Treasure Hunt</h1>
+
+    <div>
+        <label for="game-select">Select game</label><br>
+        <select id="game-select" disabled>
+            <option value="">Loading games...</option>
+        </select>
+    </div>
+
+    <br>
+
+    <div>
+        <label for="team-name">Team name</label><br>
+        <input
+            type="text"
+            id="team-name"
+            placeholder="Enter team name"
+            disabled
+        />
+    </div>
+
+    <br>
+
+    <button id="start-game-btn" disabled>Start game</button>
+    <p id="error-message"></p>
+
+    <script type="module" src="../js/app.js"></script>
+</body>
+</html>
