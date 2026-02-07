@@ -71,13 +71,13 @@ async function renderAnswerInput(type) {
     answerSectionEl.innerHTML = "";
 
     if(type === "BOOLEAN"){
-        createButton("Yes/True", "true");
-        createButton("No/False", "false");
+        createBtn("Yes/True", "true");
+        createBtn("No/False", "false");
     }
 
     if(type === "MCQ"){
         ["A", "B", "C", "D"].forEach(letter => {
-            createButton(letter, letter);
+            createBtn(letter, letter);
         });
     }
 

@@ -116,7 +116,7 @@ Returns:
 - result of the answer submission
 */
 export async function submitAnswer(sessionId, answer) {
-    const data = await apiRequest("/submit", {
+    const data = await apiRequest("/answer", {
         session: sessionId,
         answer
     });
