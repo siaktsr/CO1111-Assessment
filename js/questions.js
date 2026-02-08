@@ -45,7 +45,7 @@ async function loadQuestion() {
         currentQuestion = data;
 
         if(data.completed){
-            showGameComplited();
+            showGameCompleted();
             return;
         }
         renderQuestion(data);
