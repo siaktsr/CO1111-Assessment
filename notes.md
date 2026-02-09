@@ -40,3 +40,20 @@ Discussed about:
 2) Cookies and Geolocation implementation.
 
 Team members present: Anastasia, Athanasios, Vlad.
+
+
+--------------
+### 09/02/2026
+--------------
+
+Online, 1 hour
+
+Discussed:
+1) Tested how our Treasure Hunt App works
+2) Wrote possible changes needed to improve our app's functionality
+3) Created presentation for submission on 11.02.2026
+
+Added new milestones for the following issues:
+- 24 - 33
+
+Team members present: Anastasia, Athanasios, Vlad, Grigoris
