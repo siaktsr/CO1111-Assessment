@@ -1,17 +1,26 @@
 //Import from API
 import {
     updateLocation,
-    sumbitAnswer
 }from "./api.js";
 
+//import functions
+import {
+    CheckAndDisplay
+}from "./sessionEnd.js";
 
 //Import from resumeSession
 import{
-    findAndSaveSessionId
+    findAndSaveSessionId,
 }from "./resumeSession.js";
 
 
-function showPosition(position){
+
+await locationUpdates();
+
+
+
+
+export function showPosition(position){
     //Get the latitude
     let lat = position.coords.latitude;
     //Get the longitude
@@ -20,7 +29,7 @@ function showPosition(position){
 }
 
 //alert if browser does not allow location track
-function CheckLocation(){
+export function CheckLocation(){
     if(navigator.geolocation){
         navigator.geolocation.getCurrentPosition(showPosition);
     }
@@ -45,4 +54,17 @@ catch(err){
     alert("Unknown error: " + err);
 }
 
+}
+
+export async function locationUpdates(){
+
+    let sessionId = await findAndSaveSessionId();
+    if(sessionId === null){
+        alert("No session found!");
+        return;
+    }
+    while (!await CheckAndDisplay(sessionId)) {
+        setInterval(getLocation,120000);
+        console.log("Hunt still Active...");
+    }
 }
