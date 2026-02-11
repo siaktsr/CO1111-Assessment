@@ -58,7 +58,7 @@ async function loadQuestion() {
 Renders question text and input controls based on question type.
 */
 async function renderQuestion(question) {
-    questionTextEl.textContent = question.questionText;
+    questionTextEl.innerHTML = question.questionText;
     questionTypeEl.textContent = `Type: ${question.questionType}`;
 
     renderAnswerInput(question.questionType);
