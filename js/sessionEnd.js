@@ -1,8 +1,6 @@
 //Import from API
 import {
     fetchQuestion,
-    fetchScore,
-    fetchLeaderboard,
 }from "./api.js";
 
 //Import from resumeSession
@@ -11,20 +9,18 @@ import{
 }from "./resumeSession.js";
 
 //use function to save the session ID
-const check = await findAndSaveSessionId();
+const sessionId = await findAndSaveSessionId();
  //game state
 
+await CheckAndDisplay(sessionId);
 
 //Function that finds checks the state of the Session and displays score if finished
-export async function CheckAndDisplay(check){
-try{
-    let question = await fetchQuestion(check);
+export async function CheckAndDisplay(sessionId) {
+    try{
+        let question = await fetchQuestion(sessionId);
     if(question.completed){
         console.log("Session completed!");
-        let final_score = await fetchScore(check);
-        console.log("Final Score :" , final_score);
-        let final_leaderboard = await fetchLeaderboard(check);
-        console.log(final_leaderboard);
+        window.location.href = "test.html";
         return true;
         }
     else {
@@ -39,7 +35,7 @@ try{
 }
 
 //check for restart
-async function restart(check){
+async function restart(sessionId) {
 
 
 }
