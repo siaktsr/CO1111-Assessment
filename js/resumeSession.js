@@ -30,17 +30,15 @@ export async function findAndSaveSessionId(){
 //On reload check
 window.onload =async function reloadPage() {
         //Save it
-        let loadSavedSession = JSON.parse(localStorage.getItem("SessionId"));
+        let loadSavedSession = await findAndSaveSessionId();
         //No session found throw error
         if (!loadSavedSession){
             console.log("Error no Session Id Found");
         }
         //Load the question
         else{
-            const session = JSON.parse(loadSavedSession);
-            await loadNextQuestion(session);
+            await loadNextQuestion(loadSavedSession);
         }
-
 }
 
 //Function that loads the next question from API
