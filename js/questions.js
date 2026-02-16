@@ -18,6 +18,8 @@ const skipBtn = document.getElementById("skip-btn");
 // State
 let sessionId = null;
 let currentQuestion = null;
+let selectedAnswer = null;
+
 
 // Initialization
 init();
@@ -48,6 +50,7 @@ async function loadQuestion() {
             showGameCompleted();
             return;
         }
+        selectedAnswer = null;
         renderQuestion(data);
     }catch(error){
         showMessage(error.message);
@@ -102,25 +105,62 @@ Creates an answer button.
 async function createBtn(label, value) {
     const btn = document.createElement("button");
     btn.textContent = label;
-    btn.onclick = () => submit(value);
+    btn.classList.add("answer-btn");
+
+    btn.onclick = () => {
+        selectedAnswer = value;
+
+        // remove active class from all buttons
+        document.querySelectorAll(".answer-btn")
+            .forEach(b => b.classList.remove("active"));
+
+        btn.classList.add("active");
+    };
+
     answerSectionEl.appendChild(btn);
 }
+
 
 /* Event Handlers */
 
 submitBtn.addEventListener("click", ()=>{
     if(!currentQuestion)return;
 
-    if(currentQuestion.questionType === "NUMERIC" 
-    || currentQuestion.questionType === "INTEGER"){
-        const input = document.getElementById("numeric-answer");
-        if(!input || input.value === ""){
-            showMessage("Please enter a number.")
+    if(currentQuestion.questionType === "BOOLEAN" 
+    || currentQuestion.questionType === "MCQ"){
+
+        if(!selectedAnswer){
+            showMessage("Please select an answer.");
             return;
         }
+
+        submit(selectedAnswer);
+        return;
+    }
+
+    if(currentQuestion.questionType === "NUMERIC" 
+    || currentQuestion.questionType === "INTEGER"){
+
+        const input = document.getElementById("numeric-answer");
+        if(!input || input.value === ""){
+            showMessage("Please enter a number.");
+            return;
+        }
+
+        submit(input.value);
+    }
+
+    if(currentQuestion.questionType === "TEXT"){
+        const input = document.getElementById("text-answer");
+        if(!input || input.value.trim() === ""){
+            showMessage("Please enter an answer.");
+            return;
+        }
+
         submit(input.value);
     }
 });
+
 
 /* submit
 Submits an answer to the server.
@@ -131,7 +171,17 @@ async function submit(answer) {
 
         showMessage(result.message);
 
-        loadQuestion();
+        if(result.completed){
+            showGameCompleted();
+            return;
+        }
+
+        if(result.correct){
+            setTimeout(() => {
+                loadQuestion();
+            }, 800);
+        }
+
     }catch(error){
         showMessage(error.message);
     }
@@ -181,8 +231,12 @@ function showGameCompleted(){
     questionTextEl.textContent = "Game Completed!";
     answerSectionEl.innerHTML = "";
 
+    submitBtn.style.display = "none";
+    skipBtn.style.display = "none";
+
     const btn = document.createElement("button");
     btn.textContent = "Go to Leaderboard";
+    btn.classList.add("primary-btn");
     btn.onclick = () => {
         window.location.href = "leaderboard.html";
     };
