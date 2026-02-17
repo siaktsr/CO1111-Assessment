@@ -1,6 +1,4 @@
-//Needs to only work when the game starts so only the html page that the hunt takes place
-if(window.location.pathname.includes("")) {
-    //import functions from different js files
+//import functions from different js files
     import {
         findAndSaveSessionId,
     } from "/resumeSession.js";
@@ -14,6 +12,10 @@ if(window.location.pathname.includes("")) {
         fetchScore,
     } from "/api.js";
 
+
+//Needs to only work when the game starts so only the html page that the hunt takes place
+if(window.location.pathname.includes("")) {
+    
 //use findAndSaveSessionId to save the sessionId using local storage
     let sessionId = await findAndSaveSessionId();
     if(sessionId === null) {
@@ -42,3 +44,4 @@ if(window.location.pathname.includes("")) {
 
     }
 }
+
