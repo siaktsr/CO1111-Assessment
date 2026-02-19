@@ -243,3 +243,127 @@ function showGameCompleted(){
 
     answerSectionEl.appendChild(btn);
 }
+
+// QR code 
+// Get QR-related DOM elements
+const qrBtn = document.getElementById("qr-btn");
+const qrSection = document.getElementById("qr-section");
+const preview = document.getElementById("preview");
+const closeQrBtn = document.getElementById("close-qr-btn");
+const switchCameraBtn = document.getElementById("switch-camera-btn");
+
+// Scanner state variables
+let cameras = [];
+let currentCameraIndex = 0;
+let scanner = null;
+
+qrBtn.addEventListener("click", () => {
+    startScanner();
+});
+
+closeQrBtn.addEventListener("click", () => {
+    stopScanner();
+});
+
+/* startScanner()
+ Initializes the Instascan scanner,
+ retrieves available cameras,
+ selects a camera (preferably back camera on mobile),
+ and starts the video stream.
+*/
+function startScanner() {
+    qrBtn.style.display = "none";
+    qrSection.style.display = "block";
+
+    scanner = new Instascan.Scanner({ video: preview });
+
+    scanner.addListener("scan", function (content) {
+        console.log("QR scanned:", content);
+
+        stopScanner();
+
+        showQrResult(content);
+    });
+
+    Instascan.Camera.getCameras().then(function (availableCameras) {
+
+        if (availableCameras.length > 0) {
+            
+            cameras = availableCameras;
+            console.log(cameras);
+
+            if (currentCameraIndex - 1 == cameras.length) {
+                currentCameraIndex = cameras.indexOf(currentCameraIndex + 1);
+            } else {
+                currentCameraIndex = 0;
+            }
+
+            scanner.start(cameras[currentCameraIndex]);
+
+            if (cameras.length > 1) {
+                switchCameraBtn.style.display = "inline-block";
+            }
+
+        } else {
+            alert("No cameras found.");
+        }
+    })
+    .catch(function (e) {
+        console.error(e);
+    });
+
+}
+
+/* stopScanner()
+ Stops the camera stream,
+ hides the scanner section,
+ and restores the QR button.
+*/
+function stopScanner() {
+    if (scanner) {
+        scanner.stop();
+        scanner = null;
+    }
+    qrSection.style.display = "none";
+    qrBtn.style.display = "inline-block";
+
+    switchCameraBtn.style.display = "none";
+}
+
+/* showQrResult(content)
+ Displays the scanned QR content.
+ If the content starts with http/https,
+ it is rendered as a clickable link.
+ Otherwise, it is displayed as plain text.
+*/
+function showQrResult(content) {
+
+    const check = content.trim();
+
+    if (check.startsWith("http://") || check.startsWith("https://")) {
+        messageEl.innerHTML = `
+            QR Code Result: 
+            <a href="${content}" target="_blank" rel="noopener noreferrer">
+                ${content}
+            </a>
+        `;
+    } else {
+        messageEl.textContent = "QR Code Result: " + content;
+    }
+}
+
+/*
+ Switch camera button handler
+ Cycles through available cameras
+ and restarts scanner with the next camera.
+*/
+switchCameraBtn.addEventListener("click", () => {
+
+    if (cameras.length > 1) {
+
+        currentCameraIndex = (currentCameraIndex + 1) % cameras.length;
+
+        scanner.stop();
+        scanner.start(cameras[currentCameraIndex]);
+    }
+});

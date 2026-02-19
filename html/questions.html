@@ -25,6 +25,14 @@
         <section id="controls">
             <button id="submit-btn">Submit Answer</button>
             <button id="skip-btn">Skip Question</button>
+            <button id="qr-btn">Scan QR Code</button>
+        </section>
+
+        <!-- QR Scanner Section -->
+        <section id="qr-section" style="display:none;">
+            <video id="preview" style="width:300px;"></video>
+            <button id="switch-camera-btn">Switch Camera</button>
+            <button id="close-qr-btn">Close Scanner</button>
         </section>
 
         <!-- Feedback message -->
@@ -36,6 +44,7 @@
     <footer>
 
     </footer>
+    <script src="../libraries/instascan.min.js"></script>
     <script type="module" src="../js/questions.js"></script>
 </body>
 </html>
