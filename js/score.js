@@ -1,47 +1,41 @@
-//import functions from different js files
-    import {
-        findAndSaveSessionId,
-    } from "/resumeSession.js";
-
 //import functions
-    import {
+     import {
         CheckAndDisplay
-    } from "/sessionEnd.js";
+    } from "../js/sessionEnd.js";
 
-    import {
-        fetchScore,
-    } from "/api.js";
+import {
+    fetchScore,
+    fetchQuestion
+} from "../js/api.js";
 
 
-//Needs to only work when the game starts so only the html page that the hunt takes place
-if(window.location.pathname.includes("")) {
-    
-//use findAndSaveSessionId to save the sessionId using local storage
-    let sessionId = await findAndSaveSessionId();
-    if(sessionId === null) {
-        console.error("No such sessionId");
+let sessionId = null;
+
+
+// Initialization
+init();
+
+function init() {
+    const StoredData = localStorage.getItem("treasureHuntSession");
+
+    if (!StoredData) {
+        alert("Session data not found.");
+        window.location.href = "../test/test.html";
     }
-    else if(!await CheckAndDisplay(sessionId) ){
-       await updateScore(sessionId);
-    }
-
-    export async function updateScore(sessionId) {
-        //if CheckAndDisplay function returns false
-        let game_finished = await CheckAndDisplay(sessionId);
-        if (!game_finished) {
-            //fetch score from API
-            let score = await fetchScore(sessionId);
-            //Display it
-            console.log("score: ", score.score);
-            //No actual displays yet only in the console log
-            //use this inside the html to display
-            //MUST HAVE THIS LINE INSIDE THE HTML TO PROPERLY DISPLAY THE SCORE
-            //<div id="score">Score: 0</div>
-
-            //document.getElementById(" ").innerText = "Score: " + score.score;
-            //call the next question
-        }
-
-    }
+    const sessionData = JSON.parse(StoredData);
+    sessionId = sessionData.sessionId;
 }
 
+updateScore(sessionId);
+
+document.addEventListener("answer-submitted", () => {
+    updateScore(sessionId);
+})
+
+
+    export async function updateScore(sessionId) {
+
+            //fetch score from API
+            let score = await fetchScore(sessionId);
+            document.getElementById("score").innerText = "Score: " + score.score;
+    }
