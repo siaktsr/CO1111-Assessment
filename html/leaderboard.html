@@ -1,14 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<header>
-    
-</header>
+<button id="leaderboard-btn" disabled>View Leaderboard</button>
 
-<main>
 
-</main>
+<div id="leaderboard-display" style="display: none; margin-top: 10px;">
+    <h3>Leaderboard</h3>
+    <ul id="leaderboard-list"></ul>
+</div>
 
-<script type="module" src="../js/leaderboard.js"> </script>
+<script type="module">
+    const leaderboardBtn = document.getElementById('leaderboard-btn');
+    const leaderboardDisplay = document.getElementById('leaderboard-display');
+    const leaderboardList = document.getElementById('leaderboard-list');
 
-</html>
+
+    export function enableLeaderboard() {
+        leaderboardBtn.disabled = false;
+    }
+
+
+    leaderboardBtn.addEventListener('click', () => {
+        fetch('http://localhost:3000/leaderboard')
+            .then(res => res.json())
+            .then(data => {
+                leaderboardList.innerHTML = '';
+                data.forEach(team => {
+                    const li = document.createElement('li');
+                    li.textContent = `${team.teamName}: ${team.score}`;
+                    leaderboardList.appendChild(li);
+                });
+                leaderboardDisplay.style.display = 'block';
+            })
+            .catch(err => console.error('Error fetching leaderboard:', err));
+    });
+</script>
