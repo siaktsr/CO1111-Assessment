@@ -1,0 +1,36 @@
+/*Leaderboard CSS : */
+h1{
+    text-align: center;
+    font-size: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: red;
+}
+
+
+#leaderboard {
+    background: purple;
+    width: 80%;
+    height: 80%;
+    border : 10px solid darkblue;
+    border-radius : 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    margin: 50px auto;
+}
+
+#entry{
+    display: flex;
+    justify-content: space-between;
+    transition: 0.2s;
+    font-size: 30px;
+    padding: 10px;
+    margin: 20px;
+}
+
+
+#entry:hover{
+    scroll-behavior: smooth;
+    transform: translateY(-2px);
+    /*box-shadow: ;*/
+}
