@@ -168,7 +168,7 @@ Submits an answer to the server.
 async function submit(answer) {
     try{
         const result = await submitAnswer(sessionId, answer);
-
+        document.dispatchEvent(new CustomEvent("answer-submitted"));
         showMessage(result.message);
 
         if(result.completed){
@@ -196,6 +196,7 @@ skipBtn.addEventListener("click", async () => {
     }
     try{
         const result = await skipQuestion(sessionId);
+        document.dispatchEvent(new CustomEvent("answer-submitted"));
         showMessage(result.message);
         loadQuestion();
     }catch(error){
