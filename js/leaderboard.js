@@ -1,12 +1,14 @@
-if(window.location.pathname.includes("leaderboard.html")) {
-    import{
+ import{
         fetchLeaderboard,
     }from"./api.js"
 
-    import{
+import{
         findAndSaveSessionId,
     }from "./resumeSession.js"
 
+
+if(window.location.pathname.includes("leaderboard.html")) {
+   
     let sessionId = await findAndSaveSessionId();
     if(sessionId === null){
         console.error("No session found!");
