@@ -194,7 +194,7 @@ Expect:
 Returns: 
 - normalized leaderboard data
 */
-export async function fetchLeaderboard({essionId, treasureHuntId, sorted = false, limit}) {
+export async function fetchLeaderboard({sessionId, treasureHuntId, sorted = false, limit}) {
     const params = [];
     
     if (sessionId) params.session = sessionId;
