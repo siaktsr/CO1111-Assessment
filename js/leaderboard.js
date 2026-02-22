@@ -1,7 +1,31 @@
- import{
+//import from api
+import{
          fetchLeaderboard,
      }from"./api.js"
 
+
+let page = 0;
+const playersInPage = 50;
+let leaderboard = [];
+
+
+
+function formatPage(){
+    const display = document.getElementById('leaderboard');
+    //clear
+    display.innerHTML = "";
+    const startPoint = page * playersInPage;
+    const endPoint = startPoint + playersInPage;
+
+    //get only 50 each time 
+    const formatPlayers = leaderboard.slice(startPoint,endPoint);
+
+    //display until the endPoint
+    for(let i =startPoint; i<endPoint;i++){
+        const card = createCard(i , leaderboard[i].player , leaderboard[i].score);
+        display.appendChild(card);
+    }
+}
 
 
 
@@ -46,12 +70,21 @@
 
      let display = document.getElementById("leaderboard");
 
-     for (let i = 0; i < leaderboardData.leaderboard.length; i++) {
+    leaderboard = leaderboardData.leaderboard;
+    formatPage();
 
-        const card = createCard(i , leaderboardData.leaderboard[i].player , leaderboardData.leaderboard[i].score);
-        display.appendChild(card);
-     }
+    document.getElementById("previousPage").addEventListener("click", () =>{
 
+        page--;
+        formatPage();
+        window.scrollTo(0, 0);
+
+    })
+     document.getElementById("nextPage").addEventListener("click", () =>{
+         page++;
+         formatPage();
+         window.scrollTo(0, 0);
+     })
  }
 //
 await initLeaderboard();
