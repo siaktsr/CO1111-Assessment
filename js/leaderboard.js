@@ -4,7 +4,7 @@ import{
 }from "./api.js"
 
 
-let page = 14;
+let page = 0;
 const playersInPage = 50;
 let leaderboard = [];
 let weAsAPlayer;
@@ -63,15 +63,14 @@ function renderCurrentPlayer(){
         p => p.player === weAsAPlayer
     );
 
-    if(playerIndex === -1) return;
-
+    if(playerIndex === -1){
+        playerContainer.style.display = "none";
+        return;
+    }
     const startPoint = page * playersInPage;
     const endPoint = Math.min(startPoint + playersInPage, leaderboard.length);
 
-    const isVisible =
-        playerIndex >= startPoint && playerIndex < endPoint;
-
-    if(!isVisible){
+    if(!(playerIndex >= startPoint && playerIndex < endPoint)){
         const player = leaderboard[playerIndex];
 
         const card = createCard(
@@ -82,29 +81,31 @@ function renderCurrentPlayer(){
         card.classList.add("outside-player");
 
         playerContainer.appendChild(card);
+    }else{
+        playerContainer.style.display = "none";
     }
 }
 
- async function initLeaderboard() {
+async function initLeaderboard() {
 
-     const stored = localStorage.getItem("treasureHuntSession");
+    const stored = localStorage.getItem("treasureHuntSession");
 
-     if (!stored) {
-         console.error("No session found!");
-         return;
-     }
+    if (!stored) {
+        console.error("No session found!");
+        return;
+    }
 
-     const parsedSession = JSON.parse(stored);
+    const parsedSession = JSON.parse(stored);
 
-     weAsAPlayer = parsedSession.player;
+    weAsAPlayer = parsedSession.player;
 
-     const leaderboardData = await fetchLeaderboard({
-         sessionId: parsedSession.sessionId,
-         sorted : true
-     });
+    const leaderboardData = await fetchLeaderboard({
+        sessionId: parsedSession.sessionId,
+        sorted : true
+    });
 
-     console.log(leaderboardData.leaderboard);
-     let display = document.getElementById("leaderboard");
+    console.log(leaderboardData.leaderboard);
+    let display = document.getElementById("leaderboard");
 
     leaderboard = leaderboardData.leaderboard;
     formatPage();
@@ -120,7 +121,7 @@ function renderCurrentPlayer(){
         }
 
     })
-     document.getElementById("nextPage").addEventListener("click", () =>{
+    document.getElementById("nextPage").addEventListener("click", () =>{
         if(page < Math.ceil(leaderboard.length / playersInPage) - 1){
             page++;
             formatPage();
