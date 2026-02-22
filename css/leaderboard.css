@@ -45,3 +45,20 @@ body{
     scroll-behavior: smooth;
     transform: translateY(-2px);
 }
+
+#player {
+    background: purple;
+    width:1200px;
+    border : 10px solid darkblue;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    margin-left: 150px;
+    align-items: center;
+}
+
+.outside-player {
+    background: #1e90ff;
+    border: 10px solid #00ffff;
+    color: white;
+    font-weight: bold;
+}

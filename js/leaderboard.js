@@ -1,12 +1,13 @@
 //import from api
 import{
-         fetchLeaderboard,
-     }from"./api.js"
+    fetchLeaderboard,
+}from "./api.js"
 
 
-let page = 0;
+let page = 14;
 const playersInPage = 50;
 let leaderboard = [];
+let weAsAPlayer;
 
 
 
@@ -15,13 +16,13 @@ function formatPage(){
     //clear
     display.innerHTML = "";
     const startPoint = page * playersInPage;
-    const endPoint = startPoint + playersInPage;
+    const endPoint = Math.min(startPoint + playersInPage, leaderboard.length);
 
     //get only 50 each time 
     const formatPlayers = leaderboard.slice(startPoint,endPoint);
 
     //display until the endPoint
-    for(let i =startPoint; i<endPoint;i++){
+    for(let i =startPoint; i < endPoint; i++){
         const card = createCard(i , leaderboard[i].player , leaderboard[i].score);
         display.appendChild(card);
     }
@@ -32,6 +33,10 @@ function formatPage(){
  function createCard(index , player , score ){
     const card = document.createElement("div");
     card.classList.add("entry");
+
+    if(player === weAsAPlayer){
+        card.classList.add("outside-player");
+    }
 
     const position = document.createElement("span");
     position.textContent = index + 1 + ".  ";
@@ -50,7 +55,35 @@ function formatPage(){
     return card;
  }
 
+function renderCurrentPlayer(){
+    const playerContainer = document.getElementById("player");
+    playerContainer.innerHTML = "";
 
+    const playerIndex = leaderboard.findIndex(
+        p => p.player === weAsAPlayer
+    );
+
+    if(playerIndex === -1) return;
+
+    const startPoint = page * playersInPage;
+    const endPoint = Math.min(startPoint + playersInPage, leaderboard.length);
+
+    const isVisible =
+        playerIndex >= startPoint && playerIndex < endPoint;
+
+    if(!isVisible){
+        const player = leaderboard[playerIndex];
+
+        const card = createCard(
+            playerIndex,
+            player.player,
+            player.score
+        );
+        card.classList.add("outside-player");
+
+        playerContainer.appendChild(card);
+    }
+}
 
  async function initLeaderboard() {
 
@@ -63,31 +96,38 @@ function formatPage(){
 
      const parsedSession = JSON.parse(stored);
 
+     weAsAPlayer = parsedSession.player;
+
      const leaderboardData = await fetchLeaderboard({
          sessionId: parsedSession.sessionId,
          sorted : true
      });
 
+     console.log(leaderboardData.leaderboard);
      let display = document.getElementById("leaderboard");
 
     leaderboard = leaderboardData.leaderboard;
     formatPage();
+    renderCurrentPlayer();
 
     document.getElementById("previousPage").addEventListener("click", () =>{
 
-        page--;
-        formatPage();
-        window.scrollTo(0, 0);
+        if(page > 0){
+            page--;
+            formatPage();
+            renderCurrentPlayer();
+            window.scrollTo(0, 0);
+        }
 
     })
      document.getElementById("nextPage").addEventListener("click", () =>{
-         page++;
-         formatPage();
-         window.scrollTo(0, 0);
+        if(page < Math.ceil(leaderboard.length / playersInPage) - 1){
+            page++;
+            formatPage();
+            renderCurrentPlayer();
+            window.scrollTo(0, 0);
+        }
      })
  }
 //
 await initLeaderboard();
-
-
-
