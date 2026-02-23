@@ -8,7 +8,7 @@
 header{
     background-color: goldenrod;
     padding-left: 10px;
-    padding-bottom: 5px;
+    padding-bottom: 1px;
 
 }
 
@@ -62,8 +62,8 @@ ol.game-rules-list{
 
 .team-btn{
     position: absolute;
-    left: 20px;
-    bottom: 40px;
+    left: 30px;
+    bottom: -20px;
     font-size: 16px;
     border-radius: 6px;
 }
@@ -130,7 +130,7 @@ ol.game-rules-list{
 .X-icon{
     position: absolute;
     right: 30px;
-    bottom: 20px;
+    bottom: -10px;
     font-size: 16px;
     border-radius: 6px;
 }
