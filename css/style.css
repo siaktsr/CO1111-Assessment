@@ -142,3 +142,16 @@ ol.game-rules-list{
 #error-message {
     color: red;
 }
+
+.app-section{
+    text-align: center;
+    font-size: 25px;
+    padding-top: 80px;
+}
+
+#start-game-btn{
+    border-radius: 10px;
+    font-size: 20px;
+    padding: 10px;
+    font-family: "Century Schoolbook", cursive;
+}
