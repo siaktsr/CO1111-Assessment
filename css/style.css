@@ -184,3 +184,9 @@ ol.game-rules-list{
 .round{
     border-radius: 50%;
 }
+nav {
+    text-align: right;
+    justify-content: right;
+    margin-left:auto;
+    display: flex;
+}
