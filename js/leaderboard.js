@@ -28,9 +28,7 @@ function formatPage(){
     }
 }
 
-
-
- function createCard(index , player , score ){
+function createCard(index , player , score ){
     const card = document.createElement("div");
     card.classList.add("entry");
 
@@ -53,7 +51,7 @@ function formatPage(){
     card.appendChild(playerScore);
 
     return card;
- }
+}
 
 function renderCurrentPlayer(){
     const playerContainer = document.getElementById("player");
@@ -70,7 +68,7 @@ function renderCurrentPlayer(){
     const startPoint = page * playersInPage;
     const endPoint = Math.min(startPoint + playersInPage, leaderboard.length);
 
-    if(!(playerIndex >= startPoint && playerIndex < endPoint)){
+    if(!(playerIndex >= startPoint && playerIndex <= endPoint)){
         const player = leaderboard[playerIndex];
 
         const card = createCard(
@@ -78,6 +76,7 @@ function renderCurrentPlayer(){
             player.player,
             player.score
         );
+        playerContainer.style.display = "block";
         card.classList.add("outside-player");
 
         playerContainer.appendChild(card);
