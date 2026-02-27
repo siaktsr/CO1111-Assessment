@@ -1,0 +1,64 @@
+/*Leaderboard CSS : */
+h1{
+    text-align: center;
+    font-size: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: red;
+    justify-content: center;
+    align-items: center;
+}
+
+body{
+    display: flex;
+    background-color: black;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+
+#leaderboard {
+    background: purple;
+    width:1200px;
+    border : 10px solid darkblue;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    margin-left: 150px;
+    align-items: center;
+}
+
+.entry{
+    display: flex;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    justify-content: space-between;
+    border : 10px solid darkgoldenrod;
+    border-radius: 20px;
+    transition: 0.2s;
+    font-size: 30px;
+    padding: 25px;
+    margin: 20px;
+}
+
+
+.entry:hover{
+    scroll-behavior: smooth;
+    transform: translateY(-2px);
+}
+
+#player {
+    background: purple;
+    width:1200px;
+    border : 10px solid darkblue;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    margin-left: 150px;
+    align-items: center;
+}
+
+.outside-player {
+    background: #1e90ff;
+    border: 10px solid #00ffff;
+    color: white;
+    font-weight: bold;
+}

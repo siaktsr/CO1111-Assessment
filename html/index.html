@@ -1,2 +1,50 @@
-<link rel="manifest" href="manifest.json" crossorigin="use-credentials">
-<script src="main.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treasure Hunt - Main Page</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <header>
+        <h1 id="title-index">Treasure Hunt Game</h1>
+        <h3>By Team C</h3>
+    </header>
+
+    <main>
+
+        <div class="center-text">
+            <h2>Welcome mighty pirates!</h2>
+
+            <img src="/media/photo/pirate-hat.png" alt="Pirate Hat" style="width:135px;height:135px;">
+
+            <p>Answer each question correctly as quickly as possible.</p>
+        </div>
+
+        <div class="game-rules">
+            <h4><u>GAME RULES:</u></h4>
+
+            <ol class="game-rules-list">
+                <li>Each <span id="correct-ans"><b>correct</b></span> answer, <b><i>grants</i></b> you points.</li>
+                <li>Each <span id="wrong-ans"><b>wrong</b></span> answer, <b><i>deducts</i></b> you points.</li>
+                <li>Each <span id="skip-ans"><b>skipped</b></span> answer, can deduct <b><i>0 or more</i></b> points.</li>
+            </ol>
+        </div>
+
+
+    </main>
+
+<!--    <script type="module" src="../js/questions.js"></script>-->
+</body>
+
+
+<footer>
+    <button class="play-btn" onclick="document.location='app.html'"><b>&#128073 Play now &#128072</b></button>
+
+    <button class="team-btn" onclick="document.location='team.html'"><b> Members <br> &#128100</b></button>
+
+    <a href="https://x.com/akatsouri2" target="_blank" class="X-icon" ><img src="/media/photo/X_icon.png" alt="X icon" style="width:30px;height:30px;"></a>
+</footer>
+
+</html>
