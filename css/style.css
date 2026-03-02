@@ -190,3 +190,38 @@ nav {
     margin-left:auto;
     display: flex;
 }
+
+.cookie-box{
+    position: absolute;
+    bottom: 2px;
+    right: 30px;
+    background: #f1f1f1;
+    border-radius: 15px;
+    max-width: 365px;
+    padding: 25px 25px 30px 25px;
+}
+
+.cookie-box img{
+    max-width: 90px;
+}
+
+.cookie-box .cookie-txt{
+    margin-top: 10px;
+}
+
+/*.cookie-txt h3{*/
+/*    font-size: 25px;*/
+/*    font-weight: 600;*/
+/*}*/
+
+.cookie-box p{
+    color: #858585;
+    margin: 5px 0 20px 0;
+}
+
+.cookie-txt .cookies-btn{
+    display: flex;
+    align-items: center;
+}
+
+/*still working on it*/
