@@ -187,41 +187,50 @@ ol.game-rules-list{
 nav {
     text-align: right;
     justify-content: right;
-    margin-left:auto;
+    margin-left: auto;
     display: flex;
 }
 
-.cookie-box{
+.cookies-box{
     position: absolute;
-    bottom: 2px;
-    right: 30px;
-    background: #f1f1f1;
+    top: 390px;
+    right: 40px;
+    background: #ffecb2;
     border-radius: 15px;
-    max-width: 365px;
-    padding: 25px 25px 30px 25px;
+    max-width: 260px;
+    padding: 25px 25px 25px 25px;
 }
 
-.cookie-box img{
-    max-width: 90px;
+.cookies-box img{
+    max-width: 70px;
 }
 
-.cookie-box .cookie-txt{
+.cookies-box .cookie-txt{
     margin-top: 10px;
 }
 
-/*.cookie-txt h3{*/
-/*    font-size: 25px;*/
-/*    font-weight: 600;*/
-/*}*/
+.cookies-txt h3{
+    font-size: 20px;
+}
 
-.cookie-box p{
+.cookies-box p{
     color: #858585;
     margin: 5px 0 20px 0;
 }
 
-.cookie-txt .cookies-btn{
-    display: flex;
-    align-items: center;
+.cookies-btn button{
+    padding: 10px 20px;
+    background: #FCBA7F;
+    font-size: 16px;
+    color: white;
+    border-radius: 5px;
+    border: none;
 }
 
-/*still working on it*/
+.cookies-btn button:hover{
+    background: #858585;
+}
+
+.hide {
+    display: none;
+}
