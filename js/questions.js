@@ -168,6 +168,7 @@ Submits an answer to the server.
 async function submit(answer) {
     try{
         const result = await submitAnswer(sessionId, answer);
+        addToHistory(currentQuestion, answer, result);
         document.dispatchEvent(new CustomEvent("answer-submitted"));
         showMessage(result.message);
 
@@ -196,6 +197,7 @@ skipBtn.addEventListener("click", async () => {
     }
     try{
         const result = await skipQuestion(sessionId);
+        addToHistory(currentQuestion, null, { correct: false, skipped: true });
         document.dispatchEvent(new CustomEvent("answer-submitted"));
         showMessage(result.message);
         loadQuestion();
@@ -368,3 +370,50 @@ switchCameraBtn.addEventListener("click", () => {
         scanner.start(cameras[currentCameraIndex]);
     }
 });
+
+/* Answer History */
+let answerHistory = [];
+
+function addToHistory(question, userAnswer, result) {
+
+    const historyItem = {
+        questionText: question.questionText,
+        questionType: question.questionType,
+        userAnswer: userAnswer,
+        correct: result.correct,
+        skipped: result.skipped || false
+    };
+
+    answerHistory.unshift(historyItem); // добавляем в начало
+    renderHistory();
+}
+
+function renderHistory() {
+
+    const historyList = document.getElementById("history-list");
+    historyList.innerHTML = "";
+
+    answerHistory.forEach(item => {
+
+        const div = document.createElement("div");
+        div.classList.add("history-item");
+
+        if (item.skipped) {
+            div.classList.add("skipped");
+        } else if (item.correct) {
+            div.classList.add("correct");
+        } else {
+            div.classList.add("wrong");
+        }
+
+        div.innerHTML = `
+            <span><strong>Question:</strong> ${item.questionText}</span>
+            <span><strong>Your Answer:</strong> ${item.userAnswer ?? "Skipped"}</span>
+            <span><strong>Result:</strong> 
+                ${item.skipped ? "Skipped" : item.correct ? "Correct" : "Wrong"}
+            </span>
+        `;
+
+        historyList.appendChild(div);
+    });
+}

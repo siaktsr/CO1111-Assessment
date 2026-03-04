@@ -196,3 +196,48 @@ a:hover {
 a:visited {
     color: red;
 }
+
+/* Answer History */
+#history-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px solid rgba(255,255,255,0.3);
+}
+
+#history-section h3 {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.history-item {
+    padding: 12px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(5px);
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+}
+
+.history-item.correct {
+    border-left: 6px solid #4CAF50;
+}
+
+.history-item.wrong {
+    border-left: 6px solid #ff4444;
+}
+
+.history-item.skipped {
+    border-left: 6px solid #ffc107;
+}
+
+.history-item span {
+    margin: 2px 0;
+    font-size: 13px;
+}
