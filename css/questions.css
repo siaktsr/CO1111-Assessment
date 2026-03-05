@@ -241,3 +241,61 @@ a:visited {
     margin: 2px 0;
     font-size: 13px;
 }
+
+
+#qr-btn{
+    padding: 10px;
+    background: purple;
+    color: white;
+    border-radius: 12px;
+    font-weight: bolder;
+
+}
+
+#qr-btn:hover {
+    background: red;
+    cursor: pointer;
+    transform : translateY(-5px);
+    transition: 0.3s;
+}
+
+#close-qr-btn{
+    float : left;
+    padding: 10px;
+    background: purple;
+    color: white;
+    border-radius: 12px;
+    font-weight: bolder;
+}
+
+#close-qr-btn:hover {
+    cursor: pointer;
+    background: red;
+    transform : translateX(15px);
+    transition: 0.3s;
+}
+
+#switch-camera-btn{
+    float : right;
+    padding: 10px;
+    background:darkorange;
+    border-radius: 12px;
+    font-weight: bolder;
+    color: white;
+}
+
+#switch-camera-btn:hover {
+    cursor: pointer;
+    background: darkturquoise;
+    transition: 0.3s;
+    transform: translateX(-15px);
+}
+
+
+#preview{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    margin-left: 18px;
+}
