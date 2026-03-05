@@ -167,6 +167,19 @@ Submits an answer to the server.
 */
 async function submit(answer) {
     try{
+
+        if(wasWrongBefore(currentQuestion, answer)) {
+            const confirmRepeat = confirm(
+                "You already tried this answer before and it was incorrect.\n\n" +
+                "Are you sure you want to submit it again?\n" +
+                "You can check your answer history below."
+            );
+
+            if(!confirmRepeat){
+                return;
+            }
+        }
+        
         const result = await submitAnswer(sessionId, answer);
         addToHistory(currentQuestion, answer, result);
         document.dispatchEvent(new CustomEvent("answer-submitted"));
@@ -422,4 +435,19 @@ function renderHistory() {
 
         historyList.appendChild(div);
     });
+}
+
+function wasWrongBefore(question, answer) {
+    for (let i = 0; i < answerHistory.length; i++) {
+        const item = answerHistory[i];
+        if( item.questionText === question.questionText &&
+            item.userAnswer == answer && // "10" = 10
+            item.correct === false &&
+            item.skipped === false)
+        {
+            return true;
+        }
+    }
+
+    return false;
 }
