@@ -3,13 +3,21 @@ import {
     fetchQuestion,
 }from "./api.js";
 
-//Import from resumeSession
-import{
-    findAndSaveSessionId,
-}from "./resumeSession.js";
 
 //use function to save the session ID
-const sessionId = await findAndSaveSessionId();
+// Initialization
+init();
+let sessionId;
+function init() {
+    const StoredData = localStorage.getItem("treasureHuntSession");
+
+    if (!StoredData) {
+        alert("Session data not found.");
+        window.location.href = "../test/test.html";
+    }
+    const sessionData = JSON.parse(StoredData);
+    sessionId = sessionData.sessionId;
+}
  //game state
 
 await CheckAndDisplay(sessionId);
