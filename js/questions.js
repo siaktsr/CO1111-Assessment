@@ -195,6 +195,12 @@ skipBtn.addEventListener("click", async () => {
         alert("This question cannot be skipped.");
         return;
     }
+
+    const confirmSkip = confirm("Are you sure you want to skip this question?");
+    if(!confirmSkip){
+        return;
+    }
+
     try{
         const result = await skipQuestion(sessionId);
         addToHistory(currentQuestion, null, { correct: false, skipped: true });
