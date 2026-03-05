@@ -12,40 +12,38 @@ export async function startNewSession(player,app,treasureHuntId) {
     await loadNextQuestion(id);
 }
 
-//A function that saves the session ID and passes it using local storage
-export async function findAndSaveSessionId(){
-    let saveSession = JSON.parse(localStorage.getItem("SessionId"));
-    if(saveSession === null){
-        console.log("No session ID was found!");
-        return;
+// Initialization
+init();
+let sessionId;
+function init() {
+    const StoredData = localStorage.getItem("treasureHuntSession");
+
+    if (!StoredData) {
+        alert("Session data not found.");
+        window.location.href = "../test/test.html";
     }
-    else {
-        //Await to validate the session
-        await fetchQuestion(saveSession);
-    }
-    return saveSession;
+    const sessionData = JSON.parse(StoredData);
+    sessionId = sessionData.sessionId;
 }
 
-
 //On reload check
-window.onload =async function reloadPage() {
-        //Save it
-        let loadSavedSession = await findAndSaveSessionId();
+window.onload =async function reloadPage(sessionId) {
+
         //No session found throw error
-        if (!loadSavedSession){
+        if (!sessionId) {
             console.log("Error no Session Id Found");
         }
         //Load the question
         else{
-            await loadNextQuestion(loadSavedSession);
+            await loadNextQuestion(sessionId);
         }
 }
 
 //Function that loads the next question from API
-export async function loadNextQuestion(id) {
+export async function loadNextQuestion(sessionId) {
     try{
         //Fetch Question from API
-        let question = await fetchQuestion(id);
+        let question = await fetchQuestion(sessionId);
         //If no question found
         if (!question){
             console.error("Error fetching Question");
