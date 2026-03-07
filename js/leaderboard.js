@@ -90,7 +90,7 @@ async function initLeaderboard() {
     const stored = localStorage.getItem("treasureHuntSession");
 
     if (!stored) {
-        console.error("No session found!");
+        alert("No session ID found.Please Try Again.");
         return;
     }
 
