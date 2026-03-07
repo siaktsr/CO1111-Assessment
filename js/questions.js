@@ -28,7 +28,7 @@ function init(){
     const StoredData = localStorage.getItem("treasureHuntSession");
 
     if(!StoredData){
-        alert("Sessoin data not found.");
+        alert("Session Id was not found. Please try again.");
         window.location.href = "../test/test.html";
     }
     const sessionData = JSON.parse(StoredData);
