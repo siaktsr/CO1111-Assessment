@@ -103,7 +103,13 @@ body {
 	display:inline-block;
 	background:#f1f1f1;
 	color:black;
-	border-radius:50%;
+	border-radius:10px;
+}
+
+.prev-btn:hover{
+    transition: 0.3s;
+    background: #333;
+    color: white;
 }
 
 /* Media Queries */
