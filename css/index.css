@@ -1,0 +1,220 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: #111;
+	color: #f5f5f5;
+	line-height: 1.6;
+}
+
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 20px;
+}
+
+/* Header */
+.site-header {
+	background: #1b1b1b;
+	border-bottom: 2px solid #c8a44d;
+}
+
+.header-container {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+.logo-img {
+	width: 60px;
+}
+
+.title-block h1 {
+	font-size: 2rem;
+	color: #f0c75e;
+}
+
+.team-name {
+	font-size: 0.9rem;
+	color: #bbb;
+}
+
+/* Hero */
+.hero-section {
+	text-align: center;
+	padding: 60px 20px;
+}
+
+.hero-icon {
+	width: 130px;
+	margin: 20px 0;
+}
+
+.hero-text {
+	font-size: 1.2rem;
+}
+
+/* Rules */
+.rules-section {
+	padding: 40px 20px;
+	text-align: center;
+}
+
+.rules-title {
+	font-size: 1.8rem;
+	margin-bottom: 20px;
+	color: #f0c75e;
+}
+
+.game-rules-list {
+	list-style: decimal;
+	max-width: 500px;
+	margin: auto;
+	text-align: left;
+	font-size: 1.1rem;
+}
+
+.game-rules-list li {
+	margin-bottom: 10px;
+}
+
+/* Play Button */
+.play-section {
+	text-align: center;
+	padding: 50px 20px;
+}
+
+.play-btn {
+	font-size: 1.5rem;
+	padding: 18px 40px;
+	background: #c8a44d;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+.play-btn:hover {
+	background: #e0b94d;
+	transform: scale(1.05);
+}
+
+/* Footer */
+.site-footer {
+	background: #1b1b1b;
+	margin-top: 60px;
+	padding: 20px;
+	border-top: 2px solid #c8a44d;
+}
+
+.footer-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.team-btn {
+	padding: 12px 20px;
+	border-radius: 6px;
+	border: none;
+	cursor: pointer;
+	background: #333;
+	color: white;
+}
+
+.team-btn:hover {
+	background: #444;
+}
+
+.social-links {
+	display: flex;
+	gap: 15px;
+}
+
+.social-icon {
+	width: 30px;
+}
+
+/* Cookies */
+.cookies-box{
+	position: absolute;
+	top: 390px;
+	right: 40px;
+	background: #ffecb2;
+	border-radius: 15px;
+	max-width: 260px;
+	padding: 25px 25px 25px 25px;
+}
+
+.cookies-box img{
+	max-width: 70px;
+}
+
+.cookies-box .cookie-txt{
+	margin-top: 10px;
+}
+
+.cookies-txt h3{
+	font-size: 20px;
+}
+
+.cookies-box p{
+	color: #858585;
+	margin: 5px 0 20px 0;
+}
+
+.cookies-btn button{
+	padding: 10px 20px;
+	background: #FCBA7F;
+	font-size: 16px;
+	color: white;
+	border-radius: 5px;
+	border: none;
+}
+
+.cookies-btn button:hover{
+	background: #858585;
+}
+
+.hide{
+	display: none;
+}
+
+/* Media Queries */
+/* >=600px */
+@media (min-width: 600px) {
+	.hero-text {
+		font-size: 1.3rem;
+	}
+}
+
+/* >=768px */
+@media (min-width: 768px) {
+	.title-block h1 {
+		font-size: 2.4rem;
+	}
+	.hero-section {
+		padding: 80px 20px;
+	}
+}
+
+/* >=992px */
+@media (min-width: 992px) {
+	.header-container {
+		gap: 30px;
+	}
+	.hero-text {
+		font-size: 1.4rem;
+	}
+}
+
+/* >=1200px */
+@media (min-width: 1200px) {
+	.title-block h1 {
+		font-size: 2.8rem;
+	}
+}

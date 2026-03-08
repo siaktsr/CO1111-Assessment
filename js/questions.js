@@ -62,7 +62,7 @@ Renders question text and input controls based on question type.
 */
 async function renderQuestion(question) {
     questionTextEl.innerHTML = question.questionText;
-    questionTypeEl.textContent = `Type: ${question.questionType}`;
+    //questionTypeEl.textContent = `Type: ${question.questionType}`;
 
     renderAnswerInput(question.questionType);
 }
@@ -232,7 +232,7 @@ Clears UI sections before rendering a new question.
 */
 function clearUI(){
     questionTextEl.textContent = "Loading question...";
-    questionTypeEl.textContent = "";
+    //questionTypeEl.textContent = "";
     answerSectionEl.innerHTML = "";
     messageEl.textContent = "";
 }

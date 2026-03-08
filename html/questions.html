@@ -1,74 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Treasure Hunt Question</title>
-
-    <meta name="description" content="Answer questions and solve puzzles in the Treasure Hunt game.
-        Earn points for correct answers and climb the leaderboard.">
-    <meta name="keywords" content="treasure hunt questions, puzzle questions game, quiz challenge game">
-    <meta name="author" content="Team C, 3RussiansAndMe">
-    <meta name="robots" content="index, follow">
-
-    <link rel="icon" type="image/png" href="/media/photo/pirate-hat.png">
-    <link rel="stylesheet" href="../css/questions.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Treasure Hunt Question</title>
+	<meta name="description" content="Answer questions and solve puzzles in the Treasure Hunt game.
+		Earn points for correct answers and climb the leaderboard.">
+	<meta name="keywords" content="treasure hunt questions, puzzle questions game, quiz challenge game">
+	<meta name="author" content="Team C, 3RussiansAndMe">
+	<meta name="robots" content="index, follow">
+	<link rel="icon" type="image/png" href="/media/photo/pirate-hat.png">
+	<link rel="stylesheet" href="../css/questions.css">
 </head>
 <body class="question-page">
-    <header>
+	<header class="question-header">
+		<div class="header-container">
+			<h1>Treasure Hunt</h1>
+			<div id="score"></div> <!-- -->
+		</div>
+	</header>
 
-    </header>
+	<main class="question-layout">
+		<!-- MAIN QUESTION AREA -->
+		<section class="question-card">
+			<div id="question-section">
+				<h2 id="question-text">
+					Loading question...
+				</h2>
+			</div>
 
-    
-    <main>
+			<div id="answer-section">
+				<!-- JS renders inputs -->
+			</div>
 
-         <div id = "score">
+			<div id="controls">
+				<button id="submit-btn">Submit Answer</button>
+				<button id="skip-btn">Skip Question</button>
+				<button id="qr-btn">Scan QR Code</button>
+			</div>
 
+			<div id="message-section">
+				<p id="message"></p>
+			</div>
+		</section>
 
-         </div>       
-        
-        <!-- Question info -->
-        <section id="question-section">
-            <p id="question-type"></p>
-            <h2 id="question-text">Loading question...</h2>
-        </section>
+		<!-- HISTORY -->
+		<aside id="history-section">
+			<h3>Answer History</h3>
+			<div id="history-list"></div>
+		</aside>
+	</main>
 
-        <!-- Answer input -->
-        <section id="answer-section">
-        <!-- Inputs will be rendered dynamically -->
-        </section>
+	<!-- QR Scanner -->
+	<section id="qr-section">
+		<div class="qr-card">
+			<video id="preview"></video>
 
-        <!-- Controls -->
-        <section id="controls">
-            <button id="submit-btn">Submit Answer</button>
-            <button id="skip-btn">Skip Question</button>
-            <button id="qr-btn">Scan QR Code</button>
-        </section>
+			<div class="qr-controls">
+				<button id="switch-camera-btn">Switch Camera</button>
+				<button id="close-qr-btn">Close Scanner</button>
+			</div>
+		</div>
+	</section>
 
-        <!-- QR Scanner Section -->
-        <section id="qr-section" style="display:none;">
-            <video id="preview" style="width:300px;"></video>
-            <button id="switch-camera-btn">Switch Camera</button>
-            <button id="close-qr-btn">Close Scanner</button>
-        </section>
+	<footer class="question-footer">
+		<p>Treasure Hunt Game</p>
+	</footer>
 
-        <!-- Feedback message -->
-        <section id="message-section">
-            <p id="message"></p>
-        </section>
-
-        <!-- Answer History Timeline -->
-        <section id="history-section">
-            <h3>Answer History</h3>
-            <div id="history-list"></div>
-        </section>
-
-    </main>
-    <footer>
-
-    </footer>
-    <script src="../libraries/instascan.min.js"></script>
-    <script type="module" src="../js/questions.js"></script>
-    <script type="module" src="../js/score.js"></script>
-
+	<script src="../libraries/instascan.min.js"></script>
+	<script type="module" src="../js/questions.js"></script>
+	<script type="module" src="../js/score.js"></script>
 </body>
 </html>
