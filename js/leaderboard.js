@@ -103,7 +103,7 @@ async function initLeaderboard() {
         sorted : true
     });
 
-    console.log(leaderboardData.leaderboard);
+    //console.log(leaderboardData.leaderboard);
     let display = document.getElementById("leaderboard");
 
     leaderboard = leaderboardData.leaderboard;

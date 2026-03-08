@@ -7,8 +7,7 @@
 
     <title>Treasure Hunt Leaderboard</title>
 
-    <meta name="description" content="View the Treasure Hunt leaderboard 
-        and see the top teams competing in the puzzle adventure game.">
+    <meta name="description" content="View the Treasure Hunt leaderboard and see the top teams competing in the puzzle adventure game.">
     <meta name="keywords" content="treasure hunt leaderboard, game ranking, top players treasure hunt">
     <meta name="author" content="Team C, 3RussiansAndMe">
     <meta name="robots" content="index, follow">
@@ -16,25 +15,31 @@
     <link rel="icon" type="image/png" href="/media/photo/pirate-hat.png">
     <link rel="stylesheet" href="../css/leaderboard.css">
 </head>
-<header>
-    <title>Leaderboard</title>
-</header>
-
+<body>
+    <header class="site-header">
+        <h1>Treasure Hunt Leaderboard</h1>
+    </header>
 <main>
-    <h1>Leaderboard :</h1>
+    <section class="leaderboard-section">
+        <div class="container">
 
-<div id = "leaderboard"> </div>
+            <div id="leaderboard"></div>
 
+            <div class="pagination">
+                <button id="previousPage">Previous</button>
+                <button id="nextPage">Next</button>
+            </div>
 
-<div>
-    <button id = "previousPage">Previous</button>
-    <button id = "nextPage">Next</button>
-</div>
-
-<div id="player"> </div>
-
+            <div id="player"></div>
+        </div>
+    </section>
 </main>
 
-<script type="module" src="../js/leaderboard.js"> </script>
+<footer class="site-footer">
+<p>Treasure Hunt Game</p>
+</footer>
 
+<script type="module" src="../js/leaderboard.js"></script>
+
+</body>
 </html>

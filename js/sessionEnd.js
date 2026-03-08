@@ -3,11 +3,10 @@ import {
     fetchQuestion,
 }from "./api.js";
 
-
+let sessionId;
 //use function to save the session ID
 // Initialization
 init();
-let sessionId;
 function init() {
     const StoredData = localStorage.getItem("treasureHuntSession");
 
