@@ -320,6 +320,12 @@ function startScanner() {
                 currentCameraIndex = 0;
             }
 
+            if (cameras.length === 1) {
+                switchCameraBtn.style.display = "none";
+            } else if (cameras.length > 1) {
+                switchCameraBtn.style.display = "inline-block";
+            }
+            
             scanner.start(cameras[currentCameraIndex]);
 
             if (cameras.length > 1) {
