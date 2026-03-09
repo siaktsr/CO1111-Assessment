@@ -80,3 +80,21 @@ Discussed about:
 3) Which issues should each person get assigned to.
 
 Team members present: Anastasia, Athanasios, Vlad, Grigoris
+
+
+------------------------
+### 07/03/2026, Saturday
+------------------------
+
+Offline, 1-2 hours
+
+Worked on:
+Enhancing the design for all HTML files (index, app, questions, team and leaderboard) of our Treasure Hunt App 
+and polished small inconsistencies.
+
+Discussed about:
+1) Possible styles and designs suitable for our Web Application.
+2) Finalized our decisions of how we would like our app to look.
+
+
+Team members present: Vlad, Anastasia
