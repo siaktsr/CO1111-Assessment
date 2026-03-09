@@ -96,5 +96,28 @@ Discussed about:
 1) Possible styles and designs suitable for our Web Application.
 2) Finalized our decisions of how we would like our app to look.
 
-
 Team members present: Vlad, Anastasia
+
+
+------------------------
+### 09/03/2026, Monday
+------------------------
+
+Online, 1 hour
+
+Added new issues:
+- 46, 47, 48, 49, 50
+
+Currently working on:
+- Athanasios: JS Geolocation on questions.html and social media posts
+- Grigoris: Facebook post promotion
+- Vlad: Redesigning on all HTML pages (issue #47)
+- Anastasia: JS bugs and CSS for HTML pages (issues #46, #48, #49)
+
+Discussed about:
+1) Our Web Apps design.
+2) Social Media promotions.
+3) How to fix bugs throughout our code
+4) Deadline for finalizing our code.
+
+Team members present: Anastasia, Athanasios, Vlad
