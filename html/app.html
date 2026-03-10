@@ -30,31 +30,29 @@
 
 	<main class="main-content">
 		<section class="app-section">
-			<a href="index.html" class="prev-btn previous round">Back to Home</a>
-<!--            &#8249;-->
-			<h2>Start Your Adventure</h2>
+		<a href="index.html" class="prev-btn previous round">Back to Home</a>
+		<h2>Start Your Adventure</h2>
 
-			<div class="form-block">
-				<label for="game-select"><b>Select game</b></label>
-				<select id="game-select" disabled>
-					<option value="">Loading games...</option>
-				</select>
-			</div>
-			<div class="form-block">
-				<label for="team-name"><b>Team name</b></label>
-				<input
-					type="text"
-					id="team-name"
-					placeholder="Enter team name"
-					disabled>
-			</div>
+		<div class="search-block">
+			<input id="search-input" type="text" placeholder="Search game...">
+			<p class="search-note"> Search works across ALL games </p>
+		</div>
 
-			<button id="start-game-btn" disabled>
-				Start game
-			</button>
+		<div class="checkbox-block">
+			<label>
+				<input type="checkbox" id="include-finished">
+				Include finished
+			</label>
+		</div>
 
-			<p id="error-message"></p>
+		<div id="hunts-container"></div>
 
+		<div class="pagination">
+			<button id="previousPage">Previous</button>
+			<button id="nextPage">Next</button>
+		</div>
+
+		<p id="error-message"></p>
 		</section>
 	</main>
 

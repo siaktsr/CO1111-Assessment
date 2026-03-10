@@ -43,13 +43,6 @@ body {
 	color: #bbb;
 }
 
-/* Container */
-.container{
-	max-width:1200px;
-	margin:auto;
-	padding:20px;
-}
-
 /* App Section */
 .app-section{
 	max-width:500px;
@@ -59,34 +52,6 @@ body {
 	padding:40px;
 	border-radius:10px;
 	box-shadow:0 5px 15px rgba(0,0,0,0.5);
-}
-
-.form-block{
-	margin-bottom:20px;
-}
-
-.form-block select,
-.form-block input{
-	width:100%;
-	padding:10px;
-	margin-top:5px;
-	border-radius:6px;
-	border:none;
-}
-
-/* Start Button */
-#start-game-btn{
-	margin-top:10px;
-	border-radius:10px;
-	font-size:18px;
-	padding:10px 20px;
-	cursor:pointer;
-}
-#start-game-btn:not(:disabled):hover{
-	color:white;
-	background-color:darkred;
-	transition-duration:0.4s;
-	box-shadow:0 8px 16px goldenrod;
 }
 
 /* Error */
@@ -116,5 +81,86 @@ body {
 @media (max-width:600px){
 	.app-section{
 		padding:25px;
+	}
+}
+
+.hunt-card{
+	background:#222;
+	margin:15px 0;
+	padding:20px;
+	border-radius:10px;
+	cursor:pointer;
+	transition:all 0.25s ease;
+	position:relative;
+}
+
+.hunt-card:hover{
+	background:#2a2a2a;
+	transform:translateY(-2px);
+}
+
+.hunt-card.active{
+	background:#2f2a1c;
+	border:2px solid goldenrod;
+	transform:scale(1.02);
+}
+
+.hunt-card.finished{
+	opacity:0.5;
+}
+
+.hunt-card.expanded{
+	border:2px solid goldenrod;
+	padding:30px;
+}
+
+.close-card{
+	position:absolute;
+	top:10px;
+	right:15px;
+	background:none;
+	border:none;
+	color:white;
+	font-size:20px;
+	cursor:pointer;
+}
+
+.close-card:hover{
+	color:goldenrod;
+}
+
+.search-block input{
+	width:100%;
+	padding:10px;
+	border-radius:6px;
+	border:none;
+	margin-bottom:5px;
+}
+
+.search-note{
+	font-size:0.8rem;
+	color:#aaa;
+}
+
+.checkbox-block{
+	margin:15px 0;
+}
+
+.pagination{
+	margin-top:20px;
+	display:flex;
+	justify-content:center;
+	gap:10px;
+}
+
+@media (max-width:768px){
+	.hunt-card{
+		padding:15px;
+	}
+}
+
+@media (max-width:600px){
+	.hunt-card h3{
+		font-size:1rem;
 	}
 }
