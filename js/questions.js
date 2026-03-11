@@ -7,6 +7,10 @@ import {
     skipQuestion
 } from "../js/api.js"
 
+import {
+    getLocation
+} from "../js/Geolocation.js"
+
 // DOM Elements
 const questionTextEl = document.getElementById("question-text");
 const questionTypeEl = document.getElementById("question-type");
@@ -179,7 +183,7 @@ async function submit(answer) {
                 return;
             }
         }
-        
+        const loc = await getLocation(sessionId);
         const result = await submitAnswer(sessionId, answer);
         addToHistory(currentQuestion, answer, result);
         document.dispatchEvent(new CustomEvent("answer-submitted"));
