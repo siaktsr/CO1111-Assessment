@@ -90,7 +90,7 @@ async function initLeaderboard() {
     const stored = localStorage.getItem("treasureHuntSession");
 
     if (!stored) {
-        console.error("No session found!");
+        alert("No session ID found.Please Try Again.");
         return;
     }
 
@@ -103,7 +103,7 @@ async function initLeaderboard() {
         sorted : true
     });
 
-    console.log(leaderboardData.leaderboard);
+    //console.log(leaderboardData.leaderboard);
     let display = document.getElementById("leaderboard");
 
     leaderboard = leaderboardData.leaderboard;

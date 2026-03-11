@@ -1,55 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Treasure Hunts</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Treasure Hunts</title>
+
+	<meta name="description" content="Start a new Treasure Hunt game.
+	Choose a game mode, enter your team name and begin solving puzzles to climb the leaderboard.">
+	<meta name="keywords" content="start treasure hunt game, puzzle game start, online quiz game, treasure hunt teams">
+	<meta name="author" content="Team C, 3RussiansAndMe">
+	<meta name="robots" content="index, follow">
+	<link rel="icon" type="image/png" href="/media/photo/pirate-hat.png">
+	<link rel="stylesheet" href="../css/app.css">
 </head>
 <body>
+    <header class="site-header">
+		<div class="container header-container">
+			<div class="logo-block">
+				<img src="/media/photo/pirate-hat.png" alt="Treasure Hunt logo" class="logo-img">
+			</div>
 
-<header>
-    <h1 id="title-index">Treasure Hunt Game</h1>
-    <h3>By Team C</h3>
-</header>
+			<div class="title-block">
+				<h1 id="title-index">Treasure Hunt Game</h1>
+				<p class="team-name">By Team C</p>
+			</div>
+		</div>
+	</header>
 
-<div class="app-section">
+	<main class="main-content">
+		<section class="app-section">
+		<a href="index.html" class="prev-btn previous round">Back to Home</a>
+		<h2>Start Your Adventure</h2>
 
-    <a href="index.html" class="prev-btn previous round">&#8249;</a>
+		<div class="search-block">
+			<input id="search-input" type="text" placeholder="Search game...">
+			<p class="search-note"> Search works across ALL games </p>
+		</div>
 
-    <div>
-        <label for="game-select"><b>Select game</b></label><br>
-        <select id="game-select" disabled>
-            <option value="">Loading games...</option>
-        </select>
-    </div>
+		<div class="checkbox-block">
+			<label>
+				<input type="checkbox" id="include-finished">
+				Include finished
+			</label>
+		</div>
 
-    <br>
+		<div id="hunts-container"></div>
 
-    <div>
-        <label for="team-name"><b>Team name</b></label><br>
-        <input
-            type="text"
-            id="team-name"
-            placeholder="Enter team name"
-            disabled
-        />
-    </div>
+		<div class="pagination">
+			<button id="previousPage">Previous</button>
+			<button id="nextPage">Next</button>
+		</div>
 
-    <br>
+		<p id="error-message"></p>
+		</section>
+	</main>
 
-    <button id="start-game-btn" disabled>Start game</button>
-    <p id="error-message"></p>
-
-</div>
-
-    <script type="module" src="../js/app.js"></script>
-
-<footer>
-    <button class="team-btn" onclick="document.location='team.html'"><b> Members <br> &#128100</b></button>
-
-    <a href="https://x.com/akatsouri2" target="_blank" class="X-icon" ><img src="/media/photo/X_icon.png" alt="X icon" style="width:30px;height:30px;"></a>
-</footer>
+	<script type="module" src="../js/app.js"></script>
 
 </body>
 </html>

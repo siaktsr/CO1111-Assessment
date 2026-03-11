@@ -1,0 +1,218 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html, body{
+	height: 100%;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: #111;
+	color: #f5f5f5;
+	line-height: 1.6;
+    display: flex;
+	flex-direction: column;
+}
+
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 20px;
+}
+
+main{
+	flex: 1;
+}
+
+/* Header */
+.site-header {
+	background: #1b1b1b;
+	border-bottom: 2px solid #c8a44d;
+}
+
+.header-container {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+.logo-img {
+	width: 60px;
+}
+
+.title-block h1 {
+	font-size: 2rem;
+	color: #f0c75e;
+}
+
+.team-name {
+	font-size: 0.9rem;
+	color: #bbb;
+}
+
+/* Team Grid */
+.team-main{
+	padding: 40px 20px;
+}
+
+.team-grid{
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 25px;
+}
+
+/* Card */
+.team-card{
+	background: #1b1b1b;
+	padding: 25px;
+	border-radius: 10px;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+	transition: 0.3s;
+}
+
+.team-card:hover{
+	transform: translateY(-5px);
+}
+
+.team-card h2{
+	margin-bottom: 10px;
+}
+
+.role{
+	color: goldenrod;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.email{
+	margin-top: 10px;
+	font-size: 14px;
+	color: #bbb;
+}
+
+/* Footer */
+footer{
+	text-align: center;
+	padding: 30px;
+}
+
+.site-footer {
+	background: #1b1b1b;
+	margin-top: 60px;
+	padding: 20px;
+	border-top: 2px solid #c8a44d;
+}
+
+.footer-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.team-btn {
+	padding: 12px 20px;
+	border-radius: 6px;
+	border: none;
+	cursor: pointer;
+	background: #333;
+	color: white;
+}
+
+.team-btn:hover {
+	background: #444;
+}
+
+.social-links {
+	display: flex;
+	gap: 15px;
+}
+
+.social-icon {
+	width: 30px;
+}
+
+/* Media Queries */
+/* >=600px */
+@media (min-width: 600px){
+	.team-grid{
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+/* >=768px */
+@media (min-width: 768px){
+	.team-grid{
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+/* >=992px */
+@media (min-width: 992px){
+	.team-grid{
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+}
+
+/* >=1200px */
+@media (min-width: 1200px){
+	.team-grid{
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+	}
+}
+
+#vlad-card{
+    background: linear-gradient(145deg,#1a1a1a,#121212);
+    border: 1px solid rgba(200,164,77,0.4);
+    box-shadow: 0 0 15px rgba(200,164,77,0.2);
+}
+
+#vlad-card:hover{
+    transform: translateY(-8px);
+    box-shadow: 0 0 25px rgba(200,164,77,0.5);
+}
+
+#vlad-card .dev-avatar{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg,#c8a44d,#f0c75e);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    color:#111;
+    margin-bottom:15px;
+}
+
+#vlad-card .description{
+    color:#ddd;
+    font-size:14px;
+    margin-bottom:12px;
+}
+
+#vlad-card .skills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-bottom:12px;
+}
+
+#vlad-card .skills span{
+    background:rgba(200,164,77,0.15);
+    border:1px solid rgba(200,164,77,0.5);
+    padding:4px 8px;
+    border-radius:5px;
+    font-size:12px;
+    color:#f0c75e;
+}
+
+#vlad-card .quote{
+    font-style:italic;
+    font-size:13px;
+    color:#aaa;
+    border-left:2px solid goldenrod;
+    padding-left:10px;
+}

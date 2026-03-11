@@ -3,24 +3,23 @@ import {
     updateLocation,
 }from "./api.js";
 
-//import functions
-import {
-    CheckAndDisplay
-}from "./sessionEnd.js";
+let sessionId;
+// Initialization
+init();
 
-//Import from resumeSession
-import{
-    findAndSaveSessionId,
-}from "./resumeSession.js";
+function init() {
+    const StoredData = localStorage.getItem("treasureHuntSession");
 
+    if (!StoredData) {
+        alert("Session ID was not found. Please try again.");
+        window.location.href = "../test/test.html";
+    }
+    const sessionData = JSON.parse(StoredData);
+    sessionId = sessionData.sessionId;
+}
 
-
-await locationUpdates();
-
-
-
-
-export function showPosition(position){
+//Extract latitude and longitude from the geolocation position object
+function showPosition(position){
     //Get the latitude
     let lat = position.coords.latitude;
     //Get the longitude
@@ -28,43 +27,42 @@ export function showPosition(position){
     return {lat,long};
 }
 
-//alert if browser does not allow location track
-export function CheckLocation(){
-    if(navigator.geolocation){
-        navigator.geolocation.getCurrentPosition(showPosition);
-    }
-    else{
-        alert("Geolocation is not supported by this browser.");
-    }
-}
+/*
+getLocation: asynchronously fetches the user's current GPS coordinates 
+and sends them to the server via updateLocation.
 
-export async function getLocation(){
-    //Get the position, longitude and latitude
-    let position = position;
-    let pos = showPosition(position);
+Parameters:
+- sessionId: the ID of the current game session
 
-    //Get the Session ID
-    let sessionID = await findAndSaveSessionId();
+Returns:
+- a Promise that resolves with the server response from updateLocation
+*/
+export async function getLocation(sessionId) {
 
-try{
-    let data = await updateLocation(sessionID, pos[0], pos[1]);
-    console.log(data);
-}
-catch(err){
-    alert("Unknown error: " + err);
-}
-
-}
-
-export async function locationUpdates(){
-
-    let sessionId = await findAndSaveSessionId();
-    if(sessionId === null){
-        alert("No session found!");
+    // Check if the browser supports geolocation
+    if (!navigator.geolocation) {
+        alert("Geolocation is not supported. Please switch to a different browser.");
         return;
     }
-    while (!await CheckAndDisplay(sessionId)) {
-        setInterval(getLocation,120000);
-        console.log("Hunt still Active...");
-    }
+
+    // Wrap geolocation API in a Promise for async/await usage
+    return new Promise((resolve, reject) => {
+
+        navigator.geolocation.getCurrentPosition(async (position) => {
+
+            // Extract latitude and longitude
+            const pos = showPosition(position);
+
+            try {
+                // Send coordinates to the server
+                const data = await updateLocation(sessionId, pos.lat, pos.long);
+                // Resolve the promise with the server response
+                resolve(data);
+            } catch (error) {
+                // Reject the promise if something goes wrong
+                reject(error);
+            }
+
+        }, reject); // If geolocation fails, reject the promise
+    });
 }

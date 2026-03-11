@@ -1,50 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Treasure Hunt - Main Page</title>
-    <link rel="stylesheet" href="../css/style.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Treasure Hunt Game – Online Adventure</title>
+
+	<meta name="description" content="Play the Treasure Hunt Game! Solve puzzles,
+	answer questions, and compete with other teams on the leaderboard in this exciting online adventure game.">
+	<meta name="keywords" content="treasure hunt game, online puzzle game, quiz game, pirate treasure hunt, leaderboard game">
+	<meta name="author" content="Team C, 3RussiansAndMe">
+	<meta name="robots" content="index, follow">
+
+	<link rel="icon" type="image/png" href="/media/photo/pirate-hat.png">
+
+	<link rel="stylesheet" href="../css/index.css">
 </head>
-
 <body>
-    <header>
-        <h1 id="title-index">Treasure Hunt Game</h1>
-        <h3>By Team C</h3>
-    </header>
 
-    <main>
+	<header class="site-header">
+		<div class="container header-container">
+			<div class="logo-block">
+				<img src="/media/photo/pirate-hat.png" alt="Treasure Hunt logo" class="logo-img">
+			</div>
 
-        <div class="center-text">
-            <h2>Welcome mighty pirates!</h2>
+			<div class="title-block">
+				<h1 id="title-index">Treasure Hunt Game</h1>
+				<p class="team-name">By Team C</p>
+			</div>
+		</div>
+	</header>
 
-            <img src="/media/photo/pirate-hat.png" alt="Pirate Hat" style="width:135px;height:135px;">
+	<main class="main-content">
+		<section class="hero-section">
+			<div class="container hero-container">
+				<h2>Welcome mighty pirates!</h2>
 
-            <p>Answer each question correctly as quickly as possible.</p>
-        </div>
+				<img src="/media/photo/pirate-hat.png"
+					alt="Pirate hat icon for treasure hunt game"
+					class="hero-icon">
 
-        <div class="game-rules">
-            <h4><u>GAME RULES:</u></h4>
+				<p class="hero-text">
+					Answer each question correctly as quickly as possible.
+				</p>
+			</div>
+		</section>
 
-            <ol class="game-rules-list">
-                <li>Each <span id="correct-ans"><b>correct</b></span> answer, <b><i>grants</i></b> you points.</li>
-                <li>Each <span id="wrong-ans"><b>wrong</b></span> answer, <b><i>deducts</i></b> you points.</li>
-                <li>Each <span id="skip-ans"><b>skipped</b></span> answer, can deduct <b><i>0 or more</i></b> points.</li>
-            </ol>
-        </div>
+		<section class="rules-section">
+			<div class="container">
+				<h3 class="rules-title">Game Rules</h3>
 
+				<ol class="game-rules-list">
+					<li>
+						Each <span id="correct-ans"><b>correct</b></span> answer
+						<b><i>grants</i></b> you points.
+					</li>
+					<li>
+						Each <span id="wrong-ans"><b>wrong</b></span> answer
+						<b><i>deducts</i></b> you points.
+					</li>
+					<li>
+						Each <span id="skip-ans"><b>skipped</b></span> answer
+						can deduct <b><i>0 or more</i></b> points.
+					</li>
+				</ol>
+			</div>
+		</section>
 
-    </main>
+		<section class="play-section">
+			<div class="container play-container">
+				<button class="play-btn"
+					onclick="document.location='app.html'">
+					<b>👉 Play Now 👈</b>
+				</button>
+			</div>
+		</section>
+	</main>
+	<footer class="site-footer">
 
-<!--    <script type="module" src="../js/questions.js"></script>-->
+		<div class="container footer-container">
+			<button class="team-btn"
+				onclick="document.location='team.html'">
+				<b>
+					Members <br>
+					👤
+				</b>
+			</button>
+
+			<div class="social-links">
+				<a href="https://x.com/akatsouri2"
+					target="_blank">
+					<img src="/media/photo/X_icon.png"
+						alt="X social icon"
+						class="social-icon">
+				</a>
+
+				<a href="#"
+					target="_blank">
+					<img src="/media/photo/Instagram_icon.png"
+						alt="Instagram icon"
+						class="social-icon">
+				</a>
+			</div>
+		</div>
+
+		<div class="cookies-box">
+			<img src="../media/photo/cookies.png"
+				alt="cookies">
+
+			<div class="cookies-txt">
+				<h3>Cookies Consent</h3>
+				<p>
+					This website uses cookies to ensure you get the best experience on our website.
+				</p>
+				<div class="cookies-btn">
+					<button class="btn2">I understand</button>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<script src="../js/index.js"></script>
 </body>
-
-
-<footer>
-    <button class="play-btn" onclick="document.location='app.html'"><b>&#128073 Play now &#128072</b></button>
-
-    <button class="team-btn" onclick="document.location='team.html'"><b> Members <br> &#128100</b></button>
-
-    <a href="https://x.com/akatsouri2" target="_blank" class="X-icon" ><img src="/media/photo/X_icon.png" alt="X icon" style="width:30px;height:30px;"></a>
-</footer>
-
 </html>

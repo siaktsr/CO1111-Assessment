@@ -138,7 +138,7 @@ Returns:
 - server message
 */
 export async function updateLocation(sessionId, latitude, longitude) {
-    const data = await apiRequest("location", {
+    const data = await apiRequest("/location", {
         session: sessionId,
         latitude,
         longitude

@@ -7,6 +7,10 @@ import {
     skipQuestion
 } from "../js/api.js"
 
+import {
+    getLocation
+} from "../js/Geolocation.js"
+
 // DOM Elements
 const questionTextEl = document.getElementById("question-text");
 const questionTypeEl = document.getElementById("question-type");
@@ -28,7 +32,7 @@ function init(){
     const StoredData = localStorage.getItem("treasureHuntSession");
 
     if(!StoredData){
-        alert("Sessoin data not found.");
+        alert("Session Id was not found. Please try again.");
         window.location.href = "../test/test.html";
     }
     const sessionData = JSON.parse(StoredData);
@@ -62,7 +66,7 @@ Renders question text and input controls based on question type.
 */
 async function renderQuestion(question) {
     questionTextEl.innerHTML = question.questionText;
-    questionTypeEl.textContent = `Type: ${question.questionType}`;
+    //questionTypeEl.textContent = `Type: ${question.questionType}`;
 
     renderAnswerInput(question.questionType);
 }
@@ -167,7 +171,21 @@ Submits an answer to the server.
 */
 async function submit(answer) {
     try{
+
+        if(wasWrongBefore(currentQuestion, answer)) {
+            const confirmRepeat = confirm(
+                "You already tried this answer before and it was incorrect.\n\n" +
+                "Are you sure you want to submit it again?\n" +
+                "You can check your answer history below."
+            );
+
+            if(!confirmRepeat){
+                return;
+            }
+        }
+        const loc = await getLocation(sessionId);
         const result = await submitAnswer(sessionId, answer);
+        addToHistory(currentQuestion, answer, result);
         document.dispatchEvent(new CustomEvent("answer-submitted"));
         showMessage(result.message);
 
@@ -194,8 +212,15 @@ skipBtn.addEventListener("click", async () => {
         alert("This question cannot be skipped.");
         return;
     }
+
+    const confirmSkip = confirm("Are you sure you want to skip this question?");
+    if(!confirmSkip){
+        return;
+    }
+
     try{
         const result = await skipQuestion(sessionId);
+        addToHistory(currentQuestion, null, { correct: false, skipped: true });
         document.dispatchEvent(new CustomEvent("answer-submitted"));
         showMessage(result.message);
         loadQuestion();
@@ -211,7 +236,7 @@ Clears UI sections before rendering a new question.
 */
 function clearUI(){
     questionTextEl.textContent = "Loading question...";
-    questionTypeEl.textContent = "";
+    //questionTypeEl.textContent = "";
     answerSectionEl.innerHTML = "";
     messageEl.textContent = "";
 }
@@ -299,6 +324,12 @@ function startScanner() {
                 currentCameraIndex = 0;
             }
 
+            if (cameras.length === 1) {
+                switchCameraBtn.style.display = "none";
+            } else if (cameras.length > 1) {
+                switchCameraBtn.style.display = "inline-block";
+            }
+            
             scanner.start(cameras[currentCameraIndex]);
 
             if (cameras.length > 1) {
@@ -368,3 +399,65 @@ switchCameraBtn.addEventListener("click", () => {
         scanner.start(cameras[currentCameraIndex]);
     }
 });
+
+/* Answer History */
+let answerHistory = [];
+
+function addToHistory(question, userAnswer, result) {
+
+    const historyItem = {
+        questionText: question.questionText,
+        questionType: question.questionType,
+        userAnswer: userAnswer,
+        correct: result.correct,
+        skipped: result.skipped || false
+    };
+
+    answerHistory.unshift(historyItem); // добавляем в начало
+    renderHistory();
+}
+
+function renderHistory() {
+
+    const historyList = document.getElementById("history-list");
+    historyList.innerHTML = "";
+
+    answerHistory.forEach(item => {
+
+        const div = document.createElement("div");
+        div.classList.add("history-item");
+
+        if (item.skipped) {
+            div.classList.add("skipped");
+        } else if (item.correct) {
+            div.classList.add("correct");
+        } else {
+            div.classList.add("wrong");
+        }
+
+        div.innerHTML = `
+            <span><strong>Question:</strong> ${item.questionText}</span>
+            <span><strong>Your Answer:</strong> ${item.userAnswer ?? "Skipped"}</span>
+            <span><strong>Result:</strong> 
+                ${item.skipped ? "Skipped" : item.correct ? "Correct" : "Wrong"}
+            </span>
+        `;
+
+        historyList.appendChild(div);
+    });
+}
+
+function wasWrongBefore(question, answer) {
+    for (let i = 0; i < answerHistory.length; i++) {
+        const item = answerHistory[i];
+        if( item.questionText === question.questionText &&
+            item.userAnswer == answer && // "10" = 10
+            item.correct === false &&
+            item.skipped === false)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
