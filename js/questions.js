@@ -461,3 +461,14 @@ function wasWrongBefore(question, answer) {
 
     return false;
 }
+
+// to show button at the end of game - grigoris
+function endGame(){
+    document.getElementById("messagesec").textContent =
+        "🎉 Congratulations! You completed the Treasure Hunt!";
+
+    document.getElementById("end-controls").style.display = "block";
+}
+document.getElementById("home-btn").addEventListener("click", function(){
+    window.location.href = "../index.html";
+});

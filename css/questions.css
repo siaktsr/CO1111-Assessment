@@ -223,3 +223,25 @@ body{
 		width:220px;
 	}
 }
+/* back to home button at end of game - grigoris*/
+/* End Game Controls */
+#end-controls{
+	margin-top:25px;
+	display:none;
+}
+
+#home-btn{
+	padding:12px 22px;
+	border:none;
+	border-radius:8px;
+	background:goldenrod;
+	color:black;
+	font-size:16px;
+	cursor:pointer;
+	font-weight:bold;
+}
+
+#home-btn:hover{
+	background:darkgoldenrod;
+	color:white;
+}
