@@ -150,7 +150,6 @@ button:hover {
 
 @media (max-width: 480px) {
     .entry {
-        flex-direction: column;
         align-items: flex-start;
         gap: 6px;
     }
