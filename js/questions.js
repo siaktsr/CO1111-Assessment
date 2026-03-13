@@ -412,10 +412,11 @@ function addToHistory(question, userAnswer, result) {
         questionType: question.questionType,
         userAnswer: userAnswer,
         correct: result.correct,
-        skipped: result.skipped || false
+        skipped: result.skipped || false,
+        note: result.message || null
     };
 
-    answerHistory.unshift(historyItem); // добавляем в начало
+    answerHistory.unshift(historyItem);
     renderHistory();
 }
 
@@ -443,6 +444,7 @@ function renderHistory() {
             <span><strong>Result:</strong> 
                 ${item.skipped ? "Skipped" : item.correct ? "Correct" : "Wrong"}
             </span>
+            ${item.note ? `<span><strong>Note:</strong> ${item.note}</span>` : ""}
         `;
 
         historyList.appendChild(div);
