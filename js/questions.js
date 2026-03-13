@@ -183,7 +183,9 @@ async function submit(answer) {
                 return;
             }
         }
-        const loc = await getLocation(sessionId);
+        if(currentQuestion.requiresLocation === "true"){
+            await getLocation(sessionId);
+        }
         const result = await submitAnswer(sessionId, answer);
         addToHistory(currentQuestion, answer, result);
         document.dispatchEvent(new CustomEvent("answer-submitted"));
