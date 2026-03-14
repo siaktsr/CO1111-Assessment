@@ -261,6 +261,7 @@ function showGameCompleted(){
 
     submitBtn.style.display = "none";
     skipBtn.style.display = "none";
+    qrBtn.style.display = "none";
 
     const btn = document.createElement("button");
     btn.textContent = "Go to Leaderboard";
