@@ -132,29 +132,28 @@ Onsite, 1 hour
 Discussed about:
 1) Visible bugs in code and create new corresponding issues.
 
-## Assignment support notices:
-<u> index.html: </u>
+#### Assignment support notices:
+_index.html:_
 - Cookies Consent’ alert box needs text color changes.
 
-<u> team.html: </u>
+_team.html:_
 -  Needs to have a consistent style for everyone.
 
-<u> app.html: </u>
+_app.html:_
 - ‘Include finished’ box not necessary.
 - Search bar is irrelevant.
 - ‘Previous’ and ‘Next’ buttons are irrelevant.
 
-<u> questions.html: </u>
+_questions.html:_
 - Use ‘Modal Box’ for error messages since it has more options for styling.
 - Link colors are not visible
 - Buttons need to be consistent in styling.
 - Home page redirection button is not needed.
 - Use Geolocation permission only where needed and not in every question.
--‘Skip Question’ button should not be close to ‘Submit Answer’ button.
+- ‘Skip Question’ button should not be close to ‘Submit Answer’ button.
 - On the ‘A question that cannot be skipped…’ question, the ‘Skip Question’ button should not be visible.
 
-
-<u> leaderboard.html: </u>
+_leaderboard.html:_
 - Use consistent style for buttons.
 
 Members present: Anastasia, Athanasios, Vlad, Grigoris, Mr. Kasenides
