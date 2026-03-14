@@ -81,9 +81,17 @@ main {
 /* Pagination */
 .pagination {
     display: flex;
-    justify-content: center;
+    /*justify-content: center;*/
+    flex-direction: column;
     gap: 20px;
+    align-items: center;
     margin-top: 30px;
+}
+
+.pagecontrols, .pagecontrols {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
 }
 
 /* Buttons */
@@ -96,6 +104,7 @@ button {
     background: #c8a44d;
     color: #111;
     transition: 0.25s;
+    min-width: 150px;
 }
 
 button:hover {
