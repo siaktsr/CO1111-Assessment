@@ -1,5 +1,9 @@
 // questions.js
 // Handles rendering questions, submitting answers, skipping questions
+import{
+    displayError
+} from "../js/modals.js";
+
 
 import {
     fetchQuestion,
@@ -79,6 +83,7 @@ async function loadQuestion() {
         renderQuestion(data);
     }catch(error){
         showMessage(error.message);
+        displayError(error.message);
     }
 }
 
@@ -225,6 +230,8 @@ async function submit(answer) {
 
     }catch(error){
         showMessage(error.message);
+        displayError(error.message);
+
     }
 }
 
@@ -249,6 +256,8 @@ skipBtn.addEventListener("click", async () => {
         loadQuestion();
     }catch(error){
         showMessage(error.message);
+        displayError(error.message);
+
     }
 });
 
