@@ -109,12 +109,6 @@ body{
     min-width: 150px;
 }
 
-    /*button:hover {*/
-    /*    background: #f0c75e;*/
-    /*    box-shadow: 0 8px 16px rgba(200,164,77,0.4);*/
-    /*}*/
-
-
 #submit-btn:hover{
 	background:green;
 	color:white;
@@ -253,23 +247,6 @@ body{
 	margin-top:25px;
 	display:none;
 }
-
-/*#home-btn{*/
-/*	padding:12px 22px;*/
-/*	border:none;*/
-/*	border-radius:8px;*/
-/*	background:goldenrod;*/
-/*	color:black;*/
-/*	font-size:16px;*/
-/*	cursor:pointer;*/
-/*	font-weight:bold;*/
-/*}*/
-
-/*#home-btn:hover{*/
-/*	background:darkgoldenrod;*/
-/*	color:white;*/
-/*}*/
-
 
 
 /* The Modal (background) */
