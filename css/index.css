@@ -99,9 +99,28 @@ body {
 }
 
 .play-btn:hover {
-	background: #e0b94d;
-	transform: scale(1.05);
+    background: #e0b94d;
+    transform: scale(1.05);
 }
+
+/*Start Button*/
+.start-button{
+    /*font-size: 1.5rem;*/
+    padding: 5px 25px;
+    background: #c8a44d;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.start-button:hover {
+    transition: 0.2s;
+    background-color: #e0b94d;
+    font-size: 18px;
+    color: white;
+}
+
 
 /* Footer */
 .site-footer {
