@@ -24,6 +24,7 @@ let sessionId = null;
 let currentQuestion = null;
 let selectedAnswer = null;
 
+let answerHistory = [];
 
 // Initialization
 init();
@@ -33,12 +34,32 @@ function init(){
 
     if(!StoredData){
         alert("Session Id was not found. Please try again.");
-        window.location.href = "../test/test.html";
+        window.location.href = "../html/app.html";
     }
     const sessionData = JSON.parse(StoredData);
     sessionId = sessionData.sessionId;
+    
+    if(sessionData.answerHistory){
+        answerHistory = sessionData.answerHistory;
+        renderHistory();
+    }
 
     loadQuestion();
+}
+
+function saveHistory(){
+
+    const storedData = localStorage.getItem("treasureHuntSession");
+
+    if(!storedData) return;
+
+    const sessionData = JSON.parse(storedData);
+    sessionData.answerHistory = answerHistory;
+
+    localStorage.setItem(
+        "treasureHuntSession",
+        JSON.stringify(sessionData)
+    );
 }
 
 /* loadQuestion
@@ -404,7 +425,6 @@ switchCameraBtn.addEventListener("click", () => {
 });
 
 /* Answer History */
-let answerHistory = [];
 
 function addToHistory(question, userAnswer, result) {
 
@@ -418,6 +438,9 @@ function addToHistory(question, userAnswer, result) {
     };
 
     answerHistory.unshift(historyItem);
+
+    saveHistory();
+
     renderHistory();
 }
 
