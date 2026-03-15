@@ -110,6 +110,8 @@ button {
 button:hover {
     background: #f0c75e;
     box-shadow: 0 8px 16px rgba(200,164,77,0.4);
+    color: white;
+    font-size: 18px;
 }
 
 /* Current Player Section */
