@@ -287,3 +287,8 @@ body{
     color: black;
     cursor: pointer;
 }
+
+/*Links Color*/
+a{
+    color: yellow;
+}
