@@ -1,3 +1,7 @@
+import{
+    displayError
+} from "../js/modals.js";
+
 import {
     fetchTreasureHunts,
     startSession
@@ -28,6 +32,7 @@ async function loadTreasureHunts() {
         applyFilters();
     } catch (error) {
         errorMessage.textContent = error.message;
+        displayError(errorMessage.textContent);
     }
 }
 
@@ -250,6 +255,7 @@ async function startGame(hunt, player) {
 
     if (!player.trim()) {
         errorMessage.textContent = "Enter team name";
+        displayError(errorMessage.textContent);
         return;
     }
 
@@ -277,6 +283,7 @@ async function startGame(hunt, player) {
 
     } catch (error) {
         errorMessage.textContent = error.message;
+        displayError(errorMessage.textContent);
     }
 }
 
