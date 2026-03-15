@@ -43,6 +43,8 @@ body{
 	border-radius:10px;
 	box-shadow:0 10px 25px rgba(0,0,0,0.5);
 	text-align:center;
+    position: relative;
+    /*padding-bottom: 80px;*/
 }
 
 #question-type{
@@ -100,21 +102,43 @@ body{
 	border:none;
 	border-radius:8px;
 	cursor:pointer;
+    font-size: 16px;
+    background: #c8a44d;
+    color: #111;
+    transition: 0.25s;
+    min-width: 150px;
 }
+
+    /*button:hover {*/
+    /*    background: #f0c75e;*/
+    /*    box-shadow: 0 8px 16px rgba(200,164,77,0.4);*/
+    /*}*/
+
 
 #submit-btn:hover{
 	background:green;
 	color:white;
+    box-shadow: 0 8px 16px green;
+}
+
+#skip-btn {
+    position: absolute;
+    bottom: 1px;
+    right: 5px;
+    margin: 0;
 }
 
 #skip-btn:hover{
 	background:#555;
 	color:white;
+    box-shadow: 0 8px 16px #555;
+    font-size: 15px;
 }
 
 #qr-btn:hover{
-	background:darkred;
+	background:steelblue;
 	color:white;
+    box-shadow: 0 8px 16px steelblue;
 }
 
 /* Message */
@@ -230,21 +254,21 @@ body{
 	display:none;
 }
 
-#home-btn{
-	padding:12px 22px;
-	border:none;
-	border-radius:8px;
-	background:goldenrod;
-	color:black;
-	font-size:16px;
-	cursor:pointer;
-	font-weight:bold;
-}
+/*#home-btn{*/
+/*	padding:12px 22px;*/
+/*	border:none;*/
+/*	border-radius:8px;*/
+/*	background:goldenrod;*/
+/*	color:black;*/
+/*	font-size:16px;*/
+/*	cursor:pointer;*/
+/*	font-weight:bold;*/
+/*}*/
 
-#home-btn:hover{
-	background:darkgoldenrod;
-	color:white;
-}
+/*#home-btn:hover{*/
+/*	background:darkgoldenrod;*/
+/*	color:white;*/
+/*}*/
 
 
 
