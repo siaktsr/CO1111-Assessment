@@ -175,7 +175,7 @@ body{
 /* QR code */
 #qr-section{
 	position:fixed;
-	top:0;
+	top:105px;
 	left:0;
 	width:100%;
 	height:100%;
@@ -183,6 +183,21 @@ body{
 	display:none;
 	align-items:center;
 	justify-content:center;
+}
+
+/* QR code  when width becomes 344px */
+@media only screen and (max-width:344px){
+    #qr-section{
+        position:fixed;
+        top:125px;
+        left:0;
+        width:100%;
+        height:100%;
+        background:rgba(0,0,0,0.8);
+        display:none;
+        align-items:center;
+        justify-content:center;
+    }
 }
 
 .qr-card{
