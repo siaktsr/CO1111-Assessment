@@ -75,6 +75,15 @@ async function loadQuestion() {
         const data = await fetchQuestion(sessionId);
         currentQuestion = data;
 
+
+        if (!currentQuestion.canBeSkipped){
+            skipBtn.style.display = "none";
+        }
+        else{
+            skipBtn.style.display = "block";
+        }
+
+
         if(data.completed){
             showGameCompleted();
             return;
@@ -234,6 +243,9 @@ async function submit(answer) {
 
     }
 }
+
+
+
 
 /* skipBtn
 */
