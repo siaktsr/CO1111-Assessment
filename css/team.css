@@ -112,7 +112,7 @@ footer{
 	align-items: center;
 }
 
-.back-team-btn {
+.team-btn {
 	padding: 12px 20px;
 	border-radius: 6px;
 	border: none;
@@ -121,7 +121,7 @@ footer{
 	color: white;
 }
 
-.back-team-btn:hover {
+.team-btn:hover {
 	background: #444;
 }
 
@@ -163,18 +163,18 @@ footer{
 	}
 }
 
-.team-card{
+#vlad-card{
     background: linear-gradient(145deg,#1a1a1a,#121212);
     border: 1px solid rgba(200,164,77,0.4);
     box-shadow: 0 0 15px rgba(200,164,77,0.2);
 }
 
-.team-card:hover{
+#vlad-card:hover{
     transform: translateY(-8px);
     box-shadow: 0 0 25px rgba(200,164,77,0.5);
 }
 
-.team-card .dev-avatar{
+#vlad-card .dev-avatar{
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -187,20 +187,20 @@ footer{
     margin-bottom:15px;
 }
 
-.team-card .description{
+#vlad-card .description{
     color:#ddd;
     font-size:14px;
     margin-bottom:12px;
 }
 
-.team-card .skills{
+#vlad-card .skills{
     display:flex;
     flex-wrap:wrap;
     gap:6px;
     margin-bottom:12px;
 }
 
-.team-card .skills span{
+#vlad-card .skills span{
     background:rgba(200,164,77,0.15);
     border:1px solid rgba(200,164,77,0.5);
     padding:4px 8px;
@@ -209,10 +209,36 @@ footer{
     color:#f0c75e;
 }
 
-.team-card .quote{
+#vlad-card .quote{
     font-style:italic;
     font-size:13px;
     color:#aaa;
     border-left:2px solid goldenrod;
     padding-left:10px;
+}
+#grigoris-card {
+	background: linear-gradient(135deg, #c8a44d, #ffe8a1);
+	border: 2px solid #ffc107;
+}
+
+#grigoris-card:hover {
+	box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+	transform: scale(1.05);
+	transition: 0.3s;
+}
+
+#grigoris-card h2 {
+	color: #1b1b1b;
+}
+
+#grigoris-card .role {
+	font-weight: bold;
+	color: #856404;
+}
+.email {
+	color: #1b1b1b;
+
+}
+.description-grigoris {
+	color: #856404;
 }
