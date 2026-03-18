@@ -1,3 +1,3 @@
-document.getElementById("homeBtn").addEventListener("click", function () {
+document.getElementById("homebtn").addEventListener("click", function () {
   window.location.href = "/";
 });
