@@ -179,10 +179,11 @@ body {
 
 .cookies-txt h3{
 	font-size: 20px;
+    color: black;
 }
 
 .cookies-box p{
-	color: #858585;
+	color: darkslategrey;
 	margin: 5px 0 20px 0;
 }
 
@@ -196,7 +197,7 @@ body {
 }
 
 .cookies-btn button:hover{
-	background: #858585;
+	background: darkslategrey;
 }
 
 .hide{

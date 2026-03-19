@@ -135,6 +135,26 @@ body{
     box-shadow: 0 8px 16px steelblue;
 }
 
+.primary-btn {
+    padding:10px 18px;
+    margin:8px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size: 16px;
+    background: #c8a44d;
+    color: #111;
+    transition: 0.25s;
+    min-width: 150px;
+}
+
+.primary-btn:hover{
+    background: #f0c75e;
+    box-shadow: 0 8px 16px rgba(200,164,77,0.4);
+    color: white;
+    font-size: 18px;
+}
+
 /* Message */
 #message{
 	margin-top:15px;
