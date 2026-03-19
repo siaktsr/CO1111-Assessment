@@ -30,6 +30,8 @@ let selectedAnswer = null;
 
 let answerHistory = [];
 
+let isSubmitting = false;
+
 // Initialization
 init();
 
@@ -205,6 +207,11 @@ submitBtn.addEventListener("click", ()=>{
 Submits an answer to the server.
 */
 async function submit(answer) {
+    if (isSubmitting) return;
+
+    isSubmitting = true;
+    submitBtn.disabled = true;
+
     try{
 
         if(wasWrongBefore(currentQuestion, answer)) {
@@ -240,7 +247,9 @@ async function submit(answer) {
     }catch(error){
         showMessage(error.message);
         displayError(error.message);
-
+    } finally {
+        isSubmitting = false;
+        submitBtn.disabled = false;
     }
 }
 
@@ -512,6 +521,7 @@ function wasWrongBefore(question, answer) {
 }
 
 // to show button at the end of game - grigoris
+/*
 function endGame(){
     document.getElementById("messagesec").textContent =
         "🎉 Congratulations! You completed the Treasure Hunt!";
@@ -521,3 +531,4 @@ function endGame(){
 document.getElementById("home-btn").addEventListener("click", function(){
     window.location.href = "../index.html";
 });
+*/
