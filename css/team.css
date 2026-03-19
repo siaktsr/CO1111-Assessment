@@ -112,7 +112,7 @@ footer{
 	align-items: center;
 }
 
-.team-btn {
+.back-team-btn {
 	padding: 12px 20px;
 	border-radius: 6px;
 	border: none;
@@ -121,7 +121,7 @@ footer{
 	color: white;
 }
 
-.team-btn:hover {
+.back-team-btn:hover {
 	background: #444;
 }
 
@@ -163,18 +163,18 @@ footer{
 	}
 }
 
-#vlad-card{
+.team-card{
     background: linear-gradient(145deg,#1a1a1a,#121212);
     border: 1px solid rgba(200,164,77,0.4);
     box-shadow: 0 0 15px rgba(200,164,77,0.2);
 }
 
-#vlad-card:hover{
+.team-card:hover{
     transform: translateY(-8px);
     box-shadow: 0 0 25px rgba(200,164,77,0.5);
 }
 
-#vlad-card .dev-avatar{
+.team-card .dev-avatar{
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -187,20 +187,20 @@ footer{
     margin-bottom:15px;
 }
 
-#vlad-card .description{
+.team-card .description{
     color:#ddd;
     font-size:14px;
     margin-bottom:12px;
 }
 
-#vlad-card .skills{
+.team-card .skills{
     display:flex;
     flex-wrap:wrap;
     gap:6px;
     margin-bottom:12px;
 }
 
-#vlad-card .skills span{
+.team-card .skills span{
     background:rgba(200,164,77,0.15);
     border:1px solid rgba(200,164,77,0.5);
     padding:4px 8px;
@@ -209,66 +209,10 @@ footer{
     color:#f0c75e;
 }
 
-#vlad-card .quote{
+.team-card .quote{
     font-style:italic;
     font-size:13px;
     color:#aaa;
     border-left:2px solid goldenrod;
     padding-left:10px;
 }
-
-/* grigoris */
-#grig-card{
-	background: linear-gradient(145deg,#1a1a1a,#121212);
-	border: 1px solid rgba(200,164,77,0.4);
-	box-shadow: 0 0 15px rgba(200,164,77,0.2);
-}
-
-#grig-card:hover{
-	transform: translateY(-8px);
-	box-shadow: 0 0 25px rgba(200,164,77,0.5);
-}
-
-#grig-card .dev-avatar{
-	width: 60px;
-	height: 60px;
-	border-radius: 50%;
-	background: linear-gradient(135deg,#c8a44d,#f0c75e);
-	display:flex;
-	align-items:center;
-	justify-content:center;
-	font-weight:bold;
-	color:#111;
-	margin-bottom:15px;
-}
-
-#grig-card .description{
-	color:#ddd;
-	font-size:14px;
-	margin-bottom:12px;
-}
-
-#grig-card .skills{
-	display:flex;
-	flex-wrap:wrap;
-	gap:6px;
-	margin-bottom:12px;
-}
-
-#grig-card .skills span{
-	background:rgba(200,164,77,0.15);
-	border:1px solid rgba(200,164,77,0.5);
-	padding:4px 8px;
-	border-radius:5px;
-	font-size:12px;
-	color:#f0c75e;
-}
-
-#grig-card .quote{
-	font-style:italic;
-	font-size:13px;
-	color:#aaa;
-	border-left:2px solid goldenrod;
-	padding-left:10px;
-}
-
