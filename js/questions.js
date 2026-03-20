@@ -31,7 +31,7 @@ let selectedAnswer = null;
 let answerHistory = [];
 
 let isSubmitting = false;
-
+let isLockedAfterCorrect = false;
 // Initialization
 init();
 
@@ -72,6 +72,7 @@ function saveHistory(){
 Fetches a question from the API and renders it.
 */
 async function loadQuestion() {
+    isLockedAfterCorrect = false;
     clearUI();
     try{
         const data = await fetchQuestion(sessionId);
@@ -165,7 +166,9 @@ async function createBtn(label, value) {
 /* Event Handlers */
 
 submitBtn.addEventListener("click", ()=>{
-    if(!currentQuestion)return;
+    if (isSubmitting || isLockedAfterCorrect) return;
+
+    if(!currentQuestion) return;
 
     if(currentQuestion.questionType === "BOOLEAN" 
     || currentQuestion.questionType === "MCQ"){
@@ -211,6 +214,7 @@ async function submit(answer) {
 
     isSubmitting = true;
     submitBtn.disabled = true;
+    submitBtn.textContent = "Submitting...";
 
     try{
 
@@ -239,6 +243,8 @@ async function submit(answer) {
         }
 
         if(result.correct){
+            isLockedAfterCorrect = true;
+
             setTimeout(() => {
                 loadQuestion();
             }, 800);
@@ -250,6 +256,7 @@ async function submit(answer) {
     } finally {
         isSubmitting = false;
         submitBtn.disabled = false;
+        submitBtn.textContent = "Submit Answer";
     }
 }
 
