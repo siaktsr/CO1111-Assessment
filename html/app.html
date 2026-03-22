@@ -16,19 +16,6 @@
 </head>
 <body>
 
-<!-- The Modal -->
-<div id="myModal" class="modal">
-    <!-- Modal content -->
-    <div class="modal-content">
-        <span class="closeModal">&times;</span>
-        <p></p>
-    </div>
-</div>
-
-<!-- Resume Session Button-->
-<button id="resumeSession">Resume previous game</button>
-
-
 <header class="site-header">
 		<div class="container header-container">
 			<div class="logo-block">
@@ -39,6 +26,15 @@
 				<h1 id="title-index">Treasure Hunt Game</h1>
 				<p class="team-name">By Team C</p>
 			</div>
+			<div class="search-header">
+    			<button id="search-toggle" class="search-btn">🔍</button>
+    			<div class="search-input-wrapper">
+        			<input id="search-input" class="search-input" type="text" placeholder="Search...">
+        			<button id="search-clear" class="search-clear">✕</button>
+    			</div>
+			</div>
+			<!-- Resume Session Button-->
+			<button id="resumeSession">Resume previous game</button>
 		</div>
 	</header>
 
@@ -46,11 +42,6 @@
 		<section class="app-section">
 		<a href="index.html" class="prev-btn previous round">Back to Home</a>
 		<h2>Start Your Adventure</h2>
-
-		<div class="search-block">
-			<input id="search-input" type="text" placeholder="Search game...">
-			<p class="search-note"> Search works across ALL games </p>
-		</div>
 
 		<div class="checkbox-block">
 			<label>
