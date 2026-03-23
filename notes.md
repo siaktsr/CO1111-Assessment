@@ -157,3 +157,25 @@ _leaderboard.html:_
 - Use consistent style for buttons.
 
 Members present: Anastasia, Athanasios, Vlad, Grigoris, Mr. Kasenides
+
+
+------------------------
+### 23/03/2026, Monday
+------------------------
+
+Online, 45 minutes
+
+Added new issues:
+- 54, 63, 64, 65, 66
+
+Currently working on:
+- Athanasios: Redesign on Modal Box (issue #66)
+- Grigoris: Facebook post promotion
+- Vlad: Testing to ensure correct functionality and layout (issues #37, #22)
+- Anastasia: Repaired design related issues (issues #54, #63, #64)
+
+Discussed about:
+1) Bugs around the whole Treasure Hunt App
+2) Testing our page multiple times
+
+Team members present: Anastasia, Athanasios, Vlad
