@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing</title>
+    <link rel="stylesheet" href="test.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Testing & Validation</h1>
+
+    <!-- Overview -->
+    <section>
+        <h2>1. Testing Approach</h2>
+        <p>
+            Testing was conducted continuously during development. Each feature
+            was tested individually as it was implemented. API endpoints were
+            verified using Postman to ensure correct request/response behavior.
+        </p>
+        <p>
+            The application was tested on real devices and browsers to ensure
+            proper functionality and responsiveness.
+        </p>
+    </section>
+
+    <!-- Unit Testing -->
+    <section>
+        <h2>2. Unit Testing</h2>
+
+        <p>The following components were tested individually:</p>
+
+        <ul>
+            <li>Fetching questions from the API</li>
+            <li>Submitting answers</li>
+            <li>Skipping questions</li>
+            <li>Session resume functionality</li>
+        </ul>
+
+        <table>
+            <tr>
+                <th>Function</th>
+                <th>Test Case</th>
+                <th>Expected Result</th>
+                <th>Actual Result</th>
+            </tr>
+            <tr>
+                <td>fetchQuestion()</td>
+                <td>Request next question</td>
+                <td>Returns valid question object</td>
+                <td>Passed</td>
+            </tr>
+            <tr>
+                <td>submitAnswer()</td>
+                <td>Send correct answer</td>
+                <td>Score increases</td>
+                <td>Passed</td>
+            </tr>
+            <tr>
+                <td>submitAnswer()</td>
+                <td>Send incorrect answer</td>
+                <td>Score decreases</td>
+                <td>Passed</td>
+            </tr>
+            <tr>
+                <td>skipQuestion()</td>
+                <td>Skip allowed question</td>
+                <td>Next question loads</td>
+                <td>Passed</td>
+            </tr>
+            <tr>
+                <td>resumeSession()</td>
+                <td>Reload saved game</td>
+                <td>Game continues</td>
+                <td>Passed</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- UAT -->
+    <section>
+        <h2>3. User Acceptance Testing (UAT)</h2>
+
+        <table>
+            <tr>
+                <th>Scenario</th>
+                <th>Steps</th>
+                <th>Expected Result</th>
+                <th>Result</th>
+            </tr>
+
+            <tr>
+                <td>Start new game</td>
+                <td>Select game → Enter team name → Start</td>
+                <td>Redirect to questions page</td>
+                <td>Passed</td>
+            </tr>
+
+            <tr>
+                <td>Resume game</td>
+                <td>Open app with saved session</td>
+                <td>Prompt to resume appears</td>
+                <td>Passed</td>
+            </tr>
+
+            <tr>
+                <td>Answer question</td>
+                <td>Enter answer → Submit</td>
+                <td>Answer validated and score updated</td>
+                <td>Passed</td>
+            </tr>
+
+            <tr>
+                <td>Skip question</td>
+                <td>Click skip → Confirm</td>
+                <td>Next question loads</td>
+                <td>Passed</td>
+            </tr>
+
+            <tr>
+                <td>Search game</td>
+                <td>Enter search query</td>
+                <td>Matching games displayed</td>
+                <td>Passed</td>
+            </tr>
+
+            <tr>
+                <td>QR scan</td>
+                <td>Open scanner → Scan code</td>
+                <td>Data inserted or link opened</td>
+                <td>Passed</td>
+            </tr>
+
+            <tr>
+                <td>Leaderboard</td>
+                <td>Open leaderboard page</td>
+                <td>Scores displayed with pagination</td>
+                <td>Passed</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- Usability -->
+    <section>
+        <h2>4. Usability Evaluation (Nielsen’s Heuristics)</h2>
+
+        <table>
+            <tr>
+                <th>Heuristic</th>
+                <th>Issue Identified</th>
+                <th>Improvement</th>
+            </tr>
+
+            <tr>
+                <td>Visibility of system status</td>
+                <td>No loading indicator when fetching questions</td>
+                <td>Add loader/spinner</td>
+            </tr>
+
+            <tr>
+                <td>Match with real world</td>
+                <td>Some labels are technical</td>
+                <td>Use simpler language</td>
+            </tr>
+
+            <tr>
+                <td>User control & freedom</td>
+                <td>Limited undo options</td>
+                <td>Add back/confirm actions</td>
+            </tr>
+
+            <tr>
+                <td>Consistency</td>
+                <td>Different button styles across pages</td>
+                <td>Standardize UI components</td>
+            </tr>
+
+            <tr>
+                <td>Error prevention</td>
+                <td>Users can submit duplicate wrong answers</td>
+                <td>Add confirmation (partially implemented)</td>
+            </tr>
+
+            <tr>
+                <td>Recognition over recall</td>
+                <td>Some actions require memory</td>
+                <td>Add hints/tooltips</td>
+            </tr>
+
+            <tr>
+                <td>Flexibility & efficiency</td>
+                <td>No shortcuts for experienced users</td>
+                <td>Add quick actions</td>
+            </tr>
+
+            <tr>
+                <td>Aesthetic design</td>
+                <td>Some screens feel cluttered</td>
+                <td>Improve spacing/layout</td>
+            </tr>
+
+            <tr>
+                <td>Error recovery</td>
+                <td>Error messages not always clear</td>
+                <td>Improve error descriptions</td>
+            </tr>
+
+            <tr>
+                <td>Help & documentation</td>
+                <td>No help section</td>
+                <td>Add more description on page</td>
+            </tr>
+        </table>
+    </section>
+
+</div>
+
+</body>
+</html>
