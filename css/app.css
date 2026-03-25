@@ -116,6 +116,23 @@ body {
 	margin-top:10px;
 }
 
+/*Resume Game Button*/
+#resumeSession{
+    padding: 5px 10px;
+    font-size: 16px;
+    border: none;
+    background: #c8a44d;
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#resumeSession:hover {
+    background: #e0b94d;
+    box-shadow: 0 8px 16px rgba(200,164,77,0.4);
+}
+
 /* Back Button */
 .prev-btn{
 	text-decoration:none;
