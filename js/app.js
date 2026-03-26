@@ -7,6 +7,11 @@ import {
     startSession
 } from "./api.js";
 
+import { 
+    showLoader, 
+    hideLoader 
+} from "../js/loader.js";
+
 const huntsContainer = document.getElementById("hunts-container");
 const searchInput = document.getElementById("search-input");
 const searchToggle = document.getElementById("search-toggle");
@@ -22,12 +27,13 @@ let hunts = [];
 let filteredHunts = [];
 
 let page = 0;
-const huntsPerPage = 20;
+const huntsPerPage = 10;
 
 let openCard = null;
 let searchOpen = false;
 
 async function loadTreasureHunts() {
+    showLoader();
     try {
         const includeFinished = includeFinishedCheckbox.checked;
         hunts = await fetchTreasureHunts(includeFinished);
@@ -35,6 +41,8 @@ async function loadTreasureHunts() {
     } catch (error) {
         errorMessage.textContent = error.message;
         displayError(errorMessage.textContent);
+    } finally {
+        hideLoader();
     }
 }
 
@@ -107,6 +115,25 @@ function renderPage() {
         const card = createCard(hunt);
         huntsContainer.appendChild(card);
 
+    }
+
+    const totalPages = Math.ceil(filteredHunts.length / huntsPerPage);
+
+    if (totalPages <= 1) {
+        previousPageBtn.style.display = "none";
+        nextPageBtn.style.display = "none";
+        return;
+    }
+
+    previousPageBtn.style.display = "inline-block";
+    nextPageBtn.style.display = "inline-block";
+
+    if (page === 0) {
+        previousPageBtn.style.display = "none";
+    }
+
+    if (page === totalPages - 1) {
+        nextPageBtn.style.display = "none";
     }
 }
 
@@ -259,6 +286,8 @@ async function startGame(hunt, player) {
         return;
     }
 
+    showLoader();
+
     try {
         const session = await startSession(
             player,
@@ -284,6 +313,8 @@ async function startGame(hunt, player) {
     } catch (error) {
         errorMessage.textContent = error.message;
         displayError(errorMessage.textContent);
+    } finally {
+        hideLoader();
     }
 }
 

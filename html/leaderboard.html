@@ -12,21 +12,17 @@
     <meta name="author" content="Team C, 3RussiansAndMe">
     <meta name="robots" content="index, follow">
 
-    <link rel="icon" type="image/png" href="/media/photo/pirate-hat.png">
+    <link rel="icon" type="image/png" href="../media/photo/pirate-hat.png">
     <link rel="stylesheet" href="../css/leaderboard.css">
 </head>
 <body>
-
-<div class="loader"></div>
-
-
     <header class="site-header">
         <h1>Treasure Hunt Leaderboard</h1>
     </header>
 <main>
     <section class="leaderboard-section">
         <div class="container">
-
+            <div class="loader"></div>
             <div id="leaderboard"></div>
 
             <div class="pagination">
@@ -34,15 +30,14 @@
                     <button id="previousPage">Previous</button>
                     <button id="nextPage">Next</button>
                 </div>
-
+            </div>
+            <div id="player"></div>
+            <div class="pagination"> 
                 <div class="navcontrols">
                     <button onclick=window.location.href="index.html" id ="homeButton" >Home Page</button>
-                    <button onclick=window.location.href="questions.html" id ="LeaderboardButton" >Back to Questions</button>
+                    <button onclick=window.location.href="questions.html" id ="questionButton" >Back to Questions</button>
                 </div>
             </div>
-
-
-            <div id="player"></div>
         </div>
     </section>
 

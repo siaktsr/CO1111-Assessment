@@ -14,7 +14,8 @@ function checkSession() {
        resumeButton.style.display = "none";
        //if it exists and user presses YES
     } else {
-        const userAgreement = confirm("There is an existing treasure Hunt Do you want to resume?");
+
+        const userAgreement = confirm("There is an existing Treasure Hunt Do you want to resume?");
 
         //redirect to questions for user to continue playing
         if (userAgreement) {

@@ -4,6 +4,10 @@ import{
     displayError
 } from "../js/modals.js";
 
+import { 
+    showLoader, 
+    hideLoader 
+} from "../js/loader.js";
 
 import {
     fetchQuestion,
@@ -74,7 +78,8 @@ Fetches a question from the API and renders it.
 async function loadQuestion() {
     isLockedAfterCorrect = false;
     clearUI();
-    try{
+    showLoader();
+    try {
         const data = await fetchQuestion(sessionId);
         currentQuestion = data;
 
@@ -96,6 +101,8 @@ async function loadQuestion() {
     }catch(error){
         showMessage(error.message);
         displayError(error.message);
+    } finally {
+        hideLoader();
     }
 }
 
@@ -215,7 +222,7 @@ async function submit(answer) {
     isSubmitting = true;
     submitBtn.disabled = true;
     submitBtn.textContent = "Submitting...";
-
+    showLoader();
     try{
 
         if(wasWrongBefore(currentQuestion, answer)) {
@@ -226,6 +233,7 @@ async function submit(answer) {
             );
 
             if(!confirmRepeat){
+                hideLoader();
                 return;
             }
         }
@@ -248,6 +256,7 @@ async function submit(answer) {
             setTimeout(() => {
                 loadQuestion();
             }, 800);
+            return;
         }
 
     }catch(error){
@@ -257,11 +266,12 @@ async function submit(answer) {
         isSubmitting = false;
         submitBtn.disabled = false;
         submitBtn.textContent = "Submit Answer";
+        
+        if (!isLockedAfterCorrect) {
+            hideLoader();
+        }
     }
 }
-
-
-
 
 /* skipBtn
 */
@@ -276,6 +286,8 @@ skipBtn.addEventListener("click", async () => {
         return;
     }
 
+    showLoader();
+
     try{
         const result = await skipQuestion(sessionId);
         addToHistory(currentQuestion, null, { correct: false, skipped: true });
@@ -285,7 +297,8 @@ skipBtn.addEventListener("click", async () => {
     }catch(error){
         showMessage(error.message);
         displayError(error.message);
-
+    } finally {
+        hideLoader();
     }
 });
 
@@ -320,6 +333,12 @@ function showGameCompleted(){
     submitBtn.style.display = "none";
     skipBtn.style.display = "none";
     qrBtn.style.display = "none";
+
+    const storedData = JSON.parse(localStorage.getItem("treasureHuntSession"));
+    if (storedData) {
+        storedData.completed = true;
+        localStorage.setItem("treasureHuntSession", JSON.stringify(storedData));
+    }
 
     const btn = document.createElement("button");
     btn.textContent = "Go to Leaderboard";

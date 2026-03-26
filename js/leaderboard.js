@@ -3,6 +3,10 @@ import{
     fetchLeaderboard,
 }from "./api.js"
 
+import { 
+    showLoader, 
+    hideLoader 
+} from "../js/loader.js";
 
 let page = 0;
 const playersInPage = 50;
@@ -26,6 +30,24 @@ function formatPage(){
         const card = createCard(i , leaderboard[i].player , leaderboard[i].score);
         display.appendChild(card);
     }
+    const totalPages = Math.ceil(leaderboard.length / playersInPage);
+
+    const prevBtn = document.getElementById("previousPage");
+    const nextBtn = document.getElementById("nextPage");
+
+    if (totalPages <= 1) {
+        prevBtn.style.display = "none";
+        nextBtn.style.display = "none";
+        return;
+    }
+
+    prevBtn.style.display = "inline-block";
+    nextBtn.style.display = "inline-block";
+
+    if (page === 0) prevBtn.style.display = "none";
+
+    if (page === totalPages - 1) nextBtn.style.display = "none";
+
 }
 
 function createCard(index , player , score ){
@@ -86,29 +108,52 @@ function renderCurrentPlayer(){
 }
 
 async function initLeaderboard() {
+    
+    const prevBtn = document.getElementById("previousPage");
+    const nextBtn = document.getElementById("nextPage");
+    const homeBtn = document.getElementById("homeButton");
+    const questionBtn = document.getElementById("questionButton");
+    
+    prevBtn.style.display = "none";
+    nextBtn.style.display = "none";
+    homeBtn.style.display = "none";
+    questionBtn.style.display = "none";
 
-    const stored = localStorage.getItem("treasureHuntSession");
+    showLoader();
 
-    if (!stored) {
-        alert("No session ID found.Please Try Again.");
-        return;
+    try{
+        const stored = localStorage.getItem("treasureHuntSession");
+
+        if (!stored) {
+            alert("No session ID found.Please Try Again.");
+            return;
+        }
+
+        const parsedSession = JSON.parse(stored);
+
+        weAsAPlayer = parsedSession.player;
+
+        const leaderboardData = await fetchLeaderboard({
+            sessionId: parsedSession.sessionId,
+            sorted : true
+        });
+
+        //console.log(leaderboardData.leaderboard);
+        let display = document.getElementById("leaderboard");
+
+        leaderboard = leaderboardData.leaderboard;
+        formatPage();
+        renderCurrentPlayer();
+    } catch (error) {
+        alert(error.message);
+    } finally {
+        /*
+        prevBtn.style.display = "inline-block";
+        nextBtn.style.display = "inline-block"; */
+        homeBtn.style.display = "inline-block";
+        questionBtn.style.display = "inline-block";
+        hideLoader();
     }
-
-    const parsedSession = JSON.parse(stored);
-
-    weAsAPlayer = parsedSession.player;
-
-    const leaderboardData = await fetchLeaderboard({
-        sessionId: parsedSession.sessionId,
-        sorted : true
-    });
-
-    //console.log(leaderboardData.leaderboard);
-    let display = document.getElementById("leaderboard");
-
-    leaderboard = leaderboardData.leaderboard;
-    formatPage();
-    renderCurrentPlayer();
 
     document.getElementById("previousPage").addEventListener("click", () =>{
 
