@@ -162,7 +162,7 @@ body {
 .cookies-box{
 	position: absolute;
 	top: 390px;
-	right: 40px;
+	right: 60px;
 	background: #ffecb2;
 	border-radius: 15px;
 	max-width: 260px;
@@ -220,6 +220,25 @@ body {
 	.hero-section {
 		padding: 80px 20px;
 	}
+}
+
+/* <=768px */
+@media (max-width: 768px) {
+    .footer-container{
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+    .social-links{
+        order: -1;
+    }
+    .team-btn{
+        width: 150px;
+    }
+    .footer-about{
+        max-width: 100%;
+    }
 }
 
 /* >=992px */
