@@ -27,6 +27,7 @@ body {
 	display: flex;
 	align-items: center;
 	gap: 20px;
+    flex-wrap: wrap;
 }
 
 .logo-img {
@@ -53,7 +54,6 @@ body {
 
 .search-input-wrapper {
 	position: relative;
-	display: inline-block;
 }
 
 .search-input {
@@ -66,7 +66,7 @@ body {
 }
 
 .search-input.active {
-	width: 200px;
+	width: 150px;
 	opacity: 1;
 }
 
@@ -126,6 +126,26 @@ body {
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s;
+    flex-shrink: 0;
+}
+
+
+@media only screen and (max-width:593px) {
+
+   #resumeSession{
+       padding: 4px 9px;
+       font-size: 14px;
+       border: none;
+       background: #c8a44d;
+       color: black;
+       border-radius: 5px;
+       cursor: pointer;
+       transition: 0.3s;
+   }
+.search-input.active {
+    width: 110px;
+}
+
 }
 
 #resumeSession:hover {
