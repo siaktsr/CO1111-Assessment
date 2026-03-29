@@ -179,3 +179,26 @@ Discussed about:
 2) Testing our page multiple times
 
 Team members present: Anastasia, Athanasios, Vlad
+
+
+------------------------
+### 26/03/2026, Thursday
+------------------------
+
+Onsite, 1 hour
+
+**In Class**
+
+Added new issues:
+- 67, 68
+
+Currently working on:
+- Athanasios: Improving header design on app.html (issues #65, #67)
+- Grigoris: Facebook posts promotion
+- Vlad: Adding pirate hat loading indicator (issues #67)
+- Anastasia: UX Redesign inconsistencies across application (issues #68)
+
+Discussed about: 
+1) Testing our page to discover possible flaws
+
+Team members present: Anastasia, Athanasios, Vlad
