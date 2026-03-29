@@ -72,13 +72,13 @@ body{
 }
 
 .answer-btn:hover{
-	background:darkred;
+	background:#444;
 	color:white;
 }
 
 .answer-btn.active{
-	background:goldenrod;
-	color:black;
+	background:mediumpurple;
+	color:white;
 }
 
 /* Inputs */
