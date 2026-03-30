@@ -31,7 +31,7 @@ const huntsPerPage = 10;
 
 let openCard = null;
 let searchOpen = false;
-
+// Data loading
 async function loadTreasureHunts() {
     showLoader();
     try {
@@ -54,6 +54,7 @@ function fuzzyMatch(text, search){
     return words.every(word => text.includes(word));
 }
 
+// Apply search filters and reset pagination
 function applyFilters() {
 
     const search = searchInput.value.trim().toLowerCase();
@@ -77,6 +78,7 @@ function getStatus(hunt) {
     return "active";
 }
 
+// Sort hunts by status and start time
 function sortHunts() {
     filteredHunts.sort((a, b) => {
         const statusOrder = {
@@ -195,6 +197,7 @@ function createCard(hunt){
     return card;
 }
 
+// Expand selected card and show additional actions/info
 function openHuntCard(card, hunt){
 
     if (openCard === card) return;
@@ -262,6 +265,7 @@ function openHuntCard(card, hunt){
     openCard = card;
 }
 
+// Close currently opened card
 function closeOpenCard(){
 
     if(!openCard) return;
@@ -318,6 +322,7 @@ async function startGame(hunt, player) {
     }
 }
 
+// Format remaining time until hunt starts
 function formatTime(timestamp) {
 
     const diff = timestamp - Date.now();
@@ -333,6 +338,7 @@ function formatTime(timestamp) {
     return `${minutes}m ${diff / 1000 % 60}s`;
 }
 
+// Pagination controls
 previousPageBtn.addEventListener("click", () => {
     if (page > 0) {
         page--;
@@ -387,10 +393,13 @@ searchClear.addEventListener("click", e => {
     searchInput.focus();
 });
 
+// Reload hunts when checkbox changes 
 includeFinishedCheckbox.addEventListener("change", loadTreasureHunts);
 
+// Initial load
 loadTreasureHunts();
 
+// Global click handler to close UI elements when clicking outside
 document.addEventListener("click", (event)=>{
 
     if(openCard && !openCard.contains(event.target)){

@@ -13,12 +13,13 @@ const playersInPage = 50;
 let leaderboard = [];
 let weAsAPlayer;
 
-
-
+// Renders the current page of leaderboard data
 function formatPage(){
     const display = document.getElementById('leaderboard');
     //clear
     display.innerHTML = "";
+
+    // Calculate current page range
     const startPoint = page * playersInPage;
     const endPoint = Math.min(startPoint + playersInPage, leaderboard.length);
 
@@ -26,7 +27,7 @@ function formatPage(){
     const formatPlayers = leaderboard.slice(startPoint,endPoint);
 
     //display until the endPoint
-    for(let i =startPoint; i < endPoint; i++){
+    for(let i=startPoint; i < endPoint;i++){
         const card = createCard(i , leaderboard[i].player , leaderboard[i].score);
         display.appendChild(card);
     }
@@ -50,6 +51,7 @@ function formatPage(){
 
 }
 
+// Creates a single leaderboard entry (player card)
 function createCard(index , player , score ){
     const card = document.createElement("div");
     card.classList.add("entry");
@@ -75,6 +77,7 @@ function createCard(index , player , score ){
     return card;
 }
 
+// Displays current player separately if they are not on the current page
 function renderCurrentPlayer(){
     const playerContainer = document.getElementById("player");
     playerContainer.innerHTML = "";
@@ -107,6 +110,7 @@ function renderCurrentPlayer(){
     }
 }
 
+// Main initialization function for leaderboard page
 async function initLeaderboard() {
     
     const prevBtn = document.getElementById("previousPage");
@@ -138,7 +142,6 @@ async function initLeaderboard() {
             sorted : true
         });
 
-        //console.log(leaderboardData.leaderboard);
         let display = document.getElementById("leaderboard");
 
         leaderboard = leaderboardData.leaderboard;
@@ -147,9 +150,6 @@ async function initLeaderboard() {
     } catch (error) {
         alert(error.message);
     } finally {
-        /*
-        prevBtn.style.display = "inline-block";
-        nextBtn.style.display = "inline-block"; */
         homeBtn.style.display = "inline-block";
         questionBtn.style.display = "inline-block";
         hideLoader();
@@ -174,5 +174,5 @@ async function initLeaderboard() {
         }
      })
  }
-//
+
 await initLeaderboard();

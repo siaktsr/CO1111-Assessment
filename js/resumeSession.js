@@ -1,9 +1,3 @@
-//import from modals.js
-import {
-    displayError
-} from "../js/modals.js";
-
-
 function checkSession() {
     //get the session id
     const sessionID = localStorage.getItem("treasureHuntSession");
