@@ -202,3 +202,24 @@ Discussed about:
 1) Testing our page to discover possible flaws
 
 Team members present: Anastasia, Athanasios, Vlad
+
+
+------------------------
+### 30/03/2026, Monday
+------------------------
+
+Online, 45 minutes
+
+Closed all remaining issues.
+
+Discussed about:
+1) When to submit our final work
+2) Grade predictions
+3) Checking the steps in brief
+4) Making GitHub repository to public
+5) Double checking our code
+6) Comments throughout code
+7) Creating the coversheet
+8) Files cleanup
+
+Team members present: Anastasia, Athanasios, Vlad, Grigoris
