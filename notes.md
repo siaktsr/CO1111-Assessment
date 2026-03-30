@@ -1,4 +1,14 @@
-## MEETINGS CO1111 - TEAM C
+# TEAM C
+
+The purpose of this text file is to show how our team worked throughout the project,
+while keeping track of each individual team members progress and role. 
+Moreover, this file provides details such as the date and day of our meetings,
+descriptions of what each team member was currently working on, our discussions and finally who attended.
+These meetings were either online via a discord server or onsite on the university campus. 
+To conclude, meetings were once every other week on Mondays and Thursdays if additional issues 
+occurred. The total number of our meetings are 10.
+
+## MEETINGS - CO1111
 
 ----------------------
 ### 26/01/2026, Monday
