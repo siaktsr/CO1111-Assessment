@@ -1,163 +1,225 @@
-## Repository Rules (Mandatory)
+# 🏆 Treasure Hunt Web App
 
-### Main branches
+**Treasure Hunt Web App** is a web-based game developed by **Team C** as part of the module:
 
-* `main` — production-ready product
-* `development` — stable version for further testing
-* All other branches are created by contributors for specific tasks
-
-### Commits and merges
-
-* **Direct commits to `main` are forbidden**
-* Merging into `main` is allowed **only with approval from the whole team**
-* Merging into `development` is allowed **only after code review by at least 1–2 teammates and team approval**
-
-### Branch naming format
-
-Required format:
-
-```
-username/feature-name
-```
-
-Examples:
-
-* `alex/login-form`
-* `kate/fix-header`
-
-### Project language
-
-* Branch names — **English**
-* Commits — **English**
-* Code comments — **English**
-
-### Commit message format
-
-Mandatory prefixes:
-
-* `feat:` — new feature
-* `fix:` — bug fix
-* `refactor:` — code refactoring
-* `style:` — formatting / styling
-
-DOCUMENTATION COMMITS (`docs:`) **are not used**
-
-Examples of correct commit messages:
-
-```
-feat: add login form validation
-fix: correct header alignment
-refactor: optimize user authorization flow
-```
-
-### Merge process (mandatory)
-
-1. Create a `username/feature-name` branch
-2. Complete the task
-3. Open a **Pull Request**
-4. Create an **Issue describing the merge**
-5. Conduct a **code review** or add **comments explaining how the code works**
-6. **All 4 team members must confirm** that:
-
-   * the code quality is satisfactory
-   * the comments and logic are clear
-7. Only after that, a merge into `development` or `main` is allowed
-
-### General team rules
-
-* Always create a new branch for a new task
-* Do not combine multiple features in one branch
-* Regularly perform `pull` from `development`
-* Follow clean and readable code practices
-* Any controversial decisions must be discussed by the team **before** merging
+**CO1111: The Computing Challenge (2025–2026, Semester 1 & 2)**
+UCLan Cyprus
 
 ---
 
-## Useful links
+## 📌 Project Overview
 
-* [https://github.com](https://github.com)
-* [https://desktop.github.com](https://desktop.github.com)
-* [https://git-scm.com](https://git-scm.com)
+This project is an interactive treasure hunt game where players register teams, participate in live events, solve questions, and compete on a leaderboard.
 
-Testing my Git skills
-=======
-## Repository Rules (Mandatory)
+The application provides a full gameplay cycle:
 
-### Main branches
-
-* `main` — production-ready product
-* `development` — stable version for further testing
-* All other branches are created by contributors for specific tasks
-
-### Commits and merges
-
-* **Direct commits to `main` are forbidden**
-* Merging into `main` is allowed **only with approval from the whole team**
-* Merging into `development` is allowed **only after code review by at least 1–2 teammates and team approval**
-
-### Branch naming format
-
-Required format:
-
-```
-username/feature-name
-```
-
-Examples:
-
-* `alex/login-form`
-* `kate/fix-header`
-
-### Project language
-
-* Branch names — **English**
-* Commits — **English**
-* Code comments — **English**
-
-### Commit message format
-
-Mandatory prefixes:
-
-* `feat:` — new feature
-* `fix:` — bug fix
-* `refactor:` — code refactoring
-* `style:` — formatting / styling
-
-DOCUMENTATION COMMITS (`docs:`) **are not used**
-
-Examples of correct commit messages:
-
-```
-feat: add login form validation
-fix: correct header alignment
-refactor: optimize user authorization flow
-```
-
-### Merge process (mandatory)
-
-1. Create a `username/feature-name` branch
-2. Complete the task
-3. Open a **Pull Request**
-4. Create an **Issue describing the merge**
-5. Conduct a **code review** or add **comments explaining how the code works**
-6. **All 4 team members must confirm** that:
-
-   * the code quality is satisfactory
-   * the comments and logic are clear
-7. Only after that, a merge into `development` or `main` is allowed
-
-### General team rules
-
-* Always create a new branch for a new task
-* Do not combine multiple features in one branch
-* Regularly perform `pull` from `development`
-* Follow clean and readable code practices
-* Any controversial decisions must be discussed by the team **before** merging
+* Game selection
+* Team registration
+* Question answering
+* Score tracking
+* Leaderboard ranking
 
 ---
 
-## Useful links
+## 🛠 Technologies Used
 
-* [https://github.com](https://github.com)
-* [https://desktop.github.com](https://desktop.github.com)
-* [https://git-scm.com](https://git-scm.com)
+* HTML5
+* CSS3
+* Vanilla JavaScript
+* REST API (provided by instructors)
+* LocalStorage
+* Progressive Web App (PWA)
+
+---
+
+## 📁 Project Structure
+
+```
+root/
+│
+├── css/                # All CSS files
+├── html/               # All HTML pages
+├── js/                 # All JavaScript files
+├── test/               # Testing files (test.html, test.css, test.js)
+├── libraries/          # External libraries (QR code support)
+├── media/photo/        # Images (logo, social icons, etc.)
+├── manifest.json       # PWA configuration
+├── notes.md            # Team meeting notes
+├── README.md           # Project documentation
+└── .gitignore
+```
+
+---
+
+## 🚀 How to Run
+
+Simply open:
+
+```
+index.html
+```
+
+in your browser.
+
+No server setup is required.
+
+---
+
+## 🎮 Application Flow
+
+### 🏠 index.html
+
+* Introduction to the game
+* Game rules
+* Navigation to:
+
+  * Team page
+  * Game page
+* Social media links in footer
+
+---
+
+### 👥 team.html
+
+* List of team members
+* Roles and short descriptions
+* Quotes
+* Social media links
+* Navigation back to Home
+
+---
+
+### 🎯 app.html
+
+* Game selection interface
+* Team registration
+* Game filtering and search functionality
+
+#### Features:
+
+* Game status indicators:
+
+  * 🟢 LIVE
+  * 🟡 SOON
+  * 🔴 DONE
+* Countdown for upcoming games
+* Ability to:
+
+  * View game details
+  * Register for active games
+* Error handling for failed registration
+
+#### Additional Functionality:
+
+* 🔍 Search (via header icon)
+* 🔁 Resume previous session (via LocalStorage)
+
+---
+
+### ❓ questions.html
+
+Main gameplay page.
+
+#### Game Loop:
+
+1. Fetch question
+2. Player submits answer
+3. Send to server
+4. Receive feedback
+5. Update score
+6. Store answer history
+7. Load next question (if correct)
+
+#### Features:
+
+* Duplicate answer warning
+* QR code scanner integration
+* Geolocation support (for specific questions)
+* External link support inside questions
+
+---
+
+### 🏁 leaderboard.html
+
+* Displays ranking of players
+* Pagination support
+* Highlights current player (even if not on page)
+* Navigation to:
+
+  * Home
+  * Game (questions)
+
+---
+
+## 🧪 Testing
+
+The project includes a dedicated testing section: [root/test/](./test/)
+
+### Includes:
+
+* ✅ Unit Testing (JavaScript functionality)
+* ✅ User Acceptance Testing (UAT scenarios + results)
+* ✅ Usability Evaluation based on Nielsen’s 10 Heuristics
+
+---
+
+## 📱 PWA Features
+
+* Add to Home Screen support
+* Resource caching for improved performance
+
+---
+
+## 🌐 API Integration
+
+* External API provided by instructors
+* All API interactions handled via:
+
+```
+api.js
+```
+
+---
+
+## ⏳ Loading Experience
+
+To improve user experience, the app includes **loading animations** during data fetching.
+
+This can be observed on:
+
+* app.html
+* questions.html
+* leaderboard.html
+
+---
+
+## 👥 Team Members
+
+Team C consists of 4 members:
+
+- Anastasia Katsouri — AKatsouri2@uclan.ac.uk  
+- Vladislav Vasilev — VVasilev1@uclan.ac.uk  
+- Athanasios Antoniou — AAntoniou16@uclan.ac.uk  
+- Grigoris Iosif — GIosif@uclan.ac.uk  
+
+---
+
+## 🌍 Social Media
+
+Follow us on:
+
+- [X (Twitter)](https://x.com/teamc_co1111)
+- [Instagram](https://www.instagram.com/teamc_44/?hl=en)
+- [Facebook](https://www.facebook.com/profile.php?id=61586915335125)
+
+---
+
+## 📌 Notes
+
+* Meeting notes are documented in: [notes.md](./notes.md)
+
+---
+
+## 📄 License
+
+This project is developed for **educational purposes only**.
