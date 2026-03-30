@@ -27,6 +27,7 @@ body {
 	display: flex;
 	align-items: center;
 	gap: 20px;
+    flex-wrap: wrap;
 }
 
 .logo-img {
@@ -41,6 +42,61 @@ body {
 .team-name {
 	font-size: 0.9rem;
 	color: #bbb;
+}
+
+/* Search */
+.search-header {
+	margin-left: auto;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.search-input-wrapper {
+	position: relative;
+}
+
+.search-input {
+	width: 0;
+	opacity: 0;
+	padding: 8px;
+	border-radius: 6px;
+	border: none;
+	transition: all 0.3s ease;
+}
+
+.search-input.active {
+	width: 150px;
+	opacity: 1;
+}
+
+.search-btn {
+	background: none;
+	border: none;
+	font-size: 20px;
+	color: #f0c75e;
+	cursor: pointer;
+}
+
+.search-btn:hover {
+	transform: scale(1.2);
+}
+
+.search-clear {
+	position: absolute;
+	right: 5px;
+	top: 50%;
+	transform: translateY(-50%);
+	background: none;
+	border: none;
+	font-size: 16px;
+	cursor: pointer;
+	color: #f0c75e;
+	display: none;
+}
+
+.search-clear:hover {
+	color: gold;
 }
 
 /* App Section */
@@ -58,6 +114,43 @@ body {
 #error-message{
 	color:red;
 	margin-top:10px;
+}
+
+/*Resume Game Button*/
+#resumeSession{
+    padding: 5px 10px;
+    font-size: 16px;
+    border: none;
+    background: #c8a44d;
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    flex-shrink: 0;
+}
+
+
+@media only screen and (max-width:593px) {
+
+   #resumeSession{
+       padding: 4px 9px;
+       font-size: 14px;
+       border: none;
+       background: #c8a44d;
+       color: black;
+       border-radius: 5px;
+       cursor: pointer;
+       transition: 0.3s;
+   }
+.search-input.active {
+    width: 110px;
+}
+
+}
+
+#resumeSession:hover {
+    background: #e0b94d;
+    box-shadow: 0 8px 16px rgba(200,164,77,0.4);
 }
 
 /* Back Button */
@@ -129,6 +222,40 @@ body {
 	color:goldenrod;
 }
 
+/* Status Badge */
+.status-badge {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	padding: 4px 8px;
+	border-radius: 20px;
+	font-size: 12px;
+	font-weight: bold;
+	color: white;
+
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.status-badge.active {
+	background-color: #2ecc71;
+	box-shadow: 0 0 10px #2ecc71;
+}
+
+.status-badge.upcoming {
+	background-color: #f1c40f;
+	color: black;
+	box-shadow: 0 0 10px #f1c40f;
+}
+
+.status-badge.finished {
+	background-color: #7f8c8d;
+	opacity: 0.8;
+}
+
+.hunt-card.expanded .status-badge {
+	right: 40px;
+}
+
 .search-block input{
 	width:100%;
 	padding:10px;
@@ -163,4 +290,132 @@ body {
 	.hunt-card h3{
 		font-size:1rem;
 	}
+}
+
+
+/* The Modal (background) */
+.modal {
+    /* Hidden by default */
+    display: none;
+    /* Ensure it never moves */
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+	top:200px;
+}
+
+/* Modal Content/Text */
+.modal-content {
+    /* Ensure its well visible to users */
+    font-family: "Cascadia Mono", monospace;
+    font-weight: bolder;
+    background-color: crimson;
+    margin: 20% auto;
+    padding: 25px;
+    border: 3px solid black;
+    width: 70%;
+    font-size: 20px;
+}
+
+/* X close */
+.closeModal {
+    float: right;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.closeModal:hover,
+.closeModal:focus {
+    color: black;
+    cursor: pointer;
+}
+
+@media only screen and (max-width:700px) {
+
+
+    /* The Modal (background) */
+    .modal {
+        /* Hidden by default */
+        display: none;
+        /* Ensure it never moves */
+        position: absolute;
+        z-index: 1;
+        min-width:70% ;
+        height: 100%;
+        top:200px;
+    }
+
+    .modal-content {
+        min-width: 65%;
+        width: 70%;
+        font-family: "Cascadia Mono", monospace;
+        font-weight: bolder;
+        background-color: crimson;
+        margin: 20% auto;
+        padding: 20px;
+        border: 3px solid black;
+        font-size: 15px;
+
+    }
+
+    .closeModal {
+        float: right;
+        font-size: 25px;
+        font-weight: bolder;
+    }
+
+
+}
+
+@media only screen and (max-width:500px) {
+    .modal-content {
+        min-width: 65%;
+        width: 65%;
+        font-family: "Cascadia Mono", monospace;
+        font-weight: bolder;
+        background-color: crimson;
+        margin: 20% auto;
+        padding: 15px;
+        border: 2px solid black;
+        font-size: 13px;
+
+    }
+
+
+    /* The Modal (background) */
+    .modal {
+        /* Hidden by default */
+        display: none;
+        /* Ensure it never moves */
+        position: absolute;
+        z-index: 1;
+        min-width:300px ;
+        height: 100%;
+        top:200px;
+    }
+
+    .closeModal {
+        float: right;
+        font-size: 20px;
+        font-weight: bolder;
+    }
+}
+.loader {
+    width: 75px;
+    height: 75px;
+    margin: 20px auto;
+    position: relative;
+}
+
+.loader img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }

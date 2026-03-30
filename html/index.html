@@ -3,123 +3,266 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="manifest" href="../manifest.json" crossorigin="use-credentials">
 
 	<title>Treasure Hunt Game – Online Adventure</title>
 
 	<meta name="description" content="Play the Treasure Hunt Game! Solve puzzles,
-	answer questions, and compete with other teams on the leaderboard in this exciting online adventure game.">
+	answer questions, explore locations, scan QR codes and compete with other teams in this exciting adventure game.">
 	<meta name="keywords" content="treasure hunt game, online puzzle game, quiz game, pirate treasure hunt, leaderboard game">
 	<meta name="author" content="Team C, 3RussiansAndMe">
 	<meta name="robots" content="index, follow">
 
-	<link rel="icon" type="image/png" href="/media/photo/pirate-hat.png">
+	<link rel="icon" type="image/png" href="../media/photo/pirate-hat.png">
 
 	<link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
 
-	<header class="site-header">
-		<div class="container header-container">
-			<div class="logo-block">
-				<img src="/media/photo/pirate-hat.png" alt="Treasure Hunt logo" class="logo-img">
-			</div>
+<!-- <div class="loader"></div> -->
 
-			<div class="title-block">
-				<h1 id="title-index">Treasure Hunt Game</h1>
-				<p class="team-name">By Team C</p>
-			</div>
+<header class="site-header">
+	<div class="container header-container">
+
+		<div class="logo-block">
+			<img src="../media/photo/pirate-hat.png"
+				alt="Treasure Hunt logo"
+				class="logo-img">
 		</div>
-	</header>
 
-	<main class="main-content">
-		<section class="hero-section">
-			<div class="container hero-container">
-				<h2>Welcome mighty pirates!</h2>
+		<div class="title-block">
+			<h1 id="title-index">Treasure Hunt Game</h1>
+			<p class="team-name">By Team C</p>
+		</div>
 
-				<img src="/media/photo/pirate-hat.png"
-					alt="Pirate hat icon for treasure hunt game"
-					class="hero-icon">
+	</div>
+</header>
 
-				<p class="hero-text">
-					Answer each question correctly as quickly as possible.
-				</p>
-			</div>
-		</section>
+<main class="main-content">
 
-		<section class="rules-section">
-			<div class="container">
-				<h3 class="rules-title">Game Rules</h3>
+	<!-- HERO -->
+	<section class="hero-section">
+		<div class="container hero-container">
 
-				<ol class="game-rules-list">
-					<li>
-						Each <span id="correct-ans"><b>correct</b></span> answer
-						<b><i>grants</i></b> you points.
-					</li>
-					<li>
-						Each <span id="wrong-ans"><b>wrong</b></span> answer
-						<b><i>deducts</i></b> you points.
-					</li>
-					<li>
-						Each <span id="skip-ans"><b>skipped</b></span> answer
-						can deduct <b><i>0 or more</i></b> points.
-					</li>
-				</ol>
-			</div>
-		</section>
+			<h2>Treasure Hunt Adventure</h2>
 
-		<section class="play-section">
-			<div class="container play-container">
-				<button class="play-btn"
-					onclick="document.location='app.html'">
-					<b>👉 Play Now 👈</b>
-				</button>
-			</div>
-		</section>
-	</main>
-	<footer class="site-footer">
+			<img src="../media/photo/pirate-hat.png"
+				alt="Pirate hat icon for treasure hunt game"
+				class="hero-icon">
 
-		<div class="container footer-container">
-			<button class="team-btn"
-				onclick="document.location='team.html'">
-				<b>
-					Members <br>
-					👤
-				</b>
+			<p class="hero-text">
+				Ahoy, mighty pirates! Welcome to the ultimate Treasure Hunt adventure.
+				Search for hunts created by other players, solve clever riddles,
+				scan QR codes, explore locations, and race against time to claim
+				the highest score.
+			</p>
+
+			<p class="hero-text">
+				Every hunt is different. Some require knowledge, some require
+				exploration, and some will test your speed and teamwork.
+				Only the best pirates will reach the treasure first!
+			</p>
+
+			<a href="#player-section" class="start-button">
+				<b>Start the Hunt &#128071</b>
+			</a>
+
+		</div>
+	</section>
+
+
+	<!-- RULES -->
+	<section class="rules-section">
+		<div class="container">
+
+			<h2 class="rules-title">Treasure Hunt Rules</h2>
+
+			<ol class="game-rules-list">
+
+				<li>
+					Each <span id="correct-ans"><b>correct</b></span> answer
+					earns you valuable treasure points.
+				</li>
+
+				<li>
+					A <span id="wrong-ans"><b>wrong</b></span> answer
+					will deduct points from your score.
+				</li>
+
+				<li>
+					Some questions may be <span id="skip-ans"><b>skipped</b></span>,
+					but skipping may cost you points.
+				</li>
+
+				<li>
+					The pirate with the <b>highest score</b> wins the game.
+				</li>
+
+				<li>
+					If two pirates finish with the same score,
+					the victory goes to the one who <b>finished faster</b>.
+				</li>
+
+			</ol>
+
+		</div>
+	</section>
+
+
+	<!-- HOW THE GAME WORKS -->
+	<section class="rules-section">
+		<div class="container">
+
+			<h2 class="rules-title">How the Hunt Works</h2>
+
+			<ul class="game-rules-list">
+
+				<li>
+					Browse treasure hunts created by the university team.
+				</li>
+
+				<li>
+					Find hunts quickly using the built-in smart search,
+					even if you only remember part of the name.
+				</li>
+
+				<li>
+					Join a game by entering your team name.
+				</li>
+
+				<li>
+					Solve riddles and answer questions to earn points.
+				</li>
+
+				<li>
+					Some challenges may require scanning QR codes
+					using the built-in QR code scanner.
+				</li>
+
+				<li>
+					Certain questions may require visiting real locations,
+					so location permission may be required.
+				</li>
+
+				<li>
+					Some questions include helpful links that guide
+					you to additional information.
+				</li>
+
+				<li>
+					If you leave the game accidentally,
+					you can reconnect by entering your team name
+					exactly as before.
+				</li>
+
+			</ul>
+
+		</div>
+	</section>
+
+	<!-- PLAY -->
+	<section class="play-section" id="player-section">
+		<div class="container play-container">
+
+			<button class="play-btn"
+				onclick="document.location='app.html'">
+				<b>👉 Play Now 👈</b>
 			</button>
 
-			<div class="social-links">
-				<a href="https://x.com/akatsouri2"
-					target="_blank">
-					<img src="/media/photo/X_icon.png"
-						alt="X social icon"
-						class="social-icon">
-				</a>
+		</div>
+	</section>
 
-				<a href="#"
-					target="_blank">
-					<img src="/media/photo/Instagram_icon.png"
-						alt="Instagram icon"
-						class="social-icon">
-				</a>
-			</div>
+</main>
+
+
+<footer class="site-footer">
+
+	<div class="container footer-container">
+
+		<button class="team-btn"
+			onclick="document.location='team.html'">
+			<b>
+				Members <br>
+				👤
+			</b>
+		</button>
+
+		<!-- ABOUT PROJECT -->
+		<div class="footer-about">
+			<h3>About the Project</h3>
+
+			<p>
+				This application was developed as an examination project
+				by <b>Team C</b>.
+			</p>
+
+			<p>
+				The goal of this project is to create a fun and interactive
+				platform where players can enjoy treasure hunts created
+				by other players.
+			</p>
+
+			<p>
+				The game includes puzzles, quizzes, QR code challenges,
+				and location-based tasks designed to make every hunt unique.
+			</p>
 		</div>
 
-		<div class="cookies-box">
-			<img src="../media/photo/cookies.png"
-				alt="cookies">
+		<div class="social-links">
 
-			<div class="cookies-txt">
-				<h3>Cookies Consent</h3>
-				<p>
-					This website uses cookies to ensure you get the best experience on our website.
-				</p>
-				<div class="cookies-btn">
-					<button class="btn2">I understand</button>
-				</div>
-			</div>
+			<a href="https://x.com/teamc_co1111"
+				target="_blank">
+				<img src="../media/photo/X_icon.png"
+					alt="X social icon"
+					class="social-icon">
+			</a>
+
+			<a href="https://www.instagram.com/teamc_44/?hl=en"
+				target="_blank">
+				<img src="../media/photo/Instagram_icon.png"
+					alt="Instagram icon"
+					class="social-icon">
+			</a>
+
+			<a href="https://www.facebook.com/profile.php?id=61586915335125"
+				target="_blank">
+				<img src="../media/photo/Facebook_icon.png"
+					alt="Facebook icon"
+					class="social-icon">
+			</a>
+
 		</div>
-	</footer>
 
-	<script src="../js/index.js"></script>
+	</div>
+
+	<div class="cookies-box">
+
+		<img src="../media/photo/cookies.png"
+			alt="cookies">
+
+		<div class="cookies-txt">
+
+			<h3>Cookies Consent</h3>
+
+			<p>
+				This website uses cookies to ensure you get the best
+				experience on our website.
+			</p>
+
+			<div class="cookies-btn">
+				<button class="btn2">I understand</button>
+			</div>
+
+		</div>
+
+	</div>
+
+</footer>
+
+<script src="../js/index.js"></script>
+<!-- -->
+<script src="../js/main.js"></script>
+<!-- <script src="../js/loader.js"></script> -->
+
 </body>
 </html>

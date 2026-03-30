@@ -43,6 +43,8 @@ body{
 	border-radius:10px;
 	box-shadow:0 10px 25px rgba(0,0,0,0.5);
 	text-align:center;
+    position: relative;
+    /*padding-bottom: 80px;*/
 }
 
 #question-type{
@@ -70,13 +72,13 @@ body{
 }
 
 .answer-btn:hover{
-	background:darkred;
+	background:#444;
 	color:white;
 }
 
 .answer-btn.active{
-	background:goldenrod;
-	color:black;
+	background:mediumpurple;
+	color:white;
 }
 
 /* Inputs */
@@ -95,26 +97,94 @@ body{
 }
 
 #controls button{
-	padding:10px 18px;
+	padding:12px 20px;
 	margin:8px;
 	border:none;
 	border-radius:8px;
 	cursor:pointer;
+    font-size: 20px;
+    background: #c8a44d;
+    color: #111;
+    transition: 0.25s;
+    min-width: 170px;
+}
+
+@media only screen and (max-width:700px) {
+    #controls button{
+        padding:10px 17px;
+        margin:8px;
+        border:none;
+        border-radius:8px;
+        cursor:pointer;
+        font-size: 15px;
+        background: #c8a44d;
+        color: #111;
+        transition: 0.25s;
+        min-width: 140px;
+
+    }
+}
+
+@media only screen and (max-width:436px) {
+    #controls button{
+        padding:8px 14px;
+        margin:8px;
+        border:none;
+        border-radius:8px;
+        cursor:pointer;
+        font-size: 12px;
+        background: #c8a44d;
+        color: #111;
+        transition: 0.25s;
+        min-width: 120px;
+
+    }
 }
 
 #submit-btn:hover{
 	background:green;
 	color:white;
+    box-shadow: 0 8px 16px green;
+}
+
+#skip-btn {
+    position: absolute;
+    bottom: 1px;
+    right: 5px;
+    margin: 0;
 }
 
 #skip-btn:hover{
 	background:#555;
 	color:white;
+    box-shadow: 0 8px 16px #555;
+    font-size: 15px;
 }
 
 #qr-btn:hover{
-	background:darkred;
+	background:steelblue;
 	color:white;
+    box-shadow: 0 8px 16px steelblue;
+}
+
+.primary-btn {
+    padding:10px 18px;
+    margin:8px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size: 16px;
+    background: #c8a44d;
+    color: #111;
+    transition: 0.25s;
+    min-width: 150px;
+}
+
+.primary-btn:hover{
+    background: #f0c75e;
+    box-shadow: 0 8px 16px rgba(200,164,77,0.4);
+    color: white;
+    font-size: 18px;
 }
 
 /* Message */
@@ -157,7 +227,7 @@ body{
 /* QR code */
 #qr-section{
 	position:fixed;
-	top:0;
+	top:105px;
 	left:0;
 	width:100%;
 	height:100%;
@@ -165,6 +235,21 @@ body{
 	display:none;
 	align-items:center;
 	justify-content:center;
+}
+
+/* QR code  when width becomes 344px */
+@media only screen and (max-width:344px){
+    #qr-section{
+        position:fixed;
+        top:125px;
+        left:0;
+        width:100%;
+        height:100%;
+        background:rgba(0,0,0,0.8);
+        display:none;
+        align-items:center;
+        justify-content:center;
+    }
 }
 
 .qr-card{
@@ -222,4 +307,144 @@ body{
 	#preview{
 		width:220px;
 	}
+}
+/* back to home button at end of game - grigoris*/
+/* End Game Controls */
+/*#end-controls{*/
+/*	margin-top:25px;*/
+/*	display:none;*/
+/*}*/
+
+
+/* The Modal (background) */
+.modal {
+    /* Hidden by default */
+    display: none;
+    /* Ensure it never moves */
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    top:200px;
+}
+
+/* Modal Content/Text */
+.modal-content {
+    /* Ensure its well visible to users */
+    font-family: "Cascadia Mono", monospace;
+    font-weight: bolder;
+    background-color: crimson;
+    margin: 20% auto;
+    padding: 25px;
+    border: 3px solid black;
+    width: 70%;
+    font-size: 20px;
+}
+
+/* X close */
+.closeModal {
+    float: right;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.closeModal:hover,
+.closeModal:focus {
+    color: black;
+    cursor: pointer;
+}
+
+@media only screen and (max-width:700px) {
+
+
+    /* The Modal (background) */
+    .modal {
+        /* Hidden by default */
+        display: none;
+        /* Ensure it never moves */
+        position: absolute;
+        z-index: 1;
+        min-width:70% ;
+        height: 100%;
+        top:200px;
+    }
+
+    .modal-content {
+        min-width: 65%;
+        width: 70%;
+        font-family: "Cascadia Mono", monospace;
+        font-weight: bolder;
+        background-color: crimson;
+        margin: 20% auto;
+        padding: 20px;
+        border: 3px solid black;
+        font-size: 15px;
+
+    }
+
+    .closeModal {
+        float: right;
+        font-size: 25px;
+        font-weight: bolder;
+    }
+
+
+}
+
+@media only screen and (max-width:500px) {
+    .modal-content {
+        min-width: 65%;
+        width: 65%;
+        font-family: "Cascadia Mono", monospace;
+        font-weight: bolder;
+        background-color: crimson;
+        margin: 20% auto;
+        padding: 15px;
+        border: 2px solid black;
+        font-size: 13px;
+
+    }
+
+
+    /* The Modal (background) */
+    .modal {
+        /* Hidden by default */
+        display: none;
+        /* Ensure it never moves */
+        position: absolute;
+        z-index: 1;
+        min-width: 300px;
+        height: 100%;
+        top: 200px;
+    }
+
+    .closeModal {
+        float: right;
+        font-size: 20px;
+        font-weight: bolder;
+    }
+}
+
+/*Links Color*/
+a{
+    color: yellow;
+}
+
+.loader {
+    width: 75px;
+    height: 75px;
+    margin: 20px auto;
+    position: relative;
+}
+
+.loader img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }

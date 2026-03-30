@@ -99,9 +99,28 @@ body {
 }
 
 .play-btn:hover {
-	background: #e0b94d;
-	transform: scale(1.05);
+    background: #e0b94d;
+    transform: scale(1.05);
 }
+
+/*Start Button*/
+.start-button{
+    /*font-size: 1.5rem;*/
+    padding: 5px 25px;
+    background: #c8a44d;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.start-button:hover {
+    transition: 0.2s;
+    background-color: #e0b94d;
+    font-size: 18px;
+    color: white;
+}
+
 
 /* Footer */
 .site-footer {
@@ -143,7 +162,7 @@ body {
 .cookies-box{
 	position: absolute;
 	top: 390px;
-	right: 40px;
+	right: 60px;
 	background: #ffecb2;
 	border-radius: 15px;
 	max-width: 260px;
@@ -160,10 +179,11 @@ body {
 
 .cookies-txt h3{
 	font-size: 20px;
+    color: black;
 }
 
 .cookies-box p{
-	color: #858585;
+	color: darkslategrey;
 	margin: 5px 0 20px 0;
 }
 
@@ -177,7 +197,7 @@ body {
 }
 
 .cookies-btn button:hover{
-	background: #858585;
+	background: darkslategrey;
 }
 
 .hide{
@@ -200,6 +220,25 @@ body {
 	.hero-section {
 		padding: 80px 20px;
 	}
+}
+
+/* <=768px */
+@media (max-width: 768px) {
+    .footer-container{
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+    .social-links{
+        order: -1;
+    }
+    .team-btn{
+        width: 150px;
+    }
+    .footer-about{
+        max-width: 100%;
+    }
 }
 
 /* >=992px */

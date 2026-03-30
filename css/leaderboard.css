@@ -81,9 +81,17 @@ main {
 /* Pagination */
 .pagination {
     display: flex;
-    justify-content: center;
+    /*justify-content: center;*/
+    flex-direction: column;
     gap: 20px;
+    align-items: center;
     margin-top: 30px;
+}
+
+.pagecontrols, .pagecontrols {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
 }
 
 /* Buttons */
@@ -96,11 +104,14 @@ button {
     background: #c8a44d;
     color: #111;
     transition: 0.25s;
+    min-width: 150px;
 }
 
 button:hover {
     background: #f0c75e;
     box-shadow: 0 8px 16px rgba(200,164,77,0.4);
+    color: white;
+    font-size: 18px;
 }
 
 /* Current Player Section */
@@ -150,8 +161,26 @@ button:hover {
 
 @media (max-width: 480px) {
     .entry {
-        flex-direction: column;
         align-items: flex-start;
         gap: 6px;
     }
+}
+
+.loader {
+    width: 75px;
+    height: 75px;
+    margin: 20px auto;
+    position: relative;
+}
+
+.loader img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }

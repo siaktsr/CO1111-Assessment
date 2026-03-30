@@ -2,9 +2,7 @@ import {
     fetchScore,
 } from "../js/api.js";
 
-
 let sessionId = null;
-
 
 // Initialization
 init();
@@ -20,16 +18,17 @@ function init() {
     sessionId = sessionData.sessionId;
 }
 
+// Initial score update when page loads
 await updateScore(sessionId);
 
 document.addEventListener("answer-submitted", () => {
     updateScore(sessionId);
 })
 
-
+// Function to fetch and update score on the page
 export async function updateScore(sessionId) {
 
     //fetch score from API
     let score = await fetchScore(sessionId);
     document.getElementById("score").innerText ="Score : " + score.score;
-    }
+}

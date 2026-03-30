@@ -1,10 +1,21 @@
+import{
+    displayError
+} from "../js/modals.js";
+
 import {
     fetchTreasureHunts,
     startSession
 } from "./api.js";
 
+import { 
+    showLoader, 
+    hideLoader 
+} from "../js/loader.js";
+
 const huntsContainer = document.getElementById("hunts-container");
 const searchInput = document.getElementById("search-input");
+const searchToggle = document.getElementById("search-toggle");
+const searchClear = document.getElementById("search-clear");
 const includeFinishedCheckbox = document.getElementById("include-finished");
 const previousPageBtn = document.getElementById("previousPage");
 const nextPageBtn = document.getElementById("nextPage");
@@ -16,32 +27,34 @@ let hunts = [];
 let filteredHunts = [];
 
 let page = 0;
-const huntsPerPage = 20;
+const huntsPerPage = 10;
 
 let openCard = null;
-
+let searchOpen = false;
+// Data loading
 async function loadTreasureHunts() {
+    showLoader();
     try {
         const includeFinished = includeFinishedCheckbox.checked;
         hunts = await fetchTreasureHunts(includeFinished);
-        console.log(hunts);
         applyFilters();
     } catch (error) {
         errorMessage.textContent = error.message;
+        displayError(errorMessage.textContent);
+    } finally {
+        hideLoader();
     }
 }
 
-
-
 /* Search */
 function fuzzyMatch(text, search){
-
     text = text.toLowerCase();
     search = search.toLowerCase();
     const words = search.split(" ");
     return words.every(word => text.includes(word));
 }
 
+// Apply search filters and reset pagination
 function applyFilters() {
 
     const search = searchInput.value.trim().toLowerCase();
@@ -65,6 +78,7 @@ function getStatus(hunt) {
     return "active";
 }
 
+// Sort hunts by status and start time
 function sortHunts() {
     filteredHunts.sort((a, b) => {
         const statusOrder = {
@@ -89,34 +103,39 @@ function sortHunts() {
 function renderPage() {
 
     huntsContainer.innerHTML = "";
+
+    if(filteredHunts.length === 0){
+        huntsContainer.innerHTML = "<p>No treasure hunts found</p>";
+        return;
+    }
+
     const start = page * huntsPerPage;
     const end = Math.min(start + huntsPerPage, filteredHunts.length);
 
-    let currentSection = "";
-
     for (let i = start; i < end; i++) {
         const hunt = filteredHunts[i];
-        const status = getStatus(hunt);
-
-        if (status !== currentSection) {
-
-            currentSection = status;
-            const header = document.createElement("h3");
-
-            if (status === "active") header.textContent = "Active";
-            if (status === "upcoming") header.textContent = "Upcoming";
-            if (status === "finished") header.textContent = "Finished";
-
-            header.classList.add("hunt-section");
-            huntsContainer.appendChild(header);
-        }
         const card = createCard(hunt);
         huntsContainer.appendChild(card);
 
-        if(filteredHunts.length === 0){
-            huntsContainer.innerHTML = "<p>No treasure hunts found</p>";
-            return;
-        }
+    }
+
+    const totalPages = Math.ceil(filteredHunts.length / huntsPerPage);
+
+    if (totalPages <= 1) {
+        previousPageBtn.style.display = "none";
+        nextPageBtn.style.display = "none";
+        return;
+    }
+
+    previousPageBtn.style.display = "inline-block";
+    nextPageBtn.style.display = "inline-block";
+
+    if (page === 0) {
+        previousPageBtn.style.display = "none";
+    }
+
+    if (page === totalPages - 1) {
+        nextPageBtn.style.display = "none";
     }
 }
 
@@ -148,6 +167,24 @@ function createCard(hunt){
     const desc = document.createElement("p");
     desc.textContent = hunt.description ?? "";
 
+    const badge = document.createElement("span");
+    badge.classList.add("status-badge");
+
+    if (status === "active") {
+        badge.textContent = "LIVE";
+        badge.classList.add("active");  
+    }
+    else if (status === "upcoming") {
+        badge.textContent = "SOON";
+        badge.classList.add("upcoming");
+    }
+    else {
+        badge.textContent = "DONE";
+        badge.classList.add("finished");
+    }
+
+    card.appendChild(badge);
+
     card.appendChild(title);
     card.appendChild(info);
     card.appendChild(desc);
@@ -160,12 +197,10 @@ function createCard(hunt){
     return card;
 }
 
+// Expand selected card and show additional actions/info
 function openHuntCard(card, hunt){
 
-    if(openCard === card){
-        closeOpenCard();
-        return;
-    }
+    if (openCard === card) return;
 
     if(openCard){
         closeOpenCard();
@@ -230,6 +265,7 @@ function openHuntCard(card, hunt){
     openCard = card;
 }
 
+// Close currently opened card
 function closeOpenCard(){
 
     if(!openCard) return;
@@ -250,8 +286,11 @@ async function startGame(hunt, player) {
 
     if (!player.trim()) {
         errorMessage.textContent = "Enter team name";
+        displayError(errorMessage.textContent);
         return;
     }
+
+    showLoader();
 
     try {
         const session = await startSession(
@@ -277,9 +316,13 @@ async function startGame(hunt, player) {
 
     } catch (error) {
         errorMessage.textContent = error.message;
+        displayError(errorMessage.textContent);
+    } finally {
+        hideLoader();
     }
 }
 
+// Format remaining time until hunt starts
 function formatTime(timestamp) {
 
     const diff = timestamp - Date.now();
@@ -295,6 +338,7 @@ function formatTime(timestamp) {
     return `${minutes}m ${diff / 1000 % 60}s`;
 }
 
+// Pagination controls
 previousPageBtn.addEventListener("click", () => {
     if (page > 0) {
         page--;
@@ -311,18 +355,60 @@ nextPageBtn.addEventListener("click", () => {
     }
 });
 
-searchInput.addEventListener("input", applyFilters);
 
+searchInput.addEventListener("input", () => {
+    applyFilters();
+
+    searchClear.style.display = searchInput.value.trim() ? "block" : "none";
+
+    if(searchInput.value.trim()){
+        searchInput.classList.add("active");
+        searchOpen = true;
+    } else {
+        searchInput.classList.remove("active");
+        searchOpen = false;
+    }
+});
+
+searchToggle.addEventListener("click", () => {
+    searchOpen = !searchOpen;
+
+    if (searchOpen) {
+        searchInput.classList.add("active");
+        searchInput.focus();
+    } else {
+        if (!searchInput.value.trim()) {
+            searchInput.classList.remove("active");
+        }
+    }
+});
+
+searchClear.addEventListener("click", e => {
+    e.stopPropagation();
+    searchInput.value = "";
+    searchInput.classList.remove("active");
+    searchClear.style.display = "none";
+    searchOpen = false;
+    applyFilters();
+    searchInput.focus();
+});
+
+// Reload hunts when checkbox changes 
 includeFinishedCheckbox.addEventListener("change", loadTreasureHunts);
 
+// Initial load
 loadTreasureHunts();
 
+// Global click handler to close UI elements when clicking outside
 document.addEventListener("click", (event)=>{
 
-    if(!openCard) return;
-
-    if(!openCard.contains(event.target)){
+    if(openCard && !openCard.contains(event.target)){
         closeOpenCard();
     }
-
+    if(searchOpen && !searchInput.contains(event.target) && !searchToggle.contains(event.target)){
+        if(!searchInput.value.trim()){
+            searchInput.classList.remove("active");
+            searchOpen = false;
+        }
+    }
 });

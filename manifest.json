@@ -1,0 +1,17 @@
+{
+    "name": "Treasure Hunt Game – Online Adventure",
+    "short_name": "Treasure Hunt Game",
+    "lang": "en-US",
+    "start_url": "/html/index.html",
+    "display": "standalone",
+    "background_color": "black",
+    "theme_color": "black",
+    "icons": [
+        {
+        "src": "/media/photo/pirat-hat.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "maskable"
+        }
+    ]
+}

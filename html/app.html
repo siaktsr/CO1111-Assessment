@@ -11,20 +11,39 @@
 	<meta name="keywords" content="start treasure hunt game, puzzle game start, online quiz game, treasure hunt teams">
 	<meta name="author" content="Team C, 3RussiansAndMe">
 	<meta name="robots" content="index, follow">
-	<link rel="icon" type="image/png" href="/media/photo/pirate-hat.png">
+	<link rel="icon" type="image/png" href="../media/photo/pirate-hat.png">
 	<link rel="stylesheet" href="../css/app.css">
 </head>
 <body>
-    <header class="site-header">
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="closeModal">&times;</span>
+        <p></p>
+    </div>
+</div>
+
+<header class="site-header">
 		<div class="container header-container">
 			<div class="logo-block">
-				<img src="/media/photo/pirate-hat.png" alt="Treasure Hunt logo" class="logo-img">
+				<img src="../media/photo/pirate-hat.png" alt="Treasure Hunt logo" class="logo-img">
 			</div>
 
 			<div class="title-block">
 				<h1 id="title-index">Treasure Hunt Game</h1>
 				<p class="team-name">By Team C</p>
 			</div>
+			<div class="search-header">
+    			<button id="search-toggle" class="search-btn">🔍</button>
+    			<div class="search-input-wrapper">
+        			<input id="search-input" class="search-input" type="text" placeholder="Search...">
+        			<button id="search-clear" class="search-clear">✕</button>
+    			</div>
+			</div>
+			<!-- Resume Session Button-->
+			<button id="resumeSession">Resume Game &#127918</button>
 		</div>
 	</header>
 
@@ -33,20 +52,14 @@
 		<a href="index.html" class="prev-btn previous round">Back to Home</a>
 		<h2>Start Your Adventure</h2>
 
-		<div class="search-block">
-			<input id="search-input" type="text" placeholder="Search game...">
-			<p class="search-note"> Search works across ALL games </p>
-		</div>
-
 		<div class="checkbox-block">
 			<label>
 				<input type="checkbox" id="include-finished">
 				Include finished
 			</label>
 		</div>
-
+		<div class="loader"></div>
 		<div id="hunts-container"></div>
-
 		<div class="pagination">
 			<button id="previousPage">Previous</button>
 			<button id="nextPage">Next</button>
@@ -57,6 +70,10 @@
 	</main>
 
 	<script type="module" src="../js/app.js"></script>
+	
+    <script type="module" src="../js/resumeSession.js"></script>
+<script src="../js/loader.js"></script>
 
+	
 </body>
 </html>

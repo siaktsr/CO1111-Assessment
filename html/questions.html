@@ -9,7 +9,7 @@
 	<meta name="keywords" content="treasure hunt questions, puzzle questions game, quiz challenge game">
 	<meta name="author" content="Team C, 3RussiansAndMe">
 	<meta name="robots" content="index, follow">
-	<link rel="icon" type="image/png" href="/media/photo/pirate-hat.png">
+	<link rel="icon" type="image/png" href="../media/photo/pirate-hat.png">
 	<link rel="stylesheet" href="../css/questions.css">
 </head>
 <body class="question-page">
@@ -20,14 +20,33 @@
 		</div>
 	</header>
 
-	<main class="question-layout">
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="closeModal">&times;</span>
+            <p></p>
+        </div>
+    </div>
+
+
+    <main class="question-layout">
 		<!-- MAIN QUESTION AREA -->
 		<section class="question-card">
 			<div id="question-section">
+				<div class="loader"></div>
 				<h2 id="question-text">
 					Loading question...
 				</h2>
-			</div>
+				</div>
+					<div id="messagesection">
+						<p id="messagesec"></p>
+					</div>
+
+<!--					<div id="end-controls">-->
+<!--						<button id="home-btn">Back to Home</button>-->
+<!--					</div>-->
+
 
 			<div id="answer-section">
 				<!-- JS renders inputs -->
@@ -65,10 +84,13 @@
 
 	<footer class="question-footer">
 		<p>Treasure Hunt Game</p>
+
 	</footer>
 
 	<script src="../libraries/instascan.min.js"></script>
 	<script type="module" src="../js/questions.js"></script>
 	<script type="module" src="../js/score.js"></script>
+    <script src="../js/loader.js"></script>
+
 </body>
 </html>
