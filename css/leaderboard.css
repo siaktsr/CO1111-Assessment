@@ -1,64 +1,186 @@
-/*Leaderboard CSS : */
-h1{
-    text-align: center;
-    font-size: 50px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    color: red;
-    justify-content: center;
-    align-items: center;
-}
-
-body{
-    display: flex;
-    background-color: black;
+* {
+    box-sizing: border-box;
     margin: 0;
+    padding: 0;
+}
+
+body {
     font-family: Arial, Helvetica, sans-serif;
-    overflow-x: hidden;
-}
-
-
-#leaderboard {
-    background: purple;
-    width:1200px;
-    border : 10px solid darkblue;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: white;
-    margin-left: 150px;
-    align-items: center;
-}
-
-.entry{
+    background-color: #111;
+    color: #f5f5f5;
+    line-height: 1.6;
     display: flex;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Header */
+.site-header {
+    background: #1b1b1b;
+    border-bottom: 2px solid #c8a44d;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.site-header h1 {
+    color: #f0c75e;
+}
+
+/* Leaderboard Section */
+.leaderboard-section {
+    padding: 40px 0;
+}
+
+/* Leaderboard List */
+#leaderboard {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Player Card */
+.entry {
+    display: flex;
     justify-content: space-between;
-    border : 10px solid darkgoldenrod;
-    border-radius: 20px;
-    transition: 0.2s;
-    font-size: 30px;
-    padding: 25px;
-    margin: 20px;
-}
-
-
-.entry:hover{
-    scroll-behavior: smooth;
-    transform: translateY(-2px);
-}
-
-#player {
-    background: purple;
-    width:1200px;
-    border : 10px solid darkblue;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: white;
-    margin-left: 150px;
     align-items: center;
+    background: #1b1b1b;
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-size: 18px;
+    border: 1px solid #2a2a2a;
+    transition: 0.2s;
 }
 
-.outside-player {
-    background: #1e90ff;
-    border: 10px solid #00ffff;
-    color: white;
+.entry:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+}
+
+.entry span:first-child {
     font-weight: bold;
+    width: 50px;
+    color: #f0c75e;
+}
+
+/* Current player highlight */
+.outside-player {
+    border: 2px solid #c8a44d;
+    background: #222;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    /*justify-content: center;*/
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.pagecontrols, .pagecontrols {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Buttons */
+button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    background: #c8a44d;
+    color: #111;
+    transition: 0.25s;
+    min-width: 150px;
+}
+
+button:hover {
+    background: #f0c75e;
+    box-shadow: 0 8px 16px rgba(200,164,77,0.4);
+    color: white;
+    font-size: 18px;
+}
+
+/* Current Player Section */
+#player {
+    margin-top: 35px;
+    border-top: 2px solid #c8a44d;
+    padding-top: 20px;
+}
+
+/* Footer */
+.site-footer {
+    text-align: center;
+    padding: 20px;
+    background: #1b1b1b;
+    border-top: 2px solid #c8a44d;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .container {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 992px) {
+    .entry {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 600px) {
+    .entry {
+        font-size: 14px;
+        padding: 10px 14px;
+    }
+
+    button {
+        padding: 8px 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .entry {
+        align-items: flex-start;
+        gap: 6px;
+    }
+}
+
+.loader {
+    width: 75px;
+    height: 75px;
+    margin: 20px auto;
+    position: relative;
+}
+
+.loader img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }

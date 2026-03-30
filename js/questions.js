@@ -1,11 +1,23 @@
 // questions.js
 // Handles rendering questions, submitting answers, skipping questions
+import{
+    displayError
+} from "../js/modals.js";
+
+import { 
+    showLoader, 
+    hideLoader 
+} from "../js/loader.js";
 
 import {
     fetchQuestion,
     submitAnswer,
     skipQuestion
 } from "../js/api.js"
+
+import {
+    getLocation
+} from "../js/Geolocation.js"
 
 // DOM Elements
 const questionTextEl = document.getElementById("question-text");
@@ -20,7 +32,10 @@ let sessionId = null;
 let currentQuestion = null;
 let selectedAnswer = null;
 
+let answerHistory = [];
 
+let isSubmitting = false;
+let isLockedAfterCorrect = false;
 // Initialization
 init();
 
@@ -28,23 +43,54 @@ function init(){
     const StoredData = localStorage.getItem("treasureHuntSession");
 
     if(!StoredData){
-        alert("Sessoin data not found.");
-        window.location.href = "../test/test.html";
+        alert("Session Id was not found. Please try again.");
+        window.location.href = "../html/app.html";
     }
     const sessionData = JSON.parse(StoredData);
     sessionId = sessionData.sessionId;
+    
+    if(sessionData.answerHistory){
+        answerHistory = sessionData.answerHistory;
+        renderHistory();
+    }
 
     loadQuestion();
+}
+
+function saveHistory(){
+
+    const storedData = localStorage.getItem("treasureHuntSession");
+
+    if(!storedData) return;
+
+    const sessionData = JSON.parse(storedData);
+    sessionData.answerHistory = answerHistory;
+
+    localStorage.setItem(
+        "treasureHuntSession",
+        JSON.stringify(sessionData)
+    );
 }
 
 /* loadQuestion
 Fetches a question from the API and renders it.
 */
 async function loadQuestion() {
+    isLockedAfterCorrect = false;
     clearUI();
-    try{
+    showLoader();
+    try {
         const data = await fetchQuestion(sessionId);
         currentQuestion = data;
+
+
+        if (!currentQuestion.canBeSkipped){
+            skipBtn.style.display = "none";
+        }
+        else{
+            skipBtn.style.display = "block";
+        }
+
 
         if(data.completed){
             showGameCompleted();
@@ -54,6 +100,9 @@ async function loadQuestion() {
         renderQuestion(data);
     }catch(error){
         showMessage(error.message);
+        displayError(error.message);
+    } finally {
+        hideLoader();
     }
 }
 
@@ -62,7 +111,7 @@ Renders question text and input controls based on question type.
 */
 async function renderQuestion(question) {
     questionTextEl.innerHTML = question.questionText;
-    questionTypeEl.textContent = `Type: ${question.questionType}`;
+    //questionTypeEl.textContent = `Type: ${question.questionType}`;
 
     renderAnswerInput(question.questionType);
 }
@@ -124,7 +173,9 @@ async function createBtn(label, value) {
 /* Event Handlers */
 
 submitBtn.addEventListener("click", ()=>{
-    if(!currentQuestion)return;
+    if (isSubmitting || isLockedAfterCorrect) return;
+
+    if(!currentQuestion) return;
 
     if(currentQuestion.questionType === "BOOLEAN" 
     || currentQuestion.questionType === "MCQ"){
@@ -166,6 +217,12 @@ submitBtn.addEventListener("click", ()=>{
 Submits an answer to the server.
 */
 async function submit(answer) {
+    if (isSubmitting) return;
+
+    isSubmitting = true;
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Submitting...";
+    showLoader();
     try{
 
         if(wasWrongBefore(currentQuestion, answer)) {
@@ -176,10 +233,13 @@ async function submit(answer) {
             );
 
             if(!confirmRepeat){
+                hideLoader();
                 return;
             }
         }
-        
+        if(currentQuestion.requiresLocation === "true"){
+            await getLocation(sessionId);
+        }
         const result = await submitAnswer(sessionId, answer);
         addToHistory(currentQuestion, answer, result);
         document.dispatchEvent(new CustomEvent("answer-submitted"));
@@ -191,13 +251,25 @@ async function submit(answer) {
         }
 
         if(result.correct){
+            isLockedAfterCorrect = true;
+
             setTimeout(() => {
                 loadQuestion();
             }, 800);
+            return;
         }
 
     }catch(error){
         showMessage(error.message);
+        displayError(error.message);
+    } finally {
+        isSubmitting = false;
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Submit Answer";
+        
+        if (!isLockedAfterCorrect) {
+            hideLoader();
+        }
     }
 }
 
@@ -214,6 +286,8 @@ skipBtn.addEventListener("click", async () => {
         return;
     }
 
+    showLoader();
+
     try{
         const result = await skipQuestion(sessionId);
         addToHistory(currentQuestion, null, { correct: false, skipped: true });
@@ -222,6 +296,9 @@ skipBtn.addEventListener("click", async () => {
         loadQuestion();
     }catch(error){
         showMessage(error.message);
+        displayError(error.message);
+    } finally {
+        hideLoader();
     }
 });
 
@@ -232,7 +309,7 @@ Clears UI sections before rendering a new question.
 */
 function clearUI(){
     questionTextEl.textContent = "Loading question...";
-    questionTypeEl.textContent = "";
+    //questionTypeEl.textContent = "";
     answerSectionEl.innerHTML = "";
     messageEl.textContent = "";
 }
@@ -255,6 +332,13 @@ function showGameCompleted(){
 
     submitBtn.style.display = "none";
     skipBtn.style.display = "none";
+    qrBtn.style.display = "none";
+
+    const storedData = JSON.parse(localStorage.getItem("treasureHuntSession"));
+    if (storedData) {
+        storedData.completed = true;
+        localStorage.setItem("treasureHuntSession", JSON.stringify(storedData));
+    }
 
     const btn = document.createElement("button");
     btn.textContent = "Go to Leaderboard";
@@ -320,6 +404,12 @@ function startScanner() {
                 currentCameraIndex = 0;
             }
 
+            if (cameras.length === 1) {
+                switchCameraBtn.style.display = "none";
+            } else if (cameras.length > 1) {
+                switchCameraBtn.style.display = "inline-block";
+            }
+            
             scanner.start(cameras[currentCameraIndex]);
 
             if (cameras.length > 1) {
@@ -391,7 +481,6 @@ switchCameraBtn.addEventListener("click", () => {
 });
 
 /* Answer History */
-let answerHistory = [];
 
 function addToHistory(question, userAnswer, result) {
 
@@ -400,10 +489,14 @@ function addToHistory(question, userAnswer, result) {
         questionType: question.questionType,
         userAnswer: userAnswer,
         correct: result.correct,
-        skipped: result.skipped || false
+        skipped: result.skipped || false,
+        note: result.message || null
     };
 
-    answerHistory.unshift(historyItem); // добавляем в начало
+    answerHistory.unshift(historyItem);
+
+    saveHistory();
+
     renderHistory();
 }
 
@@ -431,6 +524,7 @@ function renderHistory() {
             <span><strong>Result:</strong> 
                 ${item.skipped ? "Skipped" : item.correct ? "Correct" : "Wrong"}
             </span>
+            ${item.note ? `<span><strong>Note:</strong> ${item.note}</span>` : ""}
         `;
 
         historyList.appendChild(div);

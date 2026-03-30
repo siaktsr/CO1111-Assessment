@@ -3,18 +3,23 @@ import{
     fetchLeaderboard,
 }from "./api.js"
 
+import { 
+    showLoader, 
+    hideLoader 
+} from "../js/loader.js";
 
 let page = 0;
 const playersInPage = 50;
 let leaderboard = [];
 let weAsAPlayer;
 
-
-
+// Renders the current page of leaderboard data
 function formatPage(){
     const display = document.getElementById('leaderboard');
     //clear
     display.innerHTML = "";
+
+    // Calculate current page range
     const startPoint = page * playersInPage;
     const endPoint = Math.min(startPoint + playersInPage, leaderboard.length);
 
@@ -22,12 +27,31 @@ function formatPage(){
     const formatPlayers = leaderboard.slice(startPoint,endPoint);
 
     //display until the endPoint
-    for(let i =startPoint; i < endPoint; i++){
+    for(let i=startPoint; i < endPoint;i++){
         const card = createCard(i , leaderboard[i].player , leaderboard[i].score);
         display.appendChild(card);
     }
+    const totalPages = Math.ceil(leaderboard.length / playersInPage);
+
+    const prevBtn = document.getElementById("previousPage");
+    const nextBtn = document.getElementById("nextPage");
+
+    if (totalPages <= 1) {
+        prevBtn.style.display = "none";
+        nextBtn.style.display = "none";
+        return;
+    }
+
+    prevBtn.style.display = "inline-block";
+    nextBtn.style.display = "inline-block";
+
+    if (page === 0) prevBtn.style.display = "none";
+
+    if (page === totalPages - 1) nextBtn.style.display = "none";
+
 }
 
+// Creates a single leaderboard entry (player card)
 function createCard(index , player , score ){
     const card = document.createElement("div");
     card.classList.add("entry");
@@ -53,6 +77,7 @@ function createCard(index , player , score ){
     return card;
 }
 
+// Displays current player separately if they are not on the current page
 function renderCurrentPlayer(){
     const playerContainer = document.getElementById("player");
     playerContainer.innerHTML = "";
@@ -85,30 +110,50 @@ function renderCurrentPlayer(){
     }
 }
 
+// Main initialization function for leaderboard page
 async function initLeaderboard() {
+    
+    const prevBtn = document.getElementById("previousPage");
+    const nextBtn = document.getElementById("nextPage");
+    const homeBtn = document.getElementById("homeButton");
+    const questionBtn = document.getElementById("questionButton");
+    
+    prevBtn.style.display = "none";
+    nextBtn.style.display = "none";
+    homeBtn.style.display = "none";
+    questionBtn.style.display = "none";
 
-    const stored = localStorage.getItem("treasureHuntSession");
+    showLoader();
 
-    if (!stored) {
-        console.error("No session found!");
-        return;
+    try{
+        const stored = localStorage.getItem("treasureHuntSession");
+
+        if (!stored) {
+            alert("No session ID found.Please Try Again.");
+            return;
+        }
+
+        const parsedSession = JSON.parse(stored);
+
+        weAsAPlayer = parsedSession.player;
+
+        const leaderboardData = await fetchLeaderboard({
+            sessionId: parsedSession.sessionId,
+            sorted : true
+        });
+
+        let display = document.getElementById("leaderboard");
+
+        leaderboard = leaderboardData.leaderboard;
+        formatPage();
+        renderCurrentPlayer();
+    } catch (error) {
+        alert(error.message);
+    } finally {
+        homeBtn.style.display = "inline-block";
+        questionBtn.style.display = "inline-block";
+        hideLoader();
     }
-
-    const parsedSession = JSON.parse(stored);
-
-    weAsAPlayer = parsedSession.player;
-
-    const leaderboardData = await fetchLeaderboard({
-        sessionId: parsedSession.sessionId,
-        sorted : true
-    });
-
-    console.log(leaderboardData.leaderboard);
-    let display = document.getElementById("leaderboard");
-
-    leaderboard = leaderboardData.leaderboard;
-    formatPage();
-    renderCurrentPlayer();
 
     document.getElementById("previousPage").addEventListener("click", () =>{
 
@@ -129,5 +174,5 @@ async function initLeaderboard() {
         }
      })
  }
-//
+
 await initLeaderboard();
